@@ -1,6 +1,6 @@
 package ru.dstu.station.element;
 
-import ru.dstu.station.exception.UnknownStateCode;
+import ru.dstu.station.exception.UnknownStateCodeException;
 import ru.dstu.station.state.Direction;
 
 import java.util.List;
@@ -8,6 +8,9 @@ import java.util.List;
 import static ru.dstu.station.constant.CodeConstant.ST_MINUS;
 import static ru.dstu.station.constant.CodeConstant.ST_PLUS;
 
+/**
+ * Объект стрелка
+ */
 public class St extends AbstractElement {
     private List<IStationElement> evenElement;
     private List<IStationElement> oddElement;
@@ -37,7 +40,7 @@ public class St extends AbstractElement {
                 case ST_MINUS:
                     return elements.get(1);
                 default:
-                    throw new UnknownStateCode("Неизвестный код" + state.getState());
+                    throw new UnknownStateCodeException("Неизвестный код" + state.getState());
             }
         } else {
             return elements.get(0);

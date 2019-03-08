@@ -2,7 +2,10 @@ package ru.dstu.station.state;
 
 import java.util.Date;
 
-public class State {
+/**
+ * Класс состояние объекта,
+ */
+public class State implements IState {
     private Date lastChange;
     private int state;
 

@@ -1,5 +1,6 @@
 package ru.dstu.station.element;
 
+import ru.dstu.station.state.IState;
 import ru.dstu.station.state.State;
 
 import java.util.Date;
@@ -23,5 +24,10 @@ public abstract class AbstractElement implements IStationElement {
     public void setState(int state) {
         this.state.setState(state);
         this.state.setLastChange(new Date());
+    }
+
+    @Override
+    public IState getState() {
+        return state;
     }
 }
