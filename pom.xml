@@ -12,11 +12,17 @@
         <module>railway-api</module>
         <module>railway-model</module>
         <module>railway-base</module>
+        <module>railway-logcon</module>
     </modules>
 
     <properties>
-        <railway-api.version>1.0-SNAPSHOT</railway-api.version>
-        <railway-model.version>1.0-SNAPSHOT</railway-model.version>
+        <railway-api.version>${project.version}</railway-api.version>
+        <railway-model.version>${project.version}</railway-model.version>
+        <railway-base.version>${project.version}</railway-base.version>
+
+        <spring.version>3.1.0.RELEASE</spring.version>
+        <cglib.version>2.2.2</cglib.version>
+        <junit.version>4.12</junit.version>
     </properties>
 
     <dependencyManagement>
@@ -30,6 +36,33 @@
                 <groupId>railway</groupId>
                 <artifactId>railway-model</artifactId>
                 <version>${railway-model.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>railway</groupId>
+                <artifactId>railway-base</artifactId>
+                <version>${railway-base.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>${cglib.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
