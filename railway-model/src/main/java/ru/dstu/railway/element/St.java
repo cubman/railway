@@ -1,12 +1,12 @@
-package ru.dstu.station.element;
+package ru.dstu.railway.element;
 
-import ru.dstu.station.exception.UnknownStateCodeException;
-import ru.dstu.station.state.Direction;
+import ru.dstu.railway.exception.UnknownStateCodeException;
+import ru.dstu.railway.state.Direction;
 
 import java.util.List;
 
-import static ru.dstu.station.constant.CodeConstant.ST_MINUS;
-import static ru.dstu.station.constant.CodeConstant.ST_PLUS;
+import static ru.dstu.railway.constant.CodeConstant.ST_MINUS;
+import static ru.dstu.railway.constant.CodeConstant.ST_PLUS;
 
 /**
  * Объект стрелка

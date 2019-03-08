@@ -1,4 +1,4 @@
-package ru.dstu.station.exception;
+package ru.dstu.railway.exception;
 
 /**
  * Неподдерживаемая операция

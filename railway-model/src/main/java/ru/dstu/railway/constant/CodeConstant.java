@@ -1,4 +1,4 @@
-package ru.dstu.station.constant;
+package ru.dstu.railway.constant;
 
 public final class CodeConstant {
     // ST

@@ -1,11 +1,11 @@
-package ru.dstu.station.element;
+package ru.dstu.railway.element;
 
 /**
- * Объект переезд
+ * Объект светофор
  */
-public class Pr extends AbstractElement {
+public class Sv extends AbstractElement {
 
-    public Pr(String code) {
+    public Sv(String code) {
         super(code);
     }
 

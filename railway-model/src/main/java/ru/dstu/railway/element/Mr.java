@@ -1,4 +1,4 @@
-package ru.dstu.station.element;
+package ru.dstu.railway.element;
 
 /**
  * Объект маркер (шильдик)

@@ -1,7 +1,7 @@
-package ru.dstu.station.element;
+package ru.dstu.railway.element;
 
-import ru.dstu.station.state.IState;
-import ru.dstu.station.state.State;
+import ru.dstu.railway.state.IState;
+import ru.dstu.railway.state.State;
 
 import java.util.Date;
 

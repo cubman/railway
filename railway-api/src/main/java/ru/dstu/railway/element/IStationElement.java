@@ -1,6 +1,6 @@
-package ru.dstu.station.element;
+package ru.dstu.railway.element;
 
-import ru.dstu.station.state.IState;
+import ru.dstu.railway.state.IState;
 
 /**
  * Интерфейс объекта полигона

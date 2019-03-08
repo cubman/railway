@@ -1,4 +1,4 @@
-package ru.dstu.station.state;
+package ru.dstu.railway.state;
 
 import java.util.Date;
 
