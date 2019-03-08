@@ -10,19 +10,27 @@ import java.util.List;
 
 public abstract class AbstractElement implements IStationElement {
 
-    protected String code;
-    protected State state;
-    protected List<IArea> areas;
+    protected final String elementCode;
 
-    public AbstractElement(String code) {
-        this.code = code;
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() +
+                "{elementCode='" + elementCode + '\'' +
+                '}';
+    }
+
+    protected final State state;
+    protected final List<IArea> areas;
+
+    public AbstractElement(String elementCode) {
+        this.elementCode = elementCode;
         this.state = new State(new Date(), 0);
         this.areas = new ArrayList<>();
     }
 
     @Override
-    public String getCode() {
-        return code;
+    public String getElementCode() {
+        return elementCode;
     }
 
     @Override
@@ -44,5 +52,24 @@ public abstract class AbstractElement implements IStationElement {
     @Override
     public List<IArea> getAreas() {
         return areas;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        AbstractElement that = (AbstractElement) obj;
+
+        return elementCode != null ? elementCode.equals(that.elementCode) : that.elementCode == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return elementCode != null ? elementCode.hashCode() : 0;
     }
 }

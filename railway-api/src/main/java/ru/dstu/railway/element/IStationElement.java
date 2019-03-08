@@ -13,7 +13,7 @@ public interface IStationElement {
      * Получить код объекта (уникальный в области)
      * @return код объекта
      */
-    String getCode();
+    String getElementCode();
 
     /**
      * Получить объект в четном направлении
