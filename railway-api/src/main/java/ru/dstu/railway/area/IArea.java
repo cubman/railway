@@ -2,7 +2,7 @@ package ru.dstu.railway.area;
 
 import ru.dstu.railway.element.IStationElement;
 
-import java.util.Set;
+import java.util.Map;
 
 /**
  *  Интерфейс области
@@ -19,7 +19,14 @@ public interface IArea {
      * Список объектов области
      * @return набор объектов
      */
-    Set<IStationElement> getElements();
+    Map<String, IStationElement> getElements();
+
+    /**
+     * Получить объект области по коду
+     * @param code код элемента
+     * @return объект
+     */
+    IStationElement getElementByCode(String code);
 
     /**
      * Получить код области
