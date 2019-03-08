@@ -1,6 +1,9 @@
 package ru.dstu.railway.element;
 
+import ru.dstu.railway.area.IArea;
 import ru.dstu.railway.state.IState;
+
+import java.util.List;
 
 /**
  * Интерфейс объекта полигона
@@ -35,4 +38,16 @@ public interface IStationElement {
      * @return состояние
      */
     IState getState();
+
+    /**
+     * Добавить область объекту
+     * @param area область
+     */
+    void addArea(IArea area);
+
+    /**
+     * Получить список областей, в которых присутствует объект
+     * @return
+     */
+    List<IArea> getAreas();
 }
