@@ -11,6 +11,7 @@
     <modules>
         <module>railway-api</module>
         <module>railway-model</module>
+        <module>railway-base</module>
     </modules>
 
     <properties>

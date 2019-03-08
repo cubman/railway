@@ -1,0 +1,51 @@
+<polygon>
+    <areas>
+        <area code="SplitPoint.A" type="SPLITPOINT">
+            <neighbour linkArea="Stage.A.B" linkObject="НД"/>
+            <neighbour linkArea="Stage.B.A" linkObject="Н"/>
+            <neighbour linkArea="Stage.A.C" linkObject="1Ч"/>
+            <neighbour linkArea="Stage.C.A" linkObject="2Ч"/>
+        </area>
+    </areas>
+    <description>
+        <areas>
+            <area link="SplitPoint.A">
+                <!-- Пути -->
+                <element code="1" type="KP" evenLink="Н1" oddLink="Ч1"/>
+                <element code="2" type="KP" evenLink="Ч2" oddLink="Н2"/>
+                <element code="3" type="KP" evenLink="Н3" oddLink="Ч3"/>
+                <element code="4" type="KP" evenLink="Ч4" oddLink="Н4"/>
+                <element code="6" type="KP" evenLink="Ч6" oddLink="Н6"/>
+
+                <!-- Светофоры -->
+                <element code="Ч1" type="SV" evenLink="1" oddLink="СТ9"/>
+                <element code="Ч2" type="SV" evenLink="СТ11" oddLink="2"/>
+                <element code="Ч3" type="SV" evenLink="3" oddLink="СТ9"/>
+                <element code="Ч4" type="SV" evenLink="СТ13" oddLink="4"/>
+                <element code="Ч6" type="SV" evenLink="СТ13" oddLink="6"/>
+
+                <element code="Н1" type="SV" evenLink="СТ14" oddLink="1"/>
+                <element code="Н2" type="SV" evenLink="2" oddLink="СТ16"/>
+                <element code="Н3" type="SV" evenLink="СТ14" oddLink="3"/>
+                <element code="Н4" type="SV" evenLink="4" oddLink="СТ18"/>
+                <element code="Н6" type="SV" evenLink="6" oddLink="СТ18"/>
+
+                <element code="1Ч" type="SV" evenLink="" oddLink="УУ1Ч"/>
+                <element code="2Ч" type="SV" evenLink="УП2Ч" oddLink=""/>
+
+                <element code="НД" type="SV" evenLink="" oddLink="УУНД"/>
+                <element code="Н" type="SV" evenLink="УПН" oddLink=""/>
+
+                <!-- Участки приближения/ удаления -->
+                <element code="УП2Ч" type="UP" evenLink="СТ16" oddLink="2Ч"/>
+                <element code="УУ1Ч" type="UP" evenLink="1Ч" oddLink="СТ14"/>
+
+                <element code="УУНД" type="UP" evenLink="НД" oddLink="СТ7"/>
+                <element code="УПН" type="UP" evenLink="СТ1" oddLink="Н"/>
+
+                <!-- Стрелки -->
+                <element code="СТ1" type="ST" evenLink="СТ1" oddLink="Н"/>
+            </area>
+        </areas>
+    </description>
+</polygon>
