@@ -50,4 +50,16 @@
         <st code="СТ16" evenLinkP="Н2" evenLinkM="СТ18" oddLinkP="УП2Ч" oddLinkM="УП2Ч"/>
         <st code="СТ18" evenLinkP="Н4" evenLinkM="Н6" oddLinkP="СТ16" oddLinkM="СТ16"/>
     </area>
+    <area code="Stage.A.B" type="STAGETRACK">
+
+    </area>
+    <area code="Stage.B.A" type="STAGETRACK">
+
+    </area>
+    <area code="Stage.A.C" type="STAGETRACK">
+
+    </area>
+    <area code="Stage.C.A" type="STAGETRACK">
+
+    </area>
 </polygon>

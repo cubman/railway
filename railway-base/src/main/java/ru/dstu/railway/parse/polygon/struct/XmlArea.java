@@ -5,10 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import java.util.List;
 
-public class XmlArea {
-
-    @JacksonXmlProperty(isAttribute=true, localName="code")
-    private String code;
+public class XmlArea extends AbstractXmlElement {
 
     @JacksonXmlProperty(isAttribute=true, localName="type")
     private String type;
@@ -32,14 +29,6 @@ public class XmlArea {
     @JacksonXmlProperty(localName = "up")
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<XmlUp> ups;
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 
     public String getType() {
         return type;

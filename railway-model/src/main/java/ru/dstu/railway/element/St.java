@@ -15,11 +15,6 @@ public class St extends AbstractElement {
     private List<IStationElement> evenElement;
     private List<IStationElement> oddElement;
 
-    public St(String code) {
-        super(code);
-    }
-
-
     @Override
     public IStationElement getEven() {
         return getElement( evenElement);

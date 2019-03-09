@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class AbstractElement implements IStationElement {
 
-    protected final String elementCode;
+    protected String elementCode;
 
     @Override
     public String toString() {
@@ -22,10 +22,13 @@ public abstract class AbstractElement implements IStationElement {
     protected final State state;
     protected final List<IArea> areas;
 
-    public AbstractElement(String elementCode) {
-        this.elementCode = elementCode;
+    public AbstractElement() {
         this.state = new State(new Date(), 0);
         this.areas = new ArrayList<>();
+    }
+
+    public void setElementCode(String elementCode) {
+        this.elementCode = elementCode;
     }
 
     @Override

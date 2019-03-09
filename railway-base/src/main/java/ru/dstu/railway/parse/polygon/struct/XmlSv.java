@@ -2,23 +2,13 @@ package ru.dstu.railway.parse.polygon.struct;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-public class XmlSv {
-    @JacksonXmlProperty(isAttribute=true, localName="code")
-    private String code;
-
+public class XmlSv extends AbstractXmlElement {
     @JacksonXmlProperty(isAttribute=true, localName="evenLink")
     private String evenLink;
 
     @JacksonXmlProperty(isAttribute=true, localName="oddLink")
     private String oddLink;
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 
     public String getEvenLink() {
         return evenLink;

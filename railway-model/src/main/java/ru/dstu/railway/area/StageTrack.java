@@ -3,8 +3,8 @@ package ru.dstu.railway.area;
 /**
  * Класс перегон
  */
-public class Stage extends AbstractArea {
-    public Stage(String areaCode) {
+public class StageTrack extends AbstractArea {
+    public StageTrack(String areaCode) {
         super(areaCode);
     }
 }
