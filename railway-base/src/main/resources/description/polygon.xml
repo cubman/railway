@@ -5,57 +5,51 @@
             <neighbour linkArea="Stage.B.A" linkObject="Н"/>
             <neighbour linkArea="Stage.A.C" linkObject="1Ч"/>
             <neighbour linkArea="Stage.C.A" linkObject="2Ч"/>
+
+            <!-- Пути -->
+            <element code="1" type="KP" evenLink="Н1" oddLink="Ч1"/>
+            <element code="2" type="KP" evenLink="Ч2" oddLink="Н2"/>
+            <element code="3" type="KP" evenLink="Н3" oddLink="Ч3"/>
+            <element code="4" type="KP" evenLink="Ч4" oddLink="Н4"/>
+            <element code="6" type="KP" evenLink="Ч6" oddLink="Н6"/>
+
+            <!-- Светофоры -->
+            <element code="Ч1" type="SV" evenLink="1" oddLink="СТ9"/>
+            <element code="Ч2" type="SV" evenLink="СТ11" oddLink="2"/>
+            <element code="Ч3" type="SV" evenLink="3" oddLink="СТ9"/>
+            <element code="Ч4" type="SV" evenLink="СТ13" oddLink="4"/>
+            <element code="Ч6" type="SV" evenLink="СТ13" oddLink="6"/>
+
+            <element code="Н1" type="SV" evenLink="СТ14" oddLink="1"/>
+            <element code="Н2" type="SV" evenLink="2" oddLink="СТ16"/>
+            <element code="Н3" type="SV" evenLink="СТ14" oddLink="3"/>
+            <element code="Н4" type="SV" evenLink="4" oddLink="СТ18"/>
+            <element code="Н6" type="SV" evenLink="6" oddLink="СТ18"/>
+
+            <element code="1Ч" type="SV" evenLink="" oddLink="УУ1Ч"/>
+            <element code="2Ч" type="SV" evenLink="УП2Ч" oddLink=""/>
+
+            <element code="НД" type="SV" evenLink="" oddLink="УУНД"/>
+            <element code="Н" type="SV" evenLink="УПН" oddLink=""/>
+
+            <!-- Участки приближения/ удаления -->
+            <element code="УП2Ч" type="UP" evenLink="СТ16" oddLink="2Ч"/>
+            <element code="УУ1Ч" type="UP" evenLink="1Ч" oddLink="СТ14"/>
+
+            <element code="УУНД" type="UP" evenLink="НД" oddLink="СТ7"/>
+            <element code="УПН" type="UP" evenLink="СТ1" oddLink="Н"/>
+
+            <!-- Стрелки -->
+            <element code="СТ1" type="ST" evenLinkP="СТ5" evenLinkM="СТ3" oddLinkP="УПН" oddLinkM="УПН"/>
+            <element code="СТ3" type="ST" evenLinkP="СТ7" evenLinkM="СТ1" oddLinkP="СТ11" oddLinkM="СТ11"/>
+            <element code="СТ5" type="ST" evenLinkP="СТ9"  evenLinkM="СТ9" oddLinkP="СТ1" oddLinkM="СТ7"/>
+            <element code="СТ7" type="ST" evenLinkP="УУНД" evenLinkM="УУНД" oddLinkP="СТ3" oddLinkM="СТ5"/>
+            <element code="СТ9" type="ST" evenLinkP="Ч1" evenLinkM="Ч3" oddLinkP="СТ5" oddLinkM="СТ5"/>
+            <element code="СТ11" type="ST" evenLinkP="СТ3" evenLinkM="СТ3" oddLinkP="Ч2" oddLinkM="СТ13"/>
+            <element code="СТ13" type="ST" evenLinkP="СТ11" evenLinkM="СТ11" oddLinkP="Ч4" oddLinkM="Ч6"/>
+            <element code="СТ14" type="ST" evenLinkP="УУ1Ч" evenLinkM="УУ1Ч" oddLinkP="Н1" oddLinkM="Н3"/>
+            <element code="СТ16" type="ST" evenLinkP="Н2" evenLinkM="СТ18" oddLinkP="УП2Ч" oddLinkM="УП2Ч"/>
+            <element code="СТ18" type="ST" evenLinkP="Н4" evenLinkM="Н6" oddLinkP="СТ16" oddLinkM="СТ16"/>
         </area>
     </areas>
-    <description>
-        <areas>
-            <area link="SplitPoint.A">
-                <!-- Пути -->
-                <element code="1" type="KP" evenLink="Н1" oddLink="Ч1"/>
-                <element code="2" type="KP" evenLink="Ч2" oddLink="Н2"/>
-                <element code="3" type="KP" evenLink="Н3" oddLink="Ч3"/>
-                <element code="4" type="KP" evenLink="Ч4" oddLink="Н4"/>
-                <element code="6" type="KP" evenLink="Ч6" oddLink="Н6"/>
-
-                <!-- Светофоры -->
-                <element code="Ч1" type="SV" evenLink="1" oddLink="СТ9"/>
-                <element code="Ч2" type="SV" evenLink="СТ11" oddLink="2"/>
-                <element code="Ч3" type="SV" evenLink="3" oddLink="СТ9"/>
-                <element code="Ч4" type="SV" evenLink="СТ13" oddLink="4"/>
-                <element code="Ч6" type="SV" evenLink="СТ13" oddLink="6"/>
-
-                <element code="Н1" type="SV" evenLink="СТ14" oddLink="1"/>
-                <element code="Н2" type="SV" evenLink="2" oddLink="СТ16"/>
-                <element code="Н3" type="SV" evenLink="СТ14" oddLink="3"/>
-                <element code="Н4" type="SV" evenLink="4" oddLink="СТ18"/>
-                <element code="Н6" type="SV" evenLink="6" oddLink="СТ18"/>
-
-                <element code="1Ч" type="SV" evenLink="" oddLink="УУ1Ч"/>
-                <element code="2Ч" type="SV" evenLink="УП2Ч" oddLink=""/>
-
-                <element code="НД" type="SV" evenLink="" oddLink="УУНД"/>
-                <element code="Н" type="SV" evenLink="УПН" oddLink=""/>
-
-                <!-- Участки приближения/ удаления -->
-                <element code="УП2Ч" type="UP" evenLink="СТ16" oddLink="2Ч"/>
-                <element code="УУ1Ч" type="UP" evenLink="1Ч" oddLink="СТ14"/>
-
-                <element code="УУНД" type="UP" evenLink="НД" oddLink="СТ7"/>
-                <element code="УПН" type="UP" evenLink="СТ1" oddLink="Н"/>
-
-                <!-- Стрелки -->
-                <element code="СТ1" type="ST" evenLinkP="СТ5" evenLinkM="СТ3" oddLink="УПН"/>
-                <element code="СТ3" type="ST" evenLinkP="СТ7" evenLinkM="СТ1" oddLink="СТ11"/>
-                <element code="СТ5" type="ST" evenLink="СТ9" oddLinkP="СТ1" oddLinkM="СТ7"/>
-                <element code="СТ7" type="ST" evenLink="УУНД" oddLinkP="СТ3" oddLinkM="СТ5"/>
-                <element code="СТ9" type="ST" evenLinkP="Ч1" evenLinkM="Ч3" oddLink="СТ5"/>
-                <element code="СТ11" type="ST" evenLink="СТ3" oddLinkP="Ч2" oddLinkM="СТ13"/>
-                <element code="СТ13" type="ST" evenLink="СТ11" oddLinkP="Ч4" oddLinkM="Ч6"/>
-                <element code="СТ14" type="ST" evenLink="УУ1Ч" oddLinkP="Н1" oddLinkM="Н3"/>
-                <element code="СТ16" type="ST" evenLinkP="Н2" evenLinkM="СТ18" oddLink="УП2Ч"/>
-                <element code="СТ18" type="ST" evenLinkP="Н4" evenLinkM="Н6" oddLink="СТ16"/>
-
-            </area>
-        </areas>
-    </description>
 </polygon>
