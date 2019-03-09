@@ -3,6 +3,8 @@ package ru.dstu.railway.polygon;
 import ru.dstu.railway.area.IArea;
 import ru.dstu.railway.element.IStationElement;
 
+import java.util.List;
+
 public interface IPolygon {
     /**
      * Добавить новую  область в полигон
@@ -24,4 +26,10 @@ public interface IPolygon {
      * @return объект
      */
     IStationElement getElementByAreaAndCode(String areaCode, String elementCode);
+
+    /**
+     * Получить спсисок всех областей на полигоне
+     * @return список областей
+     */
+    List<IArea> getAreas();
 }

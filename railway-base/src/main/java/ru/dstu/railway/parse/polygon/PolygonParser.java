@@ -61,7 +61,7 @@ public class PolygonParser implements IParser<IPolygon> {
             linkUp(xmlArea);
             linkSv(xmlArea);
 
-//            polygon.addArea(areas.get(xmlArea.getCode()));
+            polygon.addArea(areas.get(xmlArea.getCode()));
         }
     }
 

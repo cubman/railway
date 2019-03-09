@@ -32,7 +32,7 @@ public class St extends AbstractElement {
             case ST_MINUS:
                 return elements.get(1);
             default:
-                throw new UnknownStateCodeException("Неизвестный код" + state.getState());
+                throw new UnknownStateCodeException("Неизвестный код: " + state.getState());
         }
     }
 

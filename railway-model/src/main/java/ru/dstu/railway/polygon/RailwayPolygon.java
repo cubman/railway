@@ -3,9 +3,7 @@ package ru.dstu.railway.polygon;
 import ru.dstu.railway.area.IArea;
 import ru.dstu.railway.element.IStationElement;
 
-import java.util.DuplicateFormatFlagsException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class RailwayPolygon implements IPolygon{
     Map<String, IArea> polygonAreas;
@@ -32,5 +30,10 @@ public class RailwayPolygon implements IPolygon{
         IArea areaByCode = getAreaByCode(areaCode);
 
         return areaByCode != null ? areaByCode.getElementByCode(elementCode) : null;
+    }
+
+    @Override
+    public List<IArea> getAreas() {
+        return new ArrayList<>(polygonAreas.values());
     }
 }

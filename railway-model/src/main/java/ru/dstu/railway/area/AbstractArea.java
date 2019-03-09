@@ -36,7 +36,7 @@ public class AbstractArea implements IArea {
 
     @Override
     public String getAreaCode() {
-        return null;
+        return areaCode;
     }
 
     @Override
