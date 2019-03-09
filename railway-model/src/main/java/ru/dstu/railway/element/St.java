@@ -14,36 +14,30 @@ import static ru.dstu.railway.constant.CodeConstant.ST_PLUS;
 public class St extends AbstractElement {
     private List<IStationElement> evenElement;
     private List<IStationElement> oddElement;
-    private Direction direction;
 
-    public St(String code, Direction direction) {
+    public St(String code) {
         super(code);
-        this.direction = direction;
     }
 
 
     @Override
     public IStationElement getEven() {
-        return getElement(Direction.EVEN == direction, evenElement);
+        return getElement( evenElement);
     }
 
     @Override
     public IStationElement getOdd() {
-        return getElement(Direction.ODD == direction, oddElement);
+        return getElement(oddElement);
     }
 
-    private IStationElement getElement(boolean direct, List<IStationElement> elements) {
-        if (direct) {
-            switch (state.getState()) {
-                case ST_PLUS:
-                    return elements.get(0);
-                case ST_MINUS:
-                    return elements.get(1);
-                default:
-                    throw new UnknownStateCodeException("Неизвестный код" + state.getState());
-            }
-        } else {
-            return elements.get(0);
+    private IStationElement getElement(List<IStationElement> elements) {
+        switch (state.getState()) {
+            case ST_PLUS:
+                return elements.get(0);
+            case ST_MINUS:
+                return elements.get(1);
+            default:
+                throw new UnknownStateCodeException("Неизвестный код" + state.getState());
         }
     }
 
