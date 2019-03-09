@@ -12,6 +12,7 @@ import ru.dstu.railway.parse.polygon.struct.*;
 import ru.dstu.railway.polygon.IPolygon;
 import ru.dstu.railway.polygon.RailwayPolygon;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -21,22 +22,29 @@ import java.util.Map;
 
 public class PolygonParser implements IParser<IPolygon> {
 
-    private static final String POLYGON_DESCRIPTION = "/description/polygon.xml";
+//    private static final String POLYGON_DESCRIPTION = "/description/polygon.xml";
 
     private IPolygon polygon = new RailwayPolygon();
 
     Map<String, IStationElement> elements = new HashMap<>();
     Map<String, IArea> areas = new HashMap<>();
 
+
+    private String polygonDescriptionFileName;
+
+    public PolygonParser(String polygonDescriptionFileName) {
+        this.polygonDescriptionFileName = polygonDescriptionFileName;
+    }
+
     @Override
     public IPolygon parse() {
         XmlMapper xmlMapper = new XmlMapper();
-        InputStream resourceAsStream = PolygonParser.class.getResourceAsStream(POLYGON_DESCRIPTION);
         XmlPolygon xmlPolygon;
+        File polygonDescription = new File(polygonDescriptionFileName);
         try {
-            xmlPolygon = xmlMapper.readValue(resourceAsStream, XmlPolygon.class);
+            xmlPolygon = xmlMapper.readValue(polygonDescription, XmlPolygon.class);
         } catch (IOException e) {
-            throw new ParseException("Файл " + POLYGON_DESCRIPTION + " не распарсился", e);
+            throw new ParseException("Поток " + polygonDescription + " не распарсился", e);
         }
 
         firstInit(xmlPolygon);

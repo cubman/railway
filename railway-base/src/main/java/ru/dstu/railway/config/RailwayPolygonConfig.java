@@ -1,5 +1,6 @@
 package ru.dstu.railway.config;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.dstu.railway.parse.IParser;
@@ -10,8 +11,8 @@ import ru.dstu.railway.polygon.IPolygon;
 public class RailwayPolygonConfig {
 
     @Bean
-    IPolygon polygon() {
-        IParser<IPolygon> polygonIParser = new PolygonParser();
+    IPolygon polygon(@Qualifier("polygon") String polygonDescriptionFileName) {
+        IParser<IPolygon> polygonIParser = new PolygonParser(polygonDescriptionFileName);
         return polygonIParser.parse();
     }
 
