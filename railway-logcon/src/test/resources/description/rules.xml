@@ -1,0 +1,14 @@
+<rules>
+    <rule name="Проверка функционирования стрелки">
+        <simple instanceOf="ST"/>
+        <if>
+            <simple code="СТ7"/>
+            <print text="Стрелка СТ7 переведена"/>
+            <print text="Какая-то другая стрелка"/>
+        </if>
+    </rule>
+    <rule name="Проверка функционирования стрелки" group="ST">
+        <simple code="СТ7"/>
+        <print text="Стрелка СТ7 переведена другой подход"/>
+    </rule>
+</rules>

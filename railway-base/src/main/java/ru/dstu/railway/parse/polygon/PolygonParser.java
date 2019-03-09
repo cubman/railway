@@ -14,7 +14,6 @@ import ru.dstu.railway.polygon.RailwayPolygon;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,13 +21,10 @@ import java.util.Map;
 
 public class PolygonParser implements IParser<IPolygon> {
 
-//    private static final String POLYGON_DESCRIPTION = "/description/polygon.xml";
-
     private IPolygon polygon = new RailwayPolygon();
 
     Map<String, IStationElement> elements = new HashMap<>();
     Map<String, IArea> areas = new HashMap<>();
-
 
     private String polygonDescriptionFileName;
 

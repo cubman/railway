@@ -1,5 +1,9 @@
 package ru.dstu.railway.rule;
 
+import ru.dstu.railway.rule.function.IFunction;
+
+import java.util.function.Consumer;
+
 /**
  * Правило (условие стабильности)
  */
@@ -11,7 +15,8 @@ public interface IRule {
     boolean check();
 
     /**
-     * Исполнить процесс, если результат check = false
+     * Исполнить процесс
+     * @param executor обработчик условия проверки
      */
-    void execute();
+    void execute(Consumer<IFunction> executor);
 }

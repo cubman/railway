@@ -19,4 +19,11 @@ public class TestConfig {
         URL resource = TestConfig.class.getResource("/description/polygon.xml");
         return resource.getPath();
     }
+
+    @Bean
+    @Qualifier("rule")
+    public String ruleDescriptionFile() {
+        URL resource = TestConfig.class.getResource("/description/rules.xml");
+        return resource.getPath();
+    }
 }

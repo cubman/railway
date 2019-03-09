@@ -12,6 +12,7 @@ import ru.dstu.railway.element.IStationElement;
 import ru.dstu.railway.element.Ls;
 import ru.dstu.railway.element.St;
 import ru.dstu.railway.polygon.IPolygon;
+import ru.dstu.railway.rule.IRule;
 
 import java.util.List;
 
@@ -22,8 +23,11 @@ public class ParseTest {
     @Autowired
     private IPolygon polygon;
 
+    @Autowired
+    private List<IRule> rules;
+
     @Test
-    public void testParse() {
+    public void testPolygonParse() {
         List<IArea> areas = polygon.getAreas();
 
         Assert.assertEquals(5, areas.size());
@@ -62,5 +66,10 @@ public class ParseTest {
                 }
             }
         }
+    }
+
+    @Test
+    public void testRulesParse() {
+        rules.size();
     }
 }
