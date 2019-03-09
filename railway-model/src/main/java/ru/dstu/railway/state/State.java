@@ -1,17 +1,18 @@
 package ru.dstu.railway.state;
 
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Класс состояние объекта,
  */
 public class State implements IState {
     private Date lastChange;
-    private int state;
+    private AtomicInteger state;
 
     public State(Date lastChange, int state) {
         this.lastChange = lastChange;
-        this.state = state;
+        this.state = new AtomicInteger(state);
     }
 
     public Date getLastChange() {
@@ -23,10 +24,10 @@ public class State implements IState {
     }
 
     public int getState() {
-        return state;
+        return state.get();
     }
 
     public void setState(int state) {
-        this.state = state;
+        this.state.set(state);
     }
 }
