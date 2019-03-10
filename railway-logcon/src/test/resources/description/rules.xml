@@ -21,7 +21,7 @@
             </if>
         </postCondition>
     </rule>
-    <rule name="Проверка функционирования стрелки" type="ST" area="SplitPoint.A">
+    <rule name="Проверка функционирования стрелки 2 вариант" type="ST" area="SplitPoint.A">
         <group>
             <element code="СТ7"/>
             <element code="СТ9"/>
@@ -31,6 +31,69 @@
         </preCondition>
         <postCondition>
             <print text="Стрелка СТ7 переведена. Другой подход"/>
+        </postCondition>
+    </rule>
+    <rule name="Проверка функционирования стрелки 3 вариант" type="ST" area="SplitPoint.A">
+        <group>
+            <element code="СТ7"/>
+            <element code="СТ9"/>
+        </group>
+        <preCondition>
+            <simple state="1"/>
+        </preCondition>
+        <postCondition>
+            <if>
+                <condition>
+                    <and>
+                        <condition>
+                            <simple state="1"/>
+                        </condition>
+                        <condition>
+                            <simple code="СТ7"/>
+                        </condition>
+                    </and>
+                </condition>
+                <then>
+                    <print text="Стрелка СТ7 переведена и находится в состоянии 1"/>
+                </then>
+            </if>
+        </postCondition>
+    </rule>
+    <rule name="Проверка функционирования стрелки 4 вариант" type="ST" area="SplitPoint.A">
+        <group>
+            <element code="СТ7"/>
+            <element code="СТ9"/>
+        </group>
+        <preCondition>
+            <and>
+                <condition>
+                    <simple state="1"/>
+                </condition>
+            </and>
+        </preCondition>
+        <postCondition>
+            <or>
+                <condition>
+                    <if>
+                        <condition>
+                            <and>
+                                <condition>
+                                    <simple state="1"/>
+                                </condition>
+                                <condition>
+                                    <simple code="СТ7"/>
+                                </condition>
+                            </and>
+                        </condition>
+                        <then>
+                            <print text="Стрелка СТ7 переведена и находится в состоянии 1"/>
+                        </then>
+                    </if>
+                </condition>
+                <condition>
+                    <print text="Условие по OR"/>
+                </condition>
+            </or>
         </postCondition>
     </rule>
 </rules>

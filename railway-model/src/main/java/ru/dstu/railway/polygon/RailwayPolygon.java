@@ -15,8 +15,7 @@ import java.util.concurrent.Executors;
 public class RailwayPolygon implements IPolygon, ICheckedRuleListener {
     private final Map<String, IArea> polygonAreas;
 
-
-    private final static int THREAD_COUNT = 10;
+    private static final int THREAD_COUNT = 10;
 
     private ExecutorService service;
 
@@ -24,7 +23,6 @@ public class RailwayPolygon implements IPolygon, ICheckedRuleListener {
         this.polygonAreas = new HashMap<>();
         service = Executors.newFixedThreadPool(THREAD_COUNT);
     }
-
 
     @Override
     public void addArea(IArea area) {
@@ -51,11 +49,11 @@ public class RailwayPolygon implements IPolygon, ICheckedRuleListener {
     }
 
     @Override
-    public void notify(List<IRule> uncheckedRules) {
-        uncheckedRules.forEach(rule -> service.submit(rule::execute));
+    public void notify(List<IRule> checkedRules) {
+        checkedRules.forEach(rule -> service.submit(rule::execute));
     }
 
-    @EventListener(classes =  ContextClosedEvent.class )
+    @EventListener(classes = ContextClosedEvent.class)
     public void after() {
         service.shutdown();
     }

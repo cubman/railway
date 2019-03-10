@@ -2,7 +2,7 @@ package ru.sdtu.railway.parse.logcon.struct;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-public abstract class XmlAbstractFunction implements XmlIFunction {
+public abstract class XmlAbstractSimpleFunction implements XmlIFunction {
     @JacksonXmlProperty(localName = "simple")
     private XmlSimple xmlSimple;
 
@@ -12,6 +12,11 @@ public abstract class XmlAbstractFunction implements XmlIFunction {
     @JacksonXmlProperty(localName = "if")
     private XmlIf xmlIf;
 
+    @JacksonXmlProperty(localName = "and")
+    private XmlAnd xmlAnd;
+
+    @JacksonXmlProperty(localName = "or")
+    private XmlOr xmlOr;
 
     public XmlSimple getXmlSimple() {
         return xmlSimple;
@@ -37,4 +42,19 @@ public abstract class XmlAbstractFunction implements XmlIFunction {
         this.xmlIf = xmlIf;
     }
 
+    public XmlAnd getXmlAnd() {
+        return xmlAnd;
+    }
+
+    public void setXmlAnd(XmlAnd xmlAnd) {
+        this.xmlAnd = xmlAnd;
+    }
+
+    public XmlOr getXmlOr() {
+        return xmlOr;
+    }
+
+    public void setXmlOr(XmlOr xmlOr) {
+        this.xmlOr = xmlOr;
+    }
 }

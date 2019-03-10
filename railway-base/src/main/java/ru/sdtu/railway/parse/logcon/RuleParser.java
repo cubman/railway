@@ -10,7 +10,9 @@ import ru.dstu.railway.parse.exception.ParseException;
 import ru.dstu.railway.polygon.IPolygon;
 import ru.dstu.railway.rule.IRule;
 import ru.dstu.railway.rule.function.IFunction;
+import ru.sdtu.railway.parse.logcon.function.And;
 import ru.sdtu.railway.parse.logcon.function.If;
+import ru.sdtu.railway.parse.logcon.function.Or;
 import ru.sdtu.railway.parse.logcon.function.Simple;
 import ru.sdtu.railway.parse.logcon.function.description.FunctionResult;
 import ru.sdtu.railway.parse.logcon.struct.*;
@@ -19,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -83,6 +86,14 @@ public class RuleParser implements IParser<List<IRule>> {
             return ifIf((XmlIf)xmlFunction, element);
         }
 
+        if (xmlFunction instanceof XmlAnd) {
+            return ifAnd((XmlAnd)xmlFunction, element);
+        }
+
+        if (xmlFunction instanceof XmlOr) {
+            return ifOr((XmlOr)xmlFunction, element);
+        }
+
         if (xmlFunction instanceof XmlCondition) {
             return ifCondition((XmlCondition)xmlFunction, element);
         }
@@ -90,7 +101,32 @@ public class RuleParser implements IParser<List<IRule>> {
         throw new ParseException("Необработанный тип функции: " + xmlFunction.getClass().getName());
     }
 
+    private IFunction ifOr(XmlOr xmlFunction, IStationElement element) {
+        List<IFunction> functions = new ArrayList<>();
+
+        if (xmlFunction.getXmlConditions() != null) {
+            for (XmlCondition condition : xmlFunction.getXmlConditions()) {
+                functions.add(ifCondition(condition, element));
+            }
+        }
+
+        return new Or(functions);
+    }
+
+    private IFunction ifAnd(XmlAnd xmlFunction, IStationElement element) {
+        List<IFunction> functions = new ArrayList<>();
+
+        if (xmlFunction.getXmlConditions() != null) {
+            for (XmlCondition condition : xmlFunction.getXmlConditions()) {
+                functions.add(ifCondition(condition, element));
+            }
+        }
+
+        return new And(functions);
+    }
+
     private IFunction ifCondition(XmlCondition xmlFunction, IStationElement element) {
+
         if (xmlFunction.getXmlIf() != null) {
             return createFunction(xmlFunction.getXmlIf(), element);
         }
@@ -101,6 +137,14 @@ public class RuleParser implements IParser<List<IRule>> {
 
         if (xmlFunction.getXmlSimple() != null) {
             return createFunction(xmlFunction.getXmlSimple(), element);
+        }
+
+        if (xmlFunction.getXmlAnd() != null) {
+            return createFunction(xmlFunction.getXmlAnd(), element);
+        }
+
+        if (xmlFunction.getXmlOr() != null) {
+            return createFunction(xmlFunction.getXmlOr(), element);
         }
 
         throw new ParseException("Необработанный тип условия функции");
@@ -147,7 +191,12 @@ public class RuleParser implements IParser<List<IRule>> {
     private IFunction ifIf(XmlIf xmlFunction, IStationElement element) {
         IFunction ifFunction = createFunction(xmlFunction.getXmlCondition(), element);
         IFunction thenFunction = createFunction(xmlFunction.getXmlThen(), element);
-        IFunction elseFunction = createFunction(xmlFunction.getXmlElse(), element);
+
+        IFunction elseFunction = null;
+
+        if (xmlFunction.getXmlElse() != null) {
+            elseFunction = createFunction(xmlFunction.getXmlElse(), element);
+        }
 
         return new If(ifFunction, thenFunction, elseFunction);
     }

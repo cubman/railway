@@ -7,15 +7,16 @@ import ru.sdtu.railway.parse.logcon.function.description.FunctionError;
 import ru.sdtu.railway.parse.logcon.function.description.FunctionResult;
 
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Условие ИЛИ
  */
 public class Or implements IFunction {
 
-    private IFunction[] orCondition;
+    private List<IFunction> orCondition;
 
-    public Or(IFunction... function) {
+    public Or(List<IFunction> function) {
         orCondition = function;
     }
 

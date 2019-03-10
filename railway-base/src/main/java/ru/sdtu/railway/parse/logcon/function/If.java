@@ -2,6 +2,7 @@ package ru.sdtu.railway.parse.logcon.function;
 
 import ru.dstu.railway.rule.function.IFunction;
 import ru.dstu.railway.rule.function.IFunctionResult;
+import ru.sdtu.railway.parse.logcon.function.description.FunctionResult;
 
 /**
  * Условие ветвления
@@ -25,7 +26,7 @@ public class If implements IFunction {
         if (check.getResult()) {
             return thenFunction.check();
         } else {
-            return elseFunction.check();
+            return elseFunction != null ? elseFunction.check() : new FunctionResult(Boolean.TRUE);
         }
     }
 }

@@ -4,14 +4,16 @@ import ru.dstu.railway.rule.function.IFunction;
 import ru.dstu.railway.rule.function.IFunctionResult;
 import ru.sdtu.railway.parse.logcon.function.description.FunctionResult;
 
+import java.util.List;
+
 /**
  * Условие И
  */
 public class And implements IFunction {
 
-    private IFunction[] andCondition;
+    private List<IFunction> andCondition;
 
-    public And(IFunction... function) {
+    public And(List<IFunction> function) {
         andCondition = function;
     }
 
