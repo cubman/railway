@@ -24,8 +24,9 @@ public class PolygonParser implements IParser<IPolygon> {
 
     private RailwayPolygon polygon = new RailwayPolygon();
 
-    Map<String, IStationElement> elements = new HashMap<>();
-    Map<String, IArea> areas = new HashMap<>();
+    private final Map<String, IStationElement> elements = new HashMap<>();
+    private final Map<String, IArea> areas = new HashMap<>();
+
 
     private String polygonDescriptionFileName;
 
