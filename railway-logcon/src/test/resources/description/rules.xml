@@ -4,21 +4,29 @@
             <element code="СТ7"/>
             <element code="СТ9"/>
         </group>
-        <simple state="1"/>
-        <if>
-            <simple code="СТ7"/>
-            <print text="Стрелка СТ7 переведена"/>
-            <else>
-                <print text="Какая-то другая стрелка"/>
-            </else>
-        </if>
+        <preCondition>
+            <simple state="1"/>
+        </preCondition>
+        <postCondition>
+            <if>
+                <simple code="СТ7"/>
+                <print text="Стрелка СТ7 переведена"/>
+                <else>
+                    <print text="Какая-то другая стрелка"/>
+                </else>
+            </if>
+        </postCondition>
     </rule>
     <rule name="Проверка функционирования стрелки" type="ST" area="SplitPoint.A">
         <group>
             <element code="СТ7"/>
             <element code="СТ9"/>
         </group>
-        <simple code="СТ7"/>
-        <print text="Стрелка СТ7 переведена. Другой подход"/>
+        <preCondition>
+            <simple code="СТ7"/>
+        </preCondition>
+        <postCondition>
+            <print text="Стрелка СТ7 переведена. Другой подход"/>
+        </postCondition>
     </rule>
 </rules>

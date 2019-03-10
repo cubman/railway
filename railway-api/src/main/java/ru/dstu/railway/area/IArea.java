@@ -2,6 +2,7 @@ package ru.dstu.railway.area;
 
 import ru.dstu.railway.element.IStationElement;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,4 +34,11 @@ public interface IArea {
      * @return код области
      */
     String getAreaCode();
+
+    /**
+     * Список объектов по типу
+     * @param type тип объекта
+     * @return список объектов
+     */
+    List<IStationElement> getElementsByType(Class<? extends IStationElement> type);
 }

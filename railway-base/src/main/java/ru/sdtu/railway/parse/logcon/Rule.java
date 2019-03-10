@@ -7,12 +7,19 @@ import java.util.function.Consumer;
 
 public class Rule implements IRule {
 
+    private String name;
     private IFunction checkFunction;
     private IFunction executeFunction;
 
-    public Rule(IFunction checkFunction, IFunction executeFunction) {
+    public Rule(String name, IFunction checkFunction, IFunction executeFunction) {
+        this.name = name;
         this.checkFunction = checkFunction;
         this.executeFunction = executeFunction;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -21,7 +28,7 @@ public class Rule implements IRule {
     }
 
     @Override
-    public void execute(Consumer<IFunction> executor) {
-        executor.accept(executeFunction);
+    public void execute() {
+        executeFunction.check();
     }
 }

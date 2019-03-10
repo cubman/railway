@@ -2,7 +2,7 @@ package ru.sdtu.railway.parse.logcon.struct;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-public class XmlRule extends AbstractXmlFunction {
+public class XmlRule {
     @JacksonXmlProperty(isAttribute=true, localName="name")
     private String name;
 
@@ -14,6 +14,28 @@ public class XmlRule extends AbstractXmlFunction {
 
     @JacksonXmlProperty(localName="group")
     private XmlGroup xmlGroup;
+
+    @JacksonXmlProperty(localName = "preCondition")
+    private XmlCondition xmlPreCondition;
+
+    @JacksonXmlProperty(localName = "postCondition")
+    private XmlCondition xmlPostCondition;
+
+    public XmlCondition getXmlPreCondition() {
+        return xmlPreCondition;
+    }
+
+    public void setXmlPreCondition(XmlCondition xmlPreCondition) {
+        this.xmlPreCondition = xmlPreCondition;
+    }
+
+    public XmlCondition getXmlPostCondition() {
+        return xmlPostCondition;
+    }
+
+    public void setXmlPostCondition(XmlCondition xmlPostCondition) {
+        this.xmlPostCondition = xmlPostCondition;
+    }
 
     public String getName() {
         return name;

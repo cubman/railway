@@ -1,13 +1,16 @@
 package ru.dstu.railway.rule;
 
-import ru.dstu.railway.rule.function.IFunction;
-
-import java.util.function.Consumer;
-
 /**
  * Правило (условие стабильности)
  */
 public interface IRule {
+
+    /**
+     * Наименование правила
+     * @return название правила
+     */
+    String getName();
+
     /**
      * проверить, что система стабильна
      * @return результат проверки
@@ -16,7 +19,6 @@ public interface IRule {
 
     /**
      * Исполнить процесс
-     * @param executor обработчик условия проверки
      */
-    void execute(Consumer<IFunction> executor);
+    void execute();
 }

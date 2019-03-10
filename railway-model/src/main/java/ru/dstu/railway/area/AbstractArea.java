@@ -3,11 +3,14 @@ package ru.dstu.railway.area;
 import ru.dstu.railway.element.IStationElement;
 import ru.dstu.railway.exception.DuplicationException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
-public class AbstractArea implements IArea {
+public abstract class AbstractArea implements IArea {
     protected final Map<String, IStationElement> areaElements;
     protected final String areaCode;
 
@@ -37,6 +40,12 @@ public class AbstractArea implements IArea {
     @Override
     public String getAreaCode() {
         return areaCode;
+    }
+
+    @Override
+    public List<IStationElement> getElementsByType(Class<? extends IStationElement> type) {
+        return areaElements.values().stream().
+                filter(stationElement -> type.isAssignableFrom(stationElement.getClass())).collect(Collectors.toList());
     }
 
     @Override
