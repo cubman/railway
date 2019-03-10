@@ -22,7 +22,7 @@ public class RailwayPolygonConfig {
 
     @Bean
     List<IRule> rules(@Qualifier("rule") String ruleDescriptionFileName, IPolygon polygon) {
-        IParser<List<IRule>> ruleParser = new RuleParser(ruleDescriptionFileName);
+        IParser<List<IRule>> ruleParser = new RuleParser(ruleDescriptionFileName, polygon);
         return ruleParser.parse();
     }
 

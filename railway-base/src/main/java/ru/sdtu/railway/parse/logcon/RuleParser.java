@@ -3,6 +3,7 @@ package ru.sdtu.railway.parse.logcon;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import ru.dstu.railway.parse.IParser;
 import ru.dstu.railway.parse.exception.ParseException;
+import ru.dstu.railway.polygon.IPolygon;
 import ru.dstu.railway.rule.IRule;
 import ru.sdtu.railway.parse.logcon.struct.XmlRules;
 
@@ -13,9 +14,11 @@ import java.util.List;
 public class RuleParser implements IParser<List<IRule>> {
 
     private String ruleDescriptionFileName;
+    private IPolygon polygon;
 
-    public RuleParser(String ruleDescriptionFileName) {
+    public RuleParser(String ruleDescriptionFileName, IPolygon polygon) {
         this.ruleDescriptionFileName = ruleDescriptionFileName;
+        this.polygon = polygon;
     }
 
     @Override
