@@ -1,6 +1,7 @@
 package ru.dstu.railway.parse.polygon;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import ru.dstu.railway.area.AbstractArea;
 import ru.dstu.railway.area.IArea;
 import ru.dstu.railway.area.SplitPoint;
 import ru.dstu.railway.area.StageTrack;
@@ -21,7 +22,7 @@ import java.util.Map;
 
 public class PolygonParser implements IParser<IPolygon> {
 
-    private IPolygon polygon = new RailwayPolygon();
+    private RailwayPolygon polygon = new RailwayPolygon();
 
     Map<String, IStationElement> elements = new HashMap<>();
     Map<String, IArea> areas = new HashMap<>();
@@ -65,6 +66,8 @@ public class PolygonParser implements IParser<IPolygon> {
             linkUp(xmlArea);
             linkSv(xmlArea);
 
+            addParty(xmlArea);
+
             polygon.addArea(areas.get(xmlArea.getCode()));
         }
     }
@@ -73,10 +76,10 @@ public class PolygonParser implements IParser<IPolygon> {
         IArea area;
         switch (xmlArea.getType()) {
             case "SPLITPOINT":
-                area = new SplitPoint(xmlArea.getCode());
+                area = new SplitPoint(xmlArea.getCode(), xmlArea.getEsr());
                 break;
             case "STAGETRACK":
-                area = new StageTrack(xmlArea.getCode());
+                area = new StageTrack(xmlArea.getCode(), xmlArea.getEsr());
                 break;
             default:
                 throw new ParseException(xmlArea.getType());
@@ -100,14 +103,12 @@ public class PolygonParser implements IParser<IPolygon> {
             IArea area = areas.get(xmlArea.getCode());
 
             for (AbstractXmlElement xmlElement : elements) {
-                IStationElement element ;
+                IStationElement element;
                 try {
                     element = elementClass.newInstance();
                     ((AbstractElement) element).setElementCode(xmlElement.getCode());
-                } catch (InstantiationException e) {
-                    throw new RuntimeException();
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException();
+                } catch (InstantiationException | IllegalAccessException e) {
+                    throw new RuntimeException(e);
                 }
                 area.addElement(putElement(xmlArea, element));
             }
@@ -118,6 +119,8 @@ public class PolygonParser implements IParser<IPolygon> {
         if (elements.put(xmlArea.getCode() + stationElement.getElementCode(), stationElement) != null) {
             throw new DuplicationException(stationElement.getElementCode());
         }
+
+        ((AbstractElement)stationElement).addCheckRuleListener(polygon);
 
         return stationElement;
     }
@@ -184,6 +187,19 @@ public class PolygonParser implements IParser<IPolygon> {
                 Up up = (Up) element;
                 up.setEven(getElement(xmlArea, xmlUp.getEvenLink()));
                 up.setOdd(getElement(xmlArea, xmlUp.getOddLink()));
+            }
+        }
+    }
+
+    private void addParty(XmlArea xmlArea) {
+        if (xmlArea.getParties() != null) {
+            for (XmlParty xmlParty : xmlArea.getParties()) {
+                IStationElement elementFrom = getElement(xmlArea, xmlParty.getFirstElement());
+                IStationElement elementTo = getElement(xmlArea, xmlParty.getSecondElement());
+
+                IArea area = areas.get(xmlArea.getCode());
+                ((AbstractArea)area).addChangeParty(elementFrom, elementTo);
+                ((AbstractArea)area).addChangeParty(elementTo, elementFrom);
             }
         }
     }

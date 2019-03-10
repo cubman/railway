@@ -13,11 +13,25 @@ import java.util.stream.Collectors;
 public abstract class AbstractArea implements IArea {
     protected final Map<String, IStationElement> areaElements;
     protected final String areaCode;
+    protected final String esr;
+    private final Map<IStationElement, List<IStationElement>> changeParties;
 
-    public AbstractArea(String areaCode) {
+    public AbstractArea(String areaCode, String esr) {
         this.areaElements = new HashMap<>();
         this.areaCode = areaCode;
+        this.esr = esr;
 
+        this.changeParties = new HashMap<>();
+    }
+
+    public void addChangeParty(IStationElement from, IStationElement to) {
+        List<IStationElement> elements = changeParties.putIfAbsent(from, new ArrayList<>());
+
+        if (elements == null) {
+            elements = changeParties.get(from);
+        }
+
+        elements.add(to);
     }
 
     @Override
@@ -49,6 +63,12 @@ public abstract class AbstractArea implements IArea {
     }
 
     @Override
+    public boolean isPartyChanges(IStationElement firstElement, IStationElement secondElement) {
+        List<IStationElement> elements = changeParties.get(firstElement);
+        return elements != null && elements.contains(secondElement);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -69,8 +89,9 @@ public abstract class AbstractArea implements IArea {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() +
+        return getClass() +
                 "{areaCode='" + areaCode + '\'' +
+                ", esr='" + esr + '\'' +
                 '}';
     }
 }

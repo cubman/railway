@@ -2,7 +2,7 @@ package ru.sdtu.railway.parse.logcon.struct;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-public abstract class AbstractXmlFunction {
+public abstract class XmlAbstractFunction implements XmlIFunction {
     @JacksonXmlProperty(localName = "simple")
     private XmlSimple xmlSimple;
 

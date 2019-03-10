@@ -1,6 +1,7 @@
 package ru.dstu.railway.element;
 
 import ru.dstu.railway.area.IArea;
+import ru.dstu.railway.rule.IRule;
 import ru.dstu.railway.state.IState;
 
 import java.util.List;
@@ -50,4 +51,10 @@ public interface IStationElement {
      * @return
      */
     List<IArea> getAreas();
+
+    /**
+     * Получить правила, не прошедшие проверку
+     * @return список правил
+     */
+    List<IRule> getUncheckedRules();
 }

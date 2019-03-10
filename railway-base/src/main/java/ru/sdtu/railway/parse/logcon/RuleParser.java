@@ -2,6 +2,7 @@ package ru.sdtu.railway.parse.logcon;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import ru.dstu.railway.area.IArea;
+import ru.dstu.railway.element.AbstractElement;
 import ru.dstu.railway.element.IStationElement;
 import ru.dstu.railway.element.St;
 import ru.dstu.railway.parse.IParser;
@@ -9,15 +10,21 @@ import ru.dstu.railway.parse.exception.ParseException;
 import ru.dstu.railway.polygon.IPolygon;
 import ru.dstu.railway.rule.IRule;
 import ru.dstu.railway.rule.function.IFunction;
+import ru.sdtu.railway.parse.logcon.function.If;
+import ru.sdtu.railway.parse.logcon.function.Simple;
+import ru.sdtu.railway.parse.logcon.function.description.FunctionResult;
 import ru.sdtu.railway.parse.logcon.struct.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class RuleParser implements IParser<List<IRule>> {
+
+    private static final Logger LOGGER = Logger.getLogger(RuleParser.class.getName());
 
     private String ruleDescriptionFileName;
     private IPolygon polygon;
@@ -53,16 +60,50 @@ public class RuleParser implements IParser<List<IRule>> {
                 IFunction preCondition = createFunction(rule.getXmlPreCondition(), element);
                 IFunction postCondition = createFunction(rule.getXmlPostCondition(), element);
 
+                IRule elementRule = new Rule(rule.getName(), preCondition, postCondition);
 
-                rules.add(new Rule(rule.getName(), preCondition, postCondition));
+                ((AbstractElement)element).addRule(elementRule);
+                rules.add(elementRule);
             }
         }
 
         return rules;
     }
 
-    private IFunction createFunction(AbstractXmlFunction xmlFunction, IStationElement element) {
-        return null;
+    private IFunction createFunction(XmlIFunction xmlFunction, IStationElement element) {
+        if (xmlFunction instanceof XmlPrint) {
+            return ifXmlPrint((XmlPrint)xmlFunction);
+        }
+
+        if (xmlFunction instanceof XmlSimple) {
+            return ifSimple((XmlSimple)xmlFunction, element);
+        }
+
+        if (xmlFunction instanceof XmlIf) {
+            return ifIf((XmlIf)xmlFunction, element);
+        }
+
+        if (xmlFunction instanceof XmlCondition) {
+            return ifCondition((XmlCondition)xmlFunction, element);
+        }
+
+        throw new ParseException("Необработанный тип функции: " + xmlFunction.getClass().getName());
+    }
+
+    private IFunction ifCondition(XmlCondition xmlFunction, IStationElement element) {
+        if (xmlFunction.getXmlIf() != null) {
+            return createFunction(xmlFunction.getXmlIf(), element);
+        }
+
+        if (xmlFunction.getXmlPrint() != null) {
+            return createFunction(xmlFunction.getXmlPrint(), element);
+        }
+
+        if (xmlFunction.getXmlSimple() != null) {
+            return createFunction(xmlFunction.getXmlSimple(), element);
+        }
+
+        throw new ParseException("Необработанный тип условия функции");
     }
 
     private Class<? extends IStationElement> getTypeByCode(String code) {
@@ -83,5 +124,31 @@ public class RuleParser implements IParser<List<IRule>> {
             }
             return false;
         }).collect(Collectors.toList());
+    }
+
+    private IFunction ifXmlPrint(XmlPrint xmlPrint) {
+        return new Simple(() -> {
+            LOGGER.info(xmlPrint.getText());
+            return new FunctionResult(Boolean.TRUE);
+        });
+    }
+
+    private IFunction ifSimple(XmlSimple xmlSimple, IStationElement stationElement) {
+        if (xmlSimple.getCode() != null) {
+            return new Simple(() -> new FunctionResult(stationElement.getElementCode().equals(xmlSimple.getCode())));
+        } else
+        if (xmlSimple.getState() != null) {
+            return new Simple(() -> new FunctionResult(stationElement.getState().getState() == xmlSimple.getState()));
+        } else {
+            throw new ParseException("Сформировать условие simple не удалось по существующим правилам");
+        }
+    }
+
+    private IFunction ifIf(XmlIf xmlFunction, IStationElement element) {
+        IFunction ifFunction = createFunction(xmlFunction.getXmlCondition(), element);
+        IFunction thenFunction = createFunction(xmlFunction.getXmlThen(), element);
+        IFunction elseFunction = createFunction(xmlFunction.getXmlElse(), element);
+
+        return new If(ifFunction, thenFunction, elseFunction);
     }
 }

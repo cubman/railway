@@ -2,16 +2,38 @@ package ru.sdtu.railway.parse.logcon.struct;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-public class XmlIf extends AbstractXmlFunction{
+public class XmlIf implements XmlIFunction {
 
-    @JacksonXmlProperty(localName="else")
-    private XmlElse xmlElse;
+    @JacksonXmlProperty(localName = "condition")
+    private XmlCondition xmlCondition;
 
-    public XmlElse getXmlElse() {
+    @JacksonXmlProperty(localName = "then")
+    private XmlCondition xmlThen;
+
+    @JacksonXmlProperty(localName = "else")
+    private XmlCondition xmlElse;
+
+    public XmlCondition getXmlCondition() {
+        return xmlCondition;
+    }
+
+    public void setXmlCondition(XmlCondition xmlCondition) {
+        this.xmlCondition = xmlCondition;
+    }
+
+    public XmlCondition getXmlThen() {
+        return xmlThen;
+    }
+
+    public void setXmlThen(XmlCondition xmlThen) {
+        this.xmlThen = xmlThen;
+    }
+
+    public XmlCondition getXmlElse() {
         return xmlElse;
     }
 
-    public void setXmlElse(XmlElse xmlElse) {
+    public void setXmlElse(XmlCondition xmlElse) {
         this.xmlElse = xmlElse;
     }
 }

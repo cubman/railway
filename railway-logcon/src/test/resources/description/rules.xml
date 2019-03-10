@@ -9,8 +9,12 @@
         </preCondition>
         <postCondition>
             <if>
-                <simple code="СТ7"/>
-                <print text="Стрелка СТ7 переведена"/>
+                <condition>
+                    <simple code="СТ7"/>
+                </condition>
+                <then>
+                    <print text="Стрелка СТ7 переведена"/>
+                </then>
                 <else>
                     <print text="Какая-то другая стрелка"/>
                 </else>

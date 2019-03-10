@@ -10,6 +10,9 @@ public class XmlArea extends AbstractXmlElement {
     @JacksonXmlProperty(isAttribute=true, localName="type")
     private String type;
 
+    @JacksonXmlProperty(isAttribute=true, localName="esr")
+    private String esr;
+
     @JacksonXmlProperty(localName = "neighbour")
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<XmlNeighbour> neighbours;
@@ -30,12 +33,24 @@ public class XmlArea extends AbstractXmlElement {
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<XmlUp> ups;
 
+    @JacksonXmlProperty(localName = "party")
+    @JacksonXmlElementWrapper(useWrapping = false)
+    private List<XmlParty> parties;
+
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getEsr() {
+        return esr;
+    }
+
+    public void setEsr(String esr) {
+        this.esr = esr;
     }
 
     public List<XmlNeighbour> getNeighbours() {
@@ -76,5 +91,13 @@ public class XmlArea extends AbstractXmlElement {
 
     public void setUps(List<XmlUp> ups) {
         this.ups = ups;
+    }
+
+    public List<XmlParty> getParties() {
+        return parties;
+    }
+
+    public void setParties(List<XmlParty> parties) {
+        this.parties = parties;
     }
 }

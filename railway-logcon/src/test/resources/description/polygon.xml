@@ -1,5 +1,5 @@
 <polygon>
-    <area code="SplitPoint.A" type="SPLITPOINT">
+    <area code="SplitPoint.A" esr="000001" type="SPLITPOINT">
         <neighbour linkArea="Stage.A.B" linkObject="НД"/>
         <neighbour linkArea="Stage.B.A" linkObject="Н"/>
         <neighbour linkArea="Stage.A.C" linkObject="1Ч"/>
@@ -49,6 +49,9 @@
         <st code="СТ14" evenLinkP="УУ1Ч" evenLinkM="УУ1Ч" oddLinkP="Н1" oddLinkM="Н3"/>
         <st code="СТ16" evenLinkP="Н2" evenLinkM="СТ18" oddLinkP="УП2Ч" oddLinkM="УП2Ч"/>
         <st code="СТ18" evenLinkP="Н4" evenLinkM="Н6" oddLinkP="СТ16" oddLinkM="СТ16"/>
+
+        <party codeFirst="СТ1" codeSecond="СТ3"/>
+        <party codeFirst="СТ5" codeSecond="СТ7"/>
     </area>
     <area code="Stage.A.B" type="STAGETRACK">
 

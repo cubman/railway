@@ -34,37 +34,65 @@ public class ParseTest {
 
         for (IArea area : areas) {
             for (IStationElement element : area.getElements().values()) {
-                if (element instanceof Ls ) {
+                if (element instanceof Ls) {
                     continue;
                 }
 
-                IStationElement elementEven = element.getEven();
-                IStationElement elementOdd = element.getOdd();
+                checkLink(area, element);
 
-                if (!(elementEven instanceof Ls)) {
-                    if (elementEven instanceof St) {
-                        if (!element.equals(elementEven.getOdd())) {
-                            elementEven.setState(1);
-                            Assert.assertEquals(element, elementEven.getOdd());
-                            elementEven.setState(0);
-                            continue;
-                        }
-                    }
-                    Assert.assertEquals(element, elementEven.getOdd());
-                }
+                if (element instanceof St) {
+                    element.setState(1);
 
-                if (!(elementOdd instanceof Ls)) {
-                    if (elementOdd instanceof St) {
-                        if (!element.equals(elementOdd.getEven())) {
-                            elementOdd.setState(1);
-                            Assert.assertEquals(element, elementOdd.getEven());
-                            elementOdd.setState(0);
-                            continue;
-                        }
-                    }
-                    Assert.assertEquals(element, elementOdd.getEven());
+                    checkLink(area, element);
+
+                    element.setState(0);
                 }
             }
+        }
+    }
+
+    private void checkLink(IArea area, IStationElement element) {
+        IStationElement elementEven = element.getEven();
+        IStationElement elementOdd = element.getOdd();
+
+        if (!(elementEven instanceof Ls)) {
+            if (elementEven instanceof St) {
+                if (area.isPartyChanges(element, elementEven)) {
+                    if (!element.equals(elementEven.getEven())) {
+                        elementEven.setState(1);
+                        Assert.assertEquals(element, elementEven.getEven());
+                        elementEven.setState(0);
+                        return;
+                    }
+                } else if (!element.equals(elementEven.getOdd())) {
+                    elementEven.setState(1);
+                    Assert.assertEquals(element, elementEven.getOdd());
+                    elementEven.setState(0);
+                    return;
+                }
+
+                Assert.assertEquals(element, elementEven.getOdd());
+            }
+        }
+
+        if (!(elementOdd instanceof Ls)) {
+            if (elementOdd instanceof St) {
+                if (area.isPartyChanges(element, elementOdd)) {
+                    if (!element.equals(elementOdd.getOdd())) {
+                        elementOdd.setState(1);
+                        Assert.assertEquals(element, elementOdd.getOdd());
+                        elementOdd.setState(0);
+                        return;
+                    }
+                } else if (!element.equals(elementOdd.getEven())) {
+                    elementOdd.setState(1);
+                    Assert.assertEquals(element, elementOdd.getEven());
+                    elementOdd.setState(0);
+                    return;
+                }
+            }
+
+            Assert.assertEquals(element, elementOdd.getEven());
         }
     }
 

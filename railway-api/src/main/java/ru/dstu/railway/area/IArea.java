@@ -41,4 +41,12 @@ public interface IArea {
      * @return список объектов
      */
     List<IStationElement> getElementsByType(Class<? extends IStationElement> type);
+
+    /**
+     * Меняется ли четность при переходе из первого объекта к другому
+     * @param firstElement перевый элемент
+     * @param secondElement второй элемент
+     * @return четность меняется
+     */
+    boolean isPartyChanges(IStationElement firstElement, IStationElement secondElement);
 }

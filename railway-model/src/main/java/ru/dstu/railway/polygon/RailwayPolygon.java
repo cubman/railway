@@ -2,10 +2,13 @@ package ru.dstu.railway.polygon;
 
 import ru.dstu.railway.area.IArea;
 import ru.dstu.railway.element.IStationElement;
+import ru.dstu.railway.rule.IRule;
+import ru.dstu.railway.rule.ICheckedRuleListener;
 
 import java.util.*;
 
-public class RailwayPolygon implements IPolygon{
+
+public class RailwayPolygon implements IPolygon, ICheckedRuleListener {
     Map<String, IArea> polygonAreas;
 
     public RailwayPolygon() {
@@ -35,5 +38,10 @@ public class RailwayPolygon implements IPolygon{
     @Override
     public List<IArea> getAreas() {
         return new ArrayList<>(polygonAreas.values());
+    }
+
+    @Override
+    public void notify(List<IRule> uncheckedRules) {
+        uncheckedRules.forEach(IRule::execute);
     }
 }

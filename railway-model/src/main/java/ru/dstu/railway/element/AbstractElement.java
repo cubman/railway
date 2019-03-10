@@ -1,35 +1,41 @@
 package ru.dstu.railway.element;
 
 import ru.dstu.railway.area.IArea;
+import ru.dstu.railway.rule.IRule;
+import ru.dstu.railway.rule.ICheckedRuleListener;
 import ru.dstu.railway.state.IState;
 import ru.dstu.railway.state.State;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public abstract class AbstractElement implements IStationElement {
 
-    protected String elementCode;
-
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() +
-                "{elementCode='" + elementCode + '\'' +
-                '}';
-    }
-
+    private String elementCode;
+    private final List<IRule> rules;
     protected final State state;
-    protected final List<IArea> areas;
+    private final List<IArea> areas;
+    private final List<ICheckedRuleListener> сheckedRuleListeners;
 
     public AbstractElement() {
         this.state = new State(new Date(), 0);
         this.areas = new ArrayList<>();
+        this.rules = new ArrayList<>();
+        this.сheckedRuleListeners = new ArrayList<>();
     }
 
     public void setElementCode(String elementCode) {
         this.elementCode = elementCode;
     }
+
+    public void addRule(IRule rule) {
+        rules.add(rule);
+    }
+
+    public void addCheckRuleListener(ICheckedRuleListener ruleListener) {
+        сheckedRuleListeners.add(ruleListener);
+    }
+
 
     @Override
     public String getElementCode() {
@@ -40,6 +46,11 @@ public abstract class AbstractElement implements IStationElement {
     public void setState(int state) {
         this.state.setState(state);
         this.state.setLastChange(new Date());
+
+        List<IRule> checked = rules.stream().filter(IRule::check).collect(Collectors.toList());
+        if (!checked.isEmpty()) {
+            сheckedRuleListeners.forEach(iCheckedRuleListener -> iCheckedRuleListener.notify(checked));
+        }
     }
 
     @Override
@@ -72,7 +83,19 @@ public abstract class AbstractElement implements IStationElement {
     }
 
     @Override
+    public List<IRule> getUncheckedRules() {
+        return null;
+    }
+
+    @Override
     public int hashCode() {
         return elementCode != null ? elementCode.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() +
+                "{elementCode='" + elementCode + '\'' +
+                '}';
     }
 }

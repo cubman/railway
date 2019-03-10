@@ -2,7 +2,7 @@ package ru.sdtu.railway.parse.logcon.struct;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-public class XmlPrint {
+public class XmlPrint implements XmlIFunction {
     @JacksonXmlProperty(isAttribute=true, localName="text")
     private String text;
 
