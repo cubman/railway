@@ -11,5 +11,13 @@ public class XmlRules {
 
     @JacksonXmlProperty(localName = "rule")
     @JacksonXmlElementWrapper(useWrapping = false)
-    private List<XmlRule> xmlAreas;
+    private List<XmlRule> xmlRules;
+
+    public List<XmlRule> getXmlRules() {
+        return xmlRules;
+    }
+
+    public void setXmlRules(List<XmlRule> xmlRules) {
+        this.xmlRules = xmlRules;
+    }
 }

@@ -1,14 +1,24 @@
 <rules>
-    <rule name="Проверка функционирования стрелки">
-        <simple instanceOf="ST"/>
+    <rule name="Проверка функционирования стрелки" type="ST" area="SplitPoint.A">
+        <group>
+            <element code="СТ7"/>
+            <element code="СТ9"/>
+        </group>
+        <simple state="1"/>
         <if>
             <simple code="СТ7"/>
             <print text="Стрелка СТ7 переведена"/>
-            <print text="Какая-то другая стрелка"/>
+            <else>
+                <print text="Какая-то другая стрелка"/>
+            </else>
         </if>
     </rule>
-    <rule name="Проверка функционирования стрелки" group="ST">
+    <rule name="Проверка функционирования стрелки" type="ST" area="SplitPoint.A">
+        <group>
+            <element code="СТ7"/>
+            <element code="СТ9"/>
+        </group>
         <simple code="СТ7"/>
-        <print text="Стрелка СТ7 переведена другой подход"/>
+        <print text="Стрелка СТ7 переведена. Другой подход"/>
     </rule>
 </rules>

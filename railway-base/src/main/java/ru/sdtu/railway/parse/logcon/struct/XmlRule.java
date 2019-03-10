@@ -2,21 +2,18 @@ package ru.sdtu.railway.parse.logcon.struct;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-public class XmlRule {
+public class XmlRule extends AbstractXmlFunction {
     @JacksonXmlProperty(isAttribute=true, localName="name")
     private String name;
 
-    @JacksonXmlProperty(isAttribute=true, localName="group")
-    private String group;
+    @JacksonXmlProperty(isAttribute=true, localName="type")
+    private String type;
 
-    @JacksonXmlProperty(localName="simple")
-    private XmlSimple xmlSimple;
+    @JacksonXmlProperty(isAttribute=true, localName="area")
+    private String area;
 
-    @JacksonXmlProperty(localName="print")
-    private XmlPrint xmlPrint;
-
-    @JacksonXmlProperty(localName="if")
-    private XmlIf xmlIf;
+    @JacksonXmlProperty(localName="group")
+    private XmlGroup xmlGroup;
 
     public String getName() {
         return name;
@@ -26,35 +23,27 @@ public class XmlRule {
         this.name = name;
     }
 
-    public String getGroup() {
-        return group;
+    public String getType() {
+        return type;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public XmlSimple getXmlSimple() {
-        return xmlSimple;
+    public String getArea() {
+        return area;
     }
 
-    public void setXmlSimple(XmlSimple xmlSimple) {
-        this.xmlSimple = xmlSimple;
+    public void setArea(String area) {
+        this.area = area;
     }
 
-    public XmlPrint getXmlPrint() {
-        return xmlPrint;
+    public XmlGroup getXmlGroup() {
+        return xmlGroup;
     }
 
-    public void setXmlPrint(XmlPrint xmlPrint) {
-        this.xmlPrint = xmlPrint;
-    }
-
-    public XmlIf getXmlIf() {
-        return xmlIf;
-    }
-
-    public void setXmlIf(XmlIf xmlIf) {
-        this.xmlIf = xmlIf;
+    public void setXmlGroup(XmlGroup xmlGroup) {
+        this.xmlGroup = xmlGroup;
     }
 }
