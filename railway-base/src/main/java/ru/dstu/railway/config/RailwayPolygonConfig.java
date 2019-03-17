@@ -7,7 +7,7 @@ import ru.dstu.railway.parse.IParser;
 import ru.dstu.railway.parse.polygon.PolygonParser;
 import ru.dstu.railway.polygon.IPolygon;
 import ru.dstu.railway.rule.IRule;
-import ru.sdtu.railway.parse.logcon.RuleParser;
+import ru.dstu.railway.parse.logcon.RuleParser;
 
 import java.util.List;
 
