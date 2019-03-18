@@ -29,7 +29,12 @@ public class WebController  {
 
     @RequestMapping("/")
     public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("index");
+        return new ModelAndView("index");
+    }
+
+    @RequestMapping("statistic/")
+    public ModelAndView statistic() {
+        ModelAndView modelAndView = new ModelAndView("statistic");
         modelAndView.addObject("areas", polygon.getAreas());
         modelAndView.addObject("infoMessages", messageHolder.getMessages(MessageLevel.INFO));
         modelAndView.addObject("errorMessages", messageHolder.getMessages(MessageLevel.ERROR));
