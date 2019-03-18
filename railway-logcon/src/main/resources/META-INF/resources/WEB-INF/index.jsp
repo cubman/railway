@@ -7,16 +7,11 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>DSTU kafka test</title>
+        <title>DSTU railway</title>
         <meta http-equiv="refresh" content="3" />
     </head>
 
     <style>
-        .center {
-            text-align: center;
-            font-size: x-large;
-        }
-
         TABLE {
             background: #dc0; /* Цвет фона таблицы */
             border: 5px double #000; /* Рамка вокруг таблицы */
@@ -28,51 +23,51 @@
     </style>
 
     <body>
-        <h1> Hello world! </h1>
-        <div class="center"> ${msg}!! </div>
-    </body>
+        <h1> Логический контроль </h1>
 
-    <form action="control/" method=POST>
-        <input  type = "submit" name = "submit" value = "Отправить" >
-    </form>
 
-    <div>
-        <div style="width: 50%; float:left">
-           <ul style="background: #ccc;">
-            <c:forEach items="${infoMessages}" var="message">
-                 <li>${message}</li>
-             </c:forEach>
-           </ul>
+        <form action="control/" method=POST>
+            <input  type = "submit" name = "submit" value = "Изменить сосотояние объекта" >
+        </form>
+
+        <div>
+            <div style="width: 50%; float:left">
+               <ul style="background: #ccc;">
+                <c:forEach items="${infoMessages}" var="message">
+                     <li>${message}</li>
+                 </c:forEach>
+               </ul>
+            </div>
+
+            <div style="width: 50%; float:right">
+               <ul style="background: red;">
+                <c:forEach items="${errorMessages}" var="message">
+                     <li>${message}</li>
+                 </c:forEach>
+               </ul>
+            </div>
         </div>
 
-        <div style="width: 50%; float:right">
-           <ul style="background: red;">
-            <c:forEach items="${errorMessages}" var="message">
-                 <li>${message}</li>
-             </c:forEach>
-           </ul>
-        </div>
-    </div>
-
-    <div id="statistic">
-        <c:forEach items="${areas}" var="area">
-            <h3>code: ${area.areaCode} | esr: ${area.getEsr()}</h2>
-            <table width="50%">
-                <tr>
-                    <th>type</th>
-                    <th>code</th>
-                    <th>state</th>
-                    <th>last updated</th>
-                </tr>
-                <c:forEach items="${area.getElements().values()}" var="element">
+        <div id="statistic">
+            <c:forEach items="${areas}" var="area">
+                <h3>code: ${area.areaCode} | esr: ${area.getEsr()}</h2>
+                <table width="100%">
                     <tr>
-                        <td>${element.getClass().getSimpleName()}</td>
-                        <td>${element.getElementCode()}</td>
-                        <td>${element.getState().getState()}</td>
-                        <td>${element.getState().getLastChange()}</td>
+                        <th>type</th>
+                        <th>code</th>
+                        <th>state</th>
+                        <th>last updated</th>
                     </tr>
-                </c:forEach>
-            </table>
-        </c:forEach>
-    </div>
+                    <c:forEach items="${area.getElements().values()}" var="element">
+                        <tr>
+                            <td>${element.getClass().getSimpleName()}</td>
+                            <td>${element.getElementCode()}</td>
+                            <td>${element.getState().getState()}</td>
+                            <td>${element.getState().getLastChange()}</td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </c:forEach>
+        </div>
+    </body>
 </html>

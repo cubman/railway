@@ -30,7 +30,6 @@ public class WebController  {
     @RequestMapping("/")
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("msg", "Начало");
         modelAndView.addObject("areas", polygon.getAreas());
         modelAndView.addObject("infoMessages", messageHolder.getMessages(MessageLevel.INFO));
         modelAndView.addObject("errorMessages", messageHolder.getMessages(MessageLevel.ERROR));

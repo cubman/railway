@@ -4,25 +4,18 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>DSTU kafka test</title>
+        <title>DSTU railway control</title>
     </head>
 
-    <style>
-        .center {
-            text-align: center;
-            font-size: x-large;
-        }
-    </style>
-
     <body>
-        <h1> Hello world! </h1>
-        <div class="center"> ${msg}!! </div>
-    </body>
+        <h1> Изменить состояние объекта </h1>
+        <div> ${msg} </div>
 
-    <form action="" method=POST>
-    <input type = "text"  name = "area" value = ""> <br>
-        <input type = "text"  name = "element" value = ""> <br>
-        <input  type = "text" name = "state" value = "" >
-        <input  type = "submit" name = "submit" value = "Отправить" >
-    </form>
+        <form action="" method=POST>
+        <input type = "text"  name = "area" value = ""> <br>
+            <input type = "text"  name = "element" value = ""> <br>
+            <input  type = "text" name = "state" value = "" >
+            <input  type = "submit" name = "submit" value = "Отправить" >
+        </form>
+    </body>
 </html>
