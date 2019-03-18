@@ -1,6 +1,8 @@
 package ru.dstu.railway.area;
 
 import ru.dstu.railway.element.IStationElement;
+import ru.dstu.railway.element.St;
+import ru.dstu.railway.element.Up;
 import ru.dstu.railway.exception.DuplicationException;
 
 import java.util.ArrayList;
@@ -11,12 +13,12 @@ import java.util.stream.Collectors;
 
 
 public abstract class AbstractArea implements IArea {
-    protected final Map<String, IStationElement> areaElements;
-    protected final String areaCode;
-    protected final String esr;
+    private final Map<String, IStationElement> areaElements;
+    private final String areaCode;
+    private final String esr;
     private final Map<IStationElement, List<IStationElement>> changeParties;
 
-    public AbstractArea(String areaCode, String esr) {
+    AbstractArea(String areaCode, String esr) {
         this.areaElements = new HashMap<>();
         this.areaCode = areaCode;
         this.esr = esr;
@@ -32,6 +34,10 @@ public abstract class AbstractArea implements IArea {
         }
 
         elements.add(to);
+    }
+
+    public String getEsr() {
+        return esr;
     }
 
     @Override
@@ -57,9 +63,26 @@ public abstract class AbstractArea implements IArea {
     }
 
     @Override
+    public List<IStationElement> getElementsByType(String typeCode) {
+        Class<? extends IStationElement> stationElementClass;
+        switch (typeCode.toUpperCase()) {
+            case "ST":
+                stationElementClass = St.class;
+                break;
+            case "UP":
+                stationElementClass = Up.class;
+                break;
+            default:
+                throw new IllegalArgumentException(typeCode + " не распознан");
+        }
+        return getElementsByType(stationElementClass);
+    }
+
+    @Override
     public List<IStationElement> getElementsByType(Class<? extends IStationElement> type) {
         return areaElements.values().stream().
-                filter(stationElement -> type.isAssignableFrom(stationElement.getClass())).collect(Collectors.toList());
+                filter(stationElement -> type.isAssignableFrom(stationElement.getClass()))
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -48,16 +48,16 @@
         <party codeFirst="СТ1" codeSecond="СТ3"/>
         <party codeFirst="СТ5" codeSecond="СТ7"/>
     </area>
-    <area code="Stage.A.B" type="STAGETRACK">
+    <area code="Stage.A.B" esr="000002" type="STAGETRACK">
         <up code="У1Ч" evenLink="" oddLink="НД" oddArea="SplitPoint.A"/>
     </area>
-    <area code="Stage.B.A" type="STAGETRACK">
+    <area code="Stage.B.A" esr="000003" type="STAGETRACK">
         <up code="П1Н" evenLink="Н" oddLink="" evenArea="SplitPoint.A"/>
     </area>
-    <area code="Stage.A.C" type="STAGETRACK">
+    <area code="Stage.A.C" esr="000004" type="STAGETRACK">
         <up code="У1Н" evenLink="" oddLink="1Ч" oddArea="SplitPoint.A"/>
     </area>
-    <area code="Stage.C.A" type="STAGETRACK">
+    <area code="Stage.C.A" esr="000005" type="STAGETRACK">
         <up code="П1Ч" evenLink="2Ч" oddLink="" evenArea="SplitPoint.A"/>
     </area>
 </polygon>

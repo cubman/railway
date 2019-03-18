@@ -1,4 +1,4 @@
-package ru.dstu.railway.parse.logcon.struct;
+package ru.dstu.railway.parse.rule.struct;
 
 public class XmlCondition extends XmlAbstractSimpleFunction {
 }

@@ -1,8 +1,8 @@
-package ru.dstu.railway.parse.logcon.function;
+package ru.dstu.railway.parse.rule.function;
 
 import ru.dstu.railway.rule.function.IFunction;
 import ru.dstu.railway.rule.function.IFunctionResult;
-import ru.dstu.railway.parse.logcon.function.description.FunctionResult;
+import ru.dstu.railway.parse.rule.function.description.FunctionResult;
 
 import java.util.List;
 

@@ -10,11 +10,11 @@ public interface IState {
      * Последнее изменение состояния
      * @return дата изменения
      */
-    public Date getLastChange();
+    Date getLastChange();
 
     /**
      * Получить состояние объекта
      * @return состояние
      */
-    public int getState();
+    int getState();
 }

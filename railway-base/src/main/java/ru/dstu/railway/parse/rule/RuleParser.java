@@ -1,19 +1,21 @@
-package ru.dstu.railway.parse.logcon;
+package ru.dstu.railway.parse.rule;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import ru.dstu.railway.area.IArea;
 import ru.dstu.railway.element.AbstractElement;
 import ru.dstu.railway.element.IStationElement;
 import ru.dstu.railway.element.St;
+import ru.dstu.railway.element.Up;
+import ru.dstu.railway.message.IMessageHolder;
 import ru.dstu.railway.parse.IParser;
 import ru.dstu.railway.parse.exception.ParseException;
-import ru.dstu.railway.parse.logcon.function.And;
-import ru.dstu.railway.parse.logcon.function.If;
-import ru.dstu.railway.parse.logcon.function.Or;
-import ru.dstu.railway.parse.logcon.function.Simple;
-import ru.dstu.railway.parse.logcon.function.description.FunctionError;
-import ru.dstu.railway.parse.logcon.function.description.FunctionResult;
-import ru.dstu.railway.parse.logcon.struct.*;
+import ru.dstu.railway.parse.rule.function.And;
+import ru.dstu.railway.parse.rule.function.If;
+import ru.dstu.railway.parse.rule.function.Or;
+import ru.dstu.railway.parse.rule.function.Simple;
+import ru.dstu.railway.parse.rule.function.description.FunctionError;
+import ru.dstu.railway.parse.rule.function.description.FunctionResult;
+import ru.dstu.railway.parse.rule.struct.*;
 import ru.dstu.railway.polygon.IPolygon;
 import ru.dstu.railway.rule.IRule;
 import ru.dstu.railway.rule.function.IFunction;
@@ -33,10 +35,12 @@ public class RuleParser implements IParser<List<IRule>> {
 
     private String ruleDescriptionFileName;
     private IPolygon polygon;
+    private IMessageHolder messageHolder;
 
-    public RuleParser(String ruleDescriptionFileName, IPolygon polygon) {
+    public RuleParser(String ruleDescriptionFileName, IPolygon polygon, IMessageHolder messageHolder) {
         this.ruleDescriptionFileName = ruleDescriptionFileName;
         this.polygon = polygon;
+        this.messageHolder = messageHolder;
     }
 
     @Override
@@ -58,7 +62,7 @@ public class RuleParser implements IParser<List<IRule>> {
 
         for (XmlRule rule : xmlRules.getXmlRules()) {
             IArea area = polygon.getAreaByCode(rule.getArea());
-            List<IStationElement> elementsByType = area.getElementsByType(getTypeByCode(rule.getType()));
+            List<IStationElement> elementsByType = area.getElementsByType(rule.getType());
             List<IStationElement> filterByGroup = filterByGroup(rule.getXmlGroup(), elementsByType);
 
             for (IStationElement element : filterByGroup) {
@@ -160,15 +164,6 @@ public class RuleParser implements IParser<List<IRule>> {
         throw new ParseException("Необработанный тип условия функции");
     }
 
-    private Class<? extends IStationElement> getTypeByCode(String code) {
-        switch (code) {
-            case "ST":
-                return St.class;
-            default:
-                throw new IllegalArgumentException(code + " не распознан");
-        }
-    }
-
     private List<IStationElement> filterByGroup(XmlGroup group, List<IStationElement> stationElements) {
         return stationElements.stream().filter(element -> {
             for (XmlElement xmlElement : group.getElements()) {
@@ -189,7 +184,7 @@ public class RuleParser implements IParser<List<IRule>> {
                 });
             case "user":
                 return new Simple(() -> {
-                    LOGGER.info(xmlPrint.getText());
+                    messageHolder.addMessage(xmlPrint.getText());
                     return new FunctionResult(Boolean.TRUE);
                 });
             default:

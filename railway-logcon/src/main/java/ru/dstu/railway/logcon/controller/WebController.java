@@ -23,6 +23,7 @@ public class WebController {
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("msg", "Начало");
+        modelAndView.addObject("areas", polygon.getAreas());
         return modelAndView;
     }
 

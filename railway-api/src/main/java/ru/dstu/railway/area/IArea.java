@@ -36,6 +36,19 @@ public interface IArea {
     String getAreaCode();
 
     /**
+     * Получить код единой сетевой разметки
+     * @return код ЕСР
+     */
+    String getEsr();
+
+    /**
+     * Список объектов по коду типу
+     * @param typeCode код типа объекта
+     * @return список объектов
+     */
+    List<IStationElement> getElementsByType(String typeCode);
+
+    /**
      * Список объектов по типу
      * @param type тип объекта
      * @return список объектов

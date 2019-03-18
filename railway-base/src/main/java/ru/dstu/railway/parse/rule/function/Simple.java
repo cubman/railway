@@ -1,4 +1,4 @@
-package ru.dstu.railway.parse.logcon.function;
+package ru.dstu.railway.parse.rule.function;
 
 import ru.dstu.railway.rule.function.IFunction;
 import ru.dstu.railway.rule.function.IFunctionResult;

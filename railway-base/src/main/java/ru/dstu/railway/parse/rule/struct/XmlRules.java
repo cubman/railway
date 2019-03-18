@@ -1,4 +1,4 @@
-package ru.dstu.railway.parse.logcon.struct;
+package ru.dstu.railway.parse.rule.struct;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
