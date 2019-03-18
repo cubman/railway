@@ -121,16 +121,20 @@ public class PolygonParser implements IParser<IPolygon> {
             throw new DuplicationException(stationElement.getElementCode());
         }
 
-        ((AbstractElement)stationElement).addCheckRuleListener(polygon);
+        ((AbstractElement) stationElement).addCheckRuleListener(polygon);
 
         return stationElement;
     }
 
     private IStationElement getElement(XmlArea xmlArea, String elementCode) {
-        IStationElement element = elements.get(xmlArea.getCode() + elementCode);
+        return getElement(xmlArea.getCode(), elementCode);
+    }
+
+    private IStationElement getElement(String areaCode, String elementCode) {
+        IStationElement element = elements.get(areaCode + elementCode);
 
         if (element == null) {
-            throw new IndexOutOfBoundsException("Объект не найден: " + xmlArea.getCode() + elementCode);
+            throw new IndexOutOfBoundsException("Объект не найден: " + areaCode + " = " + elementCode);
         }
 
         return element;
@@ -162,8 +166,14 @@ public class PolygonParser implements IParser<IPolygon> {
                 IStationElement element = getElement(xmlArea, xmlKp.getCode());
 
                 Kp kp = (Kp) element;
-                kp.setEven(getElement(xmlArea, xmlKp.getEvenLink()));
-                kp.setOdd(getElement(xmlArea, xmlKp.getOddLink()));
+                kp.setEven(
+                        getElement(
+                                xmlKp.getEvenArea() != null ? xmlKp.getEvenArea() : xmlArea.getCode(),
+                                xmlKp.getEvenLink()));
+                kp.setOdd(
+                        getElement(
+                                xmlKp.getOddArea() != null ? xmlKp.getOddArea() : xmlArea.getCode(),
+                                xmlKp.getOddLink()));
             }
         }
     }
@@ -174,8 +184,14 @@ public class PolygonParser implements IParser<IPolygon> {
                 IStationElement element = getElement(xmlArea, xmlSv.getCode());
 
                 Sv sv = (Sv) element;
-                sv.setEven(getElement(xmlArea, xmlSv.getEvenLink()));
-                sv.setOdd(getElement(xmlArea, xmlSv.getOddLink()));
+                sv.setEven(
+                        getElement(
+                                xmlSv.getEvenArea() != null ? xmlSv.getEvenArea() : xmlArea.getCode(),
+                                xmlSv.getEvenLink()));
+                sv.setOdd(
+                        getElement(
+                                xmlSv.getOddArea() != null ? xmlSv.getOddArea() : xmlArea.getCode(),
+                                xmlSv.getOddLink()));
             }
         }
     }
@@ -186,8 +202,14 @@ public class PolygonParser implements IParser<IPolygon> {
                 IStationElement element = getElement(xmlArea, xmlUp.getCode());
 
                 Up up = (Up) element;
-                up.setEven(getElement(xmlArea, xmlUp.getEvenLink()));
-                up.setOdd(getElement(xmlArea, xmlUp.getOddLink()));
+                up.setEven(
+                        getElement(
+                                xmlUp.getEvenArea() != null ? xmlUp.getEvenArea() : xmlArea.getCode(),
+                                xmlUp.getEvenLink()));
+                up.setOdd(
+                        getElement(
+                                xmlUp.getOddArea() != null ? xmlUp.getOddArea() : xmlArea.getCode(),
+                                xmlUp.getOddLink()));
             }
         }
     }
@@ -199,8 +221,8 @@ public class PolygonParser implements IParser<IPolygon> {
                 IStationElement elementTo = getElement(xmlArea, xmlParty.getSecondElement());
 
                 IArea area = areas.get(xmlArea.getCode());
-                ((AbstractArea)area).addChangeParty(elementFrom, elementTo);
-                ((AbstractArea)area).addChangeParty(elementTo, elementFrom);
+                ((AbstractArea) area).addChangeParty(elementFrom, elementTo);
+                ((AbstractArea) area).addChangeParty(elementTo, elementFrom);
             }
         }
     }

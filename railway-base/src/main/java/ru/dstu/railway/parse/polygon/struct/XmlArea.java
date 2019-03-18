@@ -13,10 +13,6 @@ public class XmlArea extends AbstractXmlElement {
     @JacksonXmlProperty(isAttribute=true, localName="esr")
     private String esr;
 
-    @JacksonXmlProperty(localName = "neighbour")
-    @JacksonXmlElementWrapper(useWrapping = false)
-    private List<XmlNeighbour> neighbours;
-
     @JacksonXmlProperty(localName = "kp")
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<XmlKp> kps;
@@ -51,14 +47,6 @@ public class XmlArea extends AbstractXmlElement {
 
     public void setEsr(String esr) {
         this.esr = esr;
-    }
-
-    public List<XmlNeighbour> getNeighbours() {
-        return neighbours;
-    }
-
-    public void setNeighbours(List<XmlNeighbour> neighbours) {
-        this.neighbours = neighbours;
     }
 
     public List<XmlKp> getKps() {

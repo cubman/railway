@@ -19,11 +19,10 @@
         <div class="center"> ${msg}!! </div>
     </body>
 
-    <form action="producer/">
-        <input  type = "submit" name = "submit" value = "Производитель" >
-    </form>
-    <br>
-    <form action="consumer/add">
-        <input  type = "submit" name = "submit" value = "Потребитель" >
+    <form action="" method=POST>
+    <input type = "text"  name = "area" value = ""> <br>
+        <input type = "text"  name = "element" value = ""> <br>
+        <input  type = "text" name = "state" value = "" >
+        <input  type = "submit" name = "submit" value = "Отправить" >
     </form>
 </html>

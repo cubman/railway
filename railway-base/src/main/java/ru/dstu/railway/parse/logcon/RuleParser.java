@@ -11,6 +11,7 @@ import ru.dstu.railway.parse.logcon.function.And;
 import ru.dstu.railway.parse.logcon.function.If;
 import ru.dstu.railway.parse.logcon.function.Or;
 import ru.dstu.railway.parse.logcon.function.Simple;
+import ru.dstu.railway.parse.logcon.function.description.FunctionError;
 import ru.dstu.railway.parse.logcon.function.description.FunctionResult;
 import ru.dstu.railway.parse.logcon.struct.*;
 import ru.dstu.railway.polygon.IPolygon;
@@ -20,7 +21,9 @@ import ru.dstu.railway.rule.function.IFunction;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -64,7 +67,7 @@ public class RuleParser implements IParser<List<IRule>> {
 
                 IRule elementRule = new Rule(rule.getName(), preCondition, postCondition);
 
-                ((AbstractElement)element).addRule(elementRule);
+                ((AbstractElement) element).addRule(elementRule);
                 rules.add(elementRule);
             }
         }
@@ -74,27 +77,31 @@ public class RuleParser implements IParser<List<IRule>> {
 
     private IFunction createFunction(XmlIFunction xmlFunction, IStationElement element) {
         if (xmlFunction instanceof XmlPrint) {
-            return ifXmlPrint((XmlPrint)xmlFunction);
+            return ifXmlPrint((XmlPrint) xmlFunction);
         }
 
         if (xmlFunction instanceof XmlSimple) {
-            return ifSimple((XmlSimple)xmlFunction, element);
+            return ifSimple((XmlSimple) xmlFunction, element);
+        }
+
+        if (xmlFunction instanceof XmlTimer) {
+            return ifTimer((XmlTimer) xmlFunction, element);
         }
 
         if (xmlFunction instanceof XmlIf) {
-            return ifIf((XmlIf)xmlFunction, element);
+            return ifIf((XmlIf) xmlFunction, element);
         }
 
         if (xmlFunction instanceof XmlAnd) {
-            return ifAnd((XmlAnd)xmlFunction, element);
+            return ifAnd((XmlAnd) xmlFunction, element);
         }
 
         if (xmlFunction instanceof XmlOr) {
-            return ifOr((XmlOr)xmlFunction, element);
+            return ifOr((XmlOr) xmlFunction, element);
         }
 
         if (xmlFunction instanceof XmlCondition) {
-            return ifCondition((XmlCondition)xmlFunction, element);
+            return ifCondition((XmlCondition) xmlFunction, element);
         }
 
         throw new ParseException("Необработанный тип функции: " + xmlFunction.getClass().getName());
@@ -138,6 +145,10 @@ public class RuleParser implements IParser<List<IRule>> {
             return createFunction(xmlFunction.getXmlSimple(), element);
         }
 
+        if (xmlFunction.getXmlTimer() != null) {
+            return createFunction(xmlFunction.getXmlTimer(), element);
+        }
+
         if (xmlFunction.getXmlAnd() != null) {
             return createFunction(xmlFunction.getXmlAnd(), element);
         }
@@ -170,21 +181,44 @@ public class RuleParser implements IParser<List<IRule>> {
     }
 
     private IFunction ifXmlPrint(XmlPrint xmlPrint) {
-        return new Simple(() -> {
-            LOGGER.info(xmlPrint.getText());
-            return new FunctionResult(Boolean.TRUE);
-        });
+        switch (xmlPrint.getOut()) {
+            case "console":
+                return new Simple(() -> {
+                    LOGGER.info(xmlPrint.getText());
+                    return new FunctionResult(Boolean.TRUE);
+                });
+            case "user":
+                return new Simple(() -> {
+                    LOGGER.info(xmlPrint.getText());
+                    return new FunctionResult(Boolean.TRUE);
+                });
+            default:
+                throw new UnsupportedOperationException("Поток вывода не определен: " + xmlPrint.getOut());
+        }
+
     }
 
     private IFunction ifSimple(XmlSimple xmlSimple, IStationElement stationElement) {
         if (xmlSimple.getCode() != null) {
             return new Simple(() -> new FunctionResult(stationElement.getElementCode().equals(xmlSimple.getCode())));
-        } else
-        if (xmlSimple.getState() != null) {
+        } else if (xmlSimple.getState() != null) {
             return new Simple(() -> new FunctionResult(stationElement.getState().getState() == xmlSimple.getState()));
         } else {
             throw new ParseException("Сформировать условие simple не удалось по существующим правилам");
         }
+    }
+
+    private IFunction ifTimer(XmlTimer xmlFunction, IStationElement element) {
+        return new Simple(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(xmlFunction.getSleep());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                return new FunctionResult(Boolean.FALSE,
+                        Collections.singletonList(new FunctionError("INERRUPTED", xmlFunction.getSleep() + " не были выдержаны")));
+            }
+            return new FunctionResult(Boolean.TRUE);
+        });
     }
 
     private IFunction ifIf(XmlIf xmlFunction, IStationElement element) {

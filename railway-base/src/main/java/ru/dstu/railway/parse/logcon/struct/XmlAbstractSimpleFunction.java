@@ -6,6 +6,9 @@ public abstract class XmlAbstractSimpleFunction implements XmlIFunction {
     @JacksonXmlProperty(localName = "simple")
     private XmlSimple xmlSimple;
 
+    @JacksonXmlProperty(localName = "timer")
+    private XmlTimer xmlTimer;
+
     @JacksonXmlProperty(localName = "print")
     private XmlPrint xmlPrint;
 
@@ -24,6 +27,14 @@ public abstract class XmlAbstractSimpleFunction implements XmlIFunction {
 
     public void setXmlSimple(XmlSimple xmlSimple) {
         this.xmlSimple = xmlSimple;
+    }
+
+    public XmlTimer getXmlTimer() {
+        return xmlTimer;
+    }
+
+    public void setXmlTimer(XmlTimer xmlTimer) {
+        this.xmlTimer = xmlTimer;
     }
 
     public XmlPrint getXmlPrint() {
