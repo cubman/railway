@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import ru.dstu.railway.config.RailwayPolygonConfig;
+import ru.dstu.railway.logcon.controller.WebController;
 
 import java.net.URL;
 

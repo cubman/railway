@@ -7,6 +7,7 @@ import ru.dstu.railway.element.IStationElement;
 import ru.dstu.railway.element.St;
 import ru.dstu.railway.element.Up;
 import ru.dstu.railway.message.IMessageHolder;
+import ru.dstu.railway.message.MessageLevel;
 import ru.dstu.railway.parse.IParser;
 import ru.dstu.railway.parse.exception.ParseException;
 import ru.dstu.railway.parse.rule.function.And;
@@ -179,18 +180,35 @@ public class RuleParser implements IParser<List<IRule>> {
         switch (xmlPrint.getOut()) {
             case "console":
                 return new Simple(() -> {
-                    LOGGER.info(xmlPrint.getText());
+                    if (xmlPrint.getLevel() == null || "info".equals(xmlPrint.getLevel())) {
+                        LOGGER.info(xmlPrint.getText());
+                    } else if ("error".equals(xmlPrint.getLevel())) {
+                        LOGGER.warning(xmlPrint.getText());
+                    }
+                    else {
+                        throw new UnsupportedOperationException(
+                                xmlPrint.getLevel() + " уровень логгирования не определен");
+                    }
+
                     return new FunctionResult(Boolean.TRUE);
                 });
             case "user":
                 return new Simple(() -> {
-                    messageHolder.addMessage(xmlPrint.getText());
+                    if (xmlPrint.getLevel() == null || "info".equals(xmlPrint.getLevel())) {
+                        messageHolder.addMessage(xmlPrint.getText(), MessageLevel.INFO);
+                    } else if ("error".equals(xmlPrint.getLevel())) {
+                        messageHolder.addMessage(xmlPrint.getText(), MessageLevel.ERROR);
+                    }
+                    else {
+                        throw new UnsupportedOperationException(
+                                xmlPrint.getLevel() + " уровень логгирования не определен");
+                    }
+
                     return new FunctionResult(Boolean.TRUE);
                 });
             default:
                 throw new UnsupportedOperationException("Поток вывода не определен: " + xmlPrint.getOut());
         }
-
     }
 
     private IFunction ifSimple(XmlSimple xmlSimple, IStationElement stationElement) {

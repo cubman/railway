@@ -4,7 +4,7 @@ import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.EventListener;
 import ru.dstu.railway.area.IArea;
 import ru.dstu.railway.element.IStationElement;
-import ru.dstu.railway.rule.ICheckedRuleListener;
+import ru.dstu.railway.listener.ICheckedRuleListener;
 import ru.dstu.railway.rule.IRule;
 
 import java.util.*;

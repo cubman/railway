@@ -91,10 +91,16 @@
                                     <print out="console" text="4.1 Стрелка СТ7 переведена и находится в состоянии 1."/>
                                 </condition>
                                 <condition>
+                                    <print out="console" level="error" text="4.1 Стрелка СТ7 переведена и находится в состоянии 1."/>
+                                </condition>
+                                <condition>
                                     <timer sleep="2"/>
                                 </condition>
                                 <condition>
-                                    <print out="console" text="4.2 Стрелка СТ7 переведена и находится в состоянии 1."/>
+                                    <print out="user" level="error" text="4.2 Стрелка СТ7 переведена и находится в состоянии 1."/>
+                                </condition>
+                                <condition>
+                                    <print out="user" level="info" text="4.2 Стрелка СТ7 переведена и находится в состоянии 1."/>
                                 </condition>
                             </and>
                         </then>

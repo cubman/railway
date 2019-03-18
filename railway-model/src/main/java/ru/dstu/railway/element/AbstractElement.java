@@ -2,7 +2,7 @@ package ru.dstu.railway.element;
 
 import ru.dstu.railway.area.IArea;
 import ru.dstu.railway.rule.IRule;
-import ru.dstu.railway.rule.ICheckedRuleListener;
+import ru.dstu.railway.listener.ICheckedRuleListener;
 import ru.dstu.railway.state.IState;
 import ru.dstu.railway.state.State;
 

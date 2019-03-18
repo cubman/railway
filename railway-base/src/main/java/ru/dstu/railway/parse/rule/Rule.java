@@ -2,6 +2,7 @@ package ru.dstu.railway.parse.rule;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.dstu.railway.message.IMessageHolder;
+import ru.dstu.railway.message.MessageLevel;
 import ru.dstu.railway.rule.IRule;
 import ru.dstu.railway.rule.function.IFunction;
 import ru.dstu.railway.rule.function.IFunctionResult;
@@ -40,10 +41,10 @@ public class Rule implements IRule {
         IFunctionResult<Boolean> check = executeFunction.check();
 
         if (check.getResult()) {
-            LOGGER.info("Правило: " + name + "успешно прошло проверку");
+            LOGGER.info("Правило: '" + name + "' успешно прошло проверку");
         } else {
             check.getErrors().forEach(iFunctionError ->
-                    messageHolder.addMessage(iFunctionError.getDescription()));
+                    messageHolder.addMessage(iFunctionError.getDescription(), MessageLevel.ERROR));
         }
     }
 }
