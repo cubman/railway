@@ -23,32 +23,32 @@ import java.util.Map;
 public class PolygonParser implements IParser<IPolygon> {
 
     private RailwayPolygon polygon = new RailwayPolygon();
+    private XmlPolygon xmlPolygon;
 
     private final Map<String, IStationElement> elements = new HashMap<>();
     private final Map<String, IArea> areas = new HashMap<>();
 
-
-    private String polygonDescriptionFileName;
-
     public PolygonParser(String polygonDescriptionFileName) {
-        this.polygonDescriptionFileName = polygonDescriptionFileName;
-    }
-
-    @Override
-    public IPolygon parse() {
         XmlMapper xmlMapper = new XmlMapper();
-        XmlPolygon xmlPolygon;
+
         File polygonDescription = new File(polygonDescriptionFileName);
         try {
             xmlPolygon = xmlMapper.readValue(polygonDescription, XmlPolygon.class);
         } catch (IOException e) {
             throw new ParseException("Поток " + polygonDescription + " не распарсился", e);
         }
+    }
 
+    @Override
+    public IPolygon parse() {
         firstInit(xmlPolygon);
         secondInit(xmlPolygon);
 
         return polygon;
+    }
+
+    public XmlPolygon getXmlPolygon() {
+        return xmlPolygon;
     }
 
     private void firstInit(XmlPolygon xmlPolygon) {

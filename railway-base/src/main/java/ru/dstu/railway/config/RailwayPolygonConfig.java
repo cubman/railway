@@ -7,9 +7,9 @@ import ru.dstu.railway.message.IMessageHolder;
 import ru.dstu.railway.message.MessageHolder;
 import ru.dstu.railway.parse.IParser;
 import ru.dstu.railway.parse.polygon.PolygonParser;
+import ru.dstu.railway.parse.rule.RuleParser;
 import ru.dstu.railway.polygon.IPolygon;
 import ru.dstu.railway.rule.IRule;
-import ru.dstu.railway.parse.rule.RuleParser;
 
 import java.util.List;
 
@@ -18,8 +18,8 @@ public class RailwayPolygonConfig {
 
     @Bean
     public IPolygon polygon(@Qualifier("polygon") String polygonDescriptionFileName) {
-        IParser<IPolygon> polygonIParser = new PolygonParser(polygonDescriptionFileName);
-        return polygonIParser.parse();
+        PolygonParser polygonParser = new PolygonParser(polygonDescriptionFileName);
+        return polygonParser.parse();
     }
 
     @Bean
