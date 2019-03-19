@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import ru.dstu.railway.config.RailwayPolygonConfig;
 import ru.dstu.railway.logcon.controller.WebController;
+import ru.dstu.railway.logcon.struct.JPolygonCreator;
 import ru.dstu.railway.parse.polygon.PolygonParser;
 import ru.dstu.railway.parse.polygon.struct.XmlPolygon;
 import ru.dstu.railway.polygon.IPolygon;
@@ -15,6 +16,11 @@ import java.net.URL;
 @Configuration
 @Import(RailwayPolygonConfig.class)
 public class LogConConfig {
+    @Bean
+    public JPolygonCreator jPolygonCreator(IPolygon polygon) {
+        return new JPolygonCreator(polygon);
+    }
+
     @Bean
     @Qualifier("polygon")
     public String polygonDescriptionFile() {
