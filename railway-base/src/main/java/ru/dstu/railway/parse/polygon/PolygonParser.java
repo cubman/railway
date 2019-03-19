@@ -141,6 +141,8 @@ public class PolygonParser implements IParser<IPolygon> {
     }
 
     private void linkSt(XmlArea xmlArea) {
+        IArea area = areas.get(xmlArea.getCode());
+
         if (xmlArea.getSts() != null) {
             for (XmlSt xmlSt : xmlArea.getSts()) {
                 IStationElement element = getElement(xmlArea, xmlSt.getCode());
@@ -156,11 +158,15 @@ public class PolygonParser implements IParser<IPolygon> {
                 St st = (St) element;
                 st.setOddElement(odd);
                 st.setEvenElement(even);
+
+                st.addArea(area);
             }
         }
     }
 
     private void linkKp(XmlArea xmlArea) {
+        IArea area = areas.get(xmlArea.getCode());
+
         if (xmlArea.getKps() != null) {
             for (XmlKp xmlKp : xmlArea.getKps()) {
                 IStationElement element = getElement(xmlArea, xmlKp.getCode());
@@ -174,11 +180,15 @@ public class PolygonParser implements IParser<IPolygon> {
                         getElement(
                                 xmlKp.getOddArea() != null ? xmlKp.getOddArea() : xmlArea.getCode(),
                                 xmlKp.getOddLink()));
+
+                kp.addArea(area);
             }
         }
     }
 
     private void linkSv(XmlArea xmlArea) {
+        IArea area = areas.get(xmlArea.getCode());
+
         if (xmlArea.getSvs() != null) {
             for (XmlSv xmlSv : xmlArea.getSvs()) {
                 IStationElement element = getElement(xmlArea, xmlSv.getCode());
@@ -192,11 +202,14 @@ public class PolygonParser implements IParser<IPolygon> {
                         getElement(
                                 xmlSv.getOddArea() != null ? xmlSv.getOddArea() : xmlArea.getCode(),
                                 xmlSv.getOddLink()));
+                sv.addArea(area);
             }
         }
     }
 
     private void linkUp(XmlArea xmlArea) {
+        IArea area = areas.get(xmlArea.getCode());
+
         if (xmlArea.getUps() != null) {
             for (XmlUp xmlUp : xmlArea.getUps()) {
                 IStationElement element = getElement(xmlArea, xmlUp.getCode());
@@ -210,6 +223,8 @@ public class PolygonParser implements IParser<IPolygon> {
                         getElement(
                                 xmlUp.getOddArea() != null ? xmlUp.getOddArea() : xmlArea.getCode(),
                                 xmlUp.getOddLink()));
+
+                up.addArea(area);
             }
         }
     }
