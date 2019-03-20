@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Import;
 import ru.dstu.railway.config.RailwayPolygonConfig;
 import ru.dstu.railway.logcon.controller.WebController;
 import ru.dstu.railway.logcon.struct.JPolygonCreator;
+import ru.dstu.railway.paint.IPaintPolygon;
 import ru.dstu.railway.parse.polygon.PolygonParser;
 import ru.dstu.railway.parse.polygon.struct.XmlPolygon;
 import ru.dstu.railway.polygon.IPolygon;
@@ -17,8 +18,8 @@ import java.net.URL;
 @Import(RailwayPolygonConfig.class)
 public class LogConConfig {
     @Bean
-    public JPolygonCreator jPolygonCreator(IPolygon polygon) {
-        return new JPolygonCreator(polygon);
+    public JPolygonCreator jPolygonCreator(IPolygon polygon, IPaintPolygon paintPolygon) {
+        return new JPolygonCreator(polygon, paintPolygon);
     }
 
     @Bean
@@ -32,6 +33,13 @@ public class LogConConfig {
     @Qualifier("rule")
     public String ruleDescriptionFile() {
         URL resource = LogConConfig.class.getResource("/description/rules.xml");
+        return resource.getPath();
+    }
+
+    @Bean
+    @Qualifier("paint")
+    public String paintDescriptionFile() {
+        URL resource = LogConConfig.class.getResource("/description/paint.xml");
         return resource.getPath();
     }
 }

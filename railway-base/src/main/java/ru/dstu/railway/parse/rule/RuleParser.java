@@ -4,8 +4,6 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import ru.dstu.railway.area.IArea;
 import ru.dstu.railway.element.AbstractElement;
 import ru.dstu.railway.element.IStationElement;
-import ru.dstu.railway.element.St;
-import ru.dstu.railway.element.Up;
 import ru.dstu.railway.message.IMessageHolder;
 import ru.dstu.railway.message.MessageLevel;
 import ru.dstu.railway.parse.IParser;

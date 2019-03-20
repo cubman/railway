@@ -5,10 +5,7 @@ import ru.dstu.railway.element.St;
 import ru.dstu.railway.element.Up;
 import ru.dstu.railway.exception.DuplicationException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -102,12 +99,13 @@ public abstract class AbstractArea implements IArea {
 
         AbstractArea that = (AbstractArea) obj;
 
-        return areaCode.equals(that.areaCode);
+        return areaCode.equals(that.areaCode)
+                && esr.equals(that.esr);
     }
 
     @Override
     public int hashCode() {
-        return areaCode.hashCode();
+        return Objects.hash(areaCode, esr);
     }
 
     @Override

@@ -26,4 +26,11 @@ public class TestConfig {
         URL resource = TestConfig.class.getResource("/description/rules.xml");
         return resource.getPath();
     }
+
+    @Bean
+    @Qualifier("paint")
+    public String paintDescriptionFile() {
+        URL resource = TestConfig.class.getResource("/description/paint.xml");
+        return resource.getPath();
+    }
 }

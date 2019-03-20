@@ -2,6 +2,8 @@ package ru.dstu.railway.logcon.struct;
 
 import ru.dstu.railway.area.IArea;
 import ru.dstu.railway.element.IStationElement;
+import ru.dstu.railway.paint.IPaintPolygon;
+import ru.dstu.railway.parse.paint.PaintPolygon;
 import ru.dstu.railway.polygon.IPolygon;
 
 import java.util.ArrayList;
@@ -11,8 +13,10 @@ import java.util.stream.Collectors;
 public class JPolygonCreator {
 
     private IPolygon polygon;
+    private IPaintPolygon paintPolygon;
 
-    public JPolygonCreator(IPolygon polygon) {
+    public JPolygonCreator(IPolygon polygon, IPaintPolygon paintPolygon) {
+        this.paintPolygon = paintPolygon;
         this.polygon = polygon;
     }
 
@@ -35,6 +39,7 @@ public class JPolygonCreator {
                         new JNextElement(element.getOdd().getElementCode(),
                                 element.getOdd().getClass().getSimpleName(),
                                 getAreasForElement(element.getOdd())));
+                jElement.setLines(paintPolygon.getElementLines(area, element));
                 elements.add(jElement);
             }
             areas.add(new JArea(area.getAreaCode(), area.getEsr(), elements));

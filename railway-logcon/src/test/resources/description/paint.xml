@@ -1,0 +1,177 @@
+<paint>
+    <base>
+        <element type="st" version="1">
+            <line id="1" r="r0"/>
+            <line id="2" link="1" r="r0"/>
+            <line id="3" link="2" pos="PLUS" r="r45"/>
+            <line id="4" link="3" r="r45"/>
+            <line id="5" link="2" pos="MINUS" r="r0"/>
+            <line id="6" link="5" r="r0"/>
+        </element>
+        <element type="st" version="2">
+            <line id="1" r="r0"/>
+            <line id="2" link="1" r="r0"/>
+            <line id="3" link="2" pos="PLUS" r="r135"/>
+            <line id="4" link="3" r="r135"/>
+            <line id="5" link="2" pos="MINUS" r="r0"/>
+            <line id="6" link="5" r="r0"/>
+        </element>
+        <element type="st" version="3">
+            <line id="1" r="r0"/>
+            <line id="2" link="1" r="r0"/>
+            <line id="3" link="2" pos="PLUS" r="r225"/>
+            <line id="4" link="3" r="r225"/>
+            <line id="5" link="2" pos="MINUS" r="r0"/>
+            <line id="6" link="5" r="r0"/>
+        </element>
+        <element type="st" version="4">
+            <line id="1" r="r0"/>
+            <line id="2" link="1" r="r0"/>
+            <line id="3" link="2" pos="PLUS" r="r315"/>
+            <line id="4" link="3" r="r315"/>
+            <line id="5" link="2" pos="MINUS" r="r0"/>
+            <line id="6" link="5" r="r0"/>
+        </element>
+        <element type="up" version="1">
+            <line id="1" r="r0"/>
+        </element>
+        <element type="k    p" version="1">
+            <line id="1" r="r0"/>
+        </element>
+    </base>
+    <draw>
+        <area code="SplitPoint.A" esr="000001">
+            <!-- Пути -->
+            <kp code="1" version="1">
+                <line id="1" l="60"/>
+            </kp>
+            <kp code="2" version="1">
+                <line id="1" l="60"/>
+            </kp>
+            <kp code="3" version="1">
+                <line id="1" l="60"/>
+            </kp>
+            <kp code="4" version="1">
+                <line id="1" l="60"/>
+            </kp>
+            <kp code="6" version="1">
+                <line id="1" l="60"/>
+            </kp>
+
+            <!-- Светофоры
+            <sv code="Ч1" evenLink="1" oddLink="СТ9"/>
+            <sv code="Ч2" evenLink="СТ11" oddLink="2"/>
+            <sv code="Ч3" evenLink="3" oddLink="СТ9"/>
+            <sv code="Ч4" evenLink="СТ13" oddLink="4"/>
+            <sv code="Ч6" evenLink="СТ13" oddLink="6"/>
+
+            <sv code="Н1" evenLink="СТ14" oddLink="1"/>
+            <sv code="Н2" evenLink="2" oddLink="СТ16"/>
+            <sv code="Н3" evenLink="СТ14" oddLink="3"/>
+            <sv code="Н4" evenLink="4" oddLink="СТ18"/>
+            <sv code="Н6" evenLink="6" oddLink="СТ18"/>
+
+            <sv code="1Ч" evenLink="У1Н" oddLink="УУ1Ч" evenArea="Stage.A.C"/>
+            <sv code="2Ч" evenLink="УП2Ч" oddLink="П1Ч" oddArea="Stage.C.A"/>
+
+            <sv code="НД" evenLink="У1Ч" oddLink="УУНД" evenArea="Stage.A.B"/>
+            <sv code="Н" evenLink="УПН" oddLink="П1Н" oddArea="Stage.B.A"/>-->
+
+            <!-- Участки приближения/ удаления -->
+            <up code="УП2Ч" version="1">
+                <line id="1" l="20"/>
+            </up>
+            <up code="УУ1Ч" version="1">
+                <line id="1" l="20"/>
+            </up>
+            <up code="УУНД" version="1">
+                <line id="1" l="20"/>
+            </up>
+            <up code="УПН"  version="1">
+                <line id="1" l="20"/>
+            </up>
+
+            <!-- Стрелки -->
+            <st code="СТ1"  version="1">
+                <line id="1" l="3"/>
+                <line id="2" l="3"/>
+                <line id="3" l="3"/>
+                <line id="4" l="3"/>
+                <line id="5" l="3"/>
+                <line id="6" l="3"/>
+            </st>
+            <st code="СТ3"  version="1">
+                <line id="1" l="3"/>
+                <line id="2" l="3"/>
+                <line id="3" l="3"/>
+                <line id="4" l="3"/>
+                <line id="5" l="3"/>
+                <line id="6" l="3"/>
+            </st>
+            <st code="СТ5"  version="1">
+                <line id="1" l="3"/>
+                <line id="2" l="3"/>
+                <line id="3" l="3"/>
+                <line id="4" l="3"/>
+                <line id="5" l="3"/>
+                <line id="6" l="3"/>
+            </st>
+            <st code="СТ7"  version="1">
+                <line id="1" l="3"/>
+                <line id="2" l="3"/>
+                <line id="3" l="3"/>
+                <line id="4" l="3"/>
+                <line id="5" l="3"/>
+                <line id="6" l="3"/>
+            </st>
+            <st code="СТ9"  version="1">
+                <line id="1" l="3"/>
+                <line id="2" l="3"/>
+                <line id="3" l="3"/>
+                <line id="4" l="3"/>
+                <line id="5" l="3"/>
+                <line id="6" l="3"/>
+            </st>
+            <st code="СТ11" version="1">
+                <line id="1" l="3"/>
+                <line id="2" l="3"/>
+                <line id="3" l="3"/>
+                <line id="4" l="3"/>
+                <line id="5" l="3"/>
+                <line id="6" l="3"/>
+            </st>
+            <st code="СТ13" version="1">
+                <line id="1" l="3"/>
+                <line id="2" l="3"/>
+                <line id="3" l="3"/>
+                <line id="4" l="3"/>
+                <line id="5" l="3"/>
+                <line id="6" l="3"/>
+            </st>
+            <st code="СТ14" version="1">
+                <line id="1" l="3"/>
+                <line id="2" l="3"/>
+                <line id="3" l="3"/>
+                <line id="4" l="3"/>
+                <line id="5" l="3"/>
+                <line id="6" l="3"/>
+            </st>
+            <st code="СТ16" version="1">
+                <line id="1" l="3"/>
+                <line id="2" l="3"/>
+                <line id="3" l="3"/>
+                <line id="4" l="3"/>
+                <line id="5" l="3"/>
+                <line id="6" l="3"/>
+            </st>
+            <st code="СТ18" version="1">
+                <line id="1" l="3"/>
+                <line id="2" l="3"/>
+                <line id="3" l="3"/>
+                <line id="4" l="3"/>
+                <line id="5" l="3"/>
+                <line id="6" l="3"/>
+            </st>
+        </area>
+    </draw>
+</paint>
