@@ -7,10 +7,10 @@ public class XmlLine {
     private Integer id;
 
     @JacksonXmlProperty(isAttribute=true, localName="x")
-    private Integer x;
+    private Double x;
 
     @JacksonXmlProperty(isAttribute=true, localName="y")
-    private Integer y;
+    private Double y;
 
     @JacksonXmlProperty(isAttribute=true, localName="length")
     private Integer length;
@@ -31,19 +31,19 @@ public class XmlLine {
         this.length = length;
     }
 
-    public Integer getX() {
+    public Double getX() {
         return x;
     }
 
-    public void setX(Integer x) {
+    public void setX(Double x) {
         this.x = x;
     }
 
-    public Integer getY() {
+    public Double getY() {
         return y;
     }
 
-    public void setY(Integer y) {
+    public void setY(Double y) {
         this.y = y;
     }
 }

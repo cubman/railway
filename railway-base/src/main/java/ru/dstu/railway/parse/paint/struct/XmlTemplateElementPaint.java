@@ -12,9 +12,9 @@ public class XmlTemplateElementPaint {
     @JacksonXmlProperty(localName = "version")
     private Integer version;
 
-    @JacksonXmlProperty(localName = "line")
+    @JacksonXmlProperty(localName = "object")
     @JacksonXmlElementWrapper(useWrapping = false)
-    private List<XmlTemplateLine> xmlTemplateLines;
+    private List<XmlFigureObject> xmlTemplateLines;
 
     public String getType() {
         return type;
@@ -32,11 +32,11 @@ public class XmlTemplateElementPaint {
         this.version = version;
     }
 
-    public List<XmlTemplateLine> getXmlTemplateLines() {
+    public List<XmlFigureObject> getXmlTemplateLines() {
         return xmlTemplateLines;
     }
 
-    public void setXmlTemplateLines(List<XmlTemplateLine> xmlTemplateLines) {
+    public void setXmlTemplateLines(List<XmlFigureObject> xmlTemplateLines) {
         this.xmlTemplateLines = xmlTemplateLines;
     }
 }

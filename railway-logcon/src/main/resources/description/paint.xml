@@ -1,61 +1,65 @@
 <paint>
     <base>
         <element type="st" version="1">
-            <line id="1" rotate="r0"/>
-            <line id="2" link="1" rotate="r0"/>
-            <line id="3" link="2" pos="PLUS" rotate="r45"/>
-            <line id="4" link="3" rotate="r45"/>
-            <line id="5" link="2" pos="MINUS" rotate="r0"/>
-            <line id="6" link="5" rotate="r0"/>
+            <object type="line" id="1" />
+            <object type="line" id="2" link="1" />
+            <object type="line" id="3" link="2" pos="PLUS" rotate="315"/>
+            <object type="line" id="4" link="3" rotate="315"/>
+            <object type="line" id="5" link="2" pos="MINUS" />
+            <object type="line" id="6" link="5" />
+            <object type="line" id="7" link="4"/>
         </element>
         <element type="st" version="2">
-            <line id="1" rotate="r0"/>
-            <line id="2" link="1" rotate="r0"/>
-            <line id="3" link="2" pos="PLUS" rotate="r135"/>
-            <line id="4" link="3" rotate="r135"/>
-            <line id="5" link="2" pos="MINUS" rotate="r0"/>
-            <line id="6" link="5" rotate="r0"/>
+            <object type="line" id="1" />
+            <object type="line" id="2" link="1" />
+            <object type="line" id="3" link="2" pos="PLUS" rotate="135"/>
+            <object type="line" id="4" link="3" />
+            <object type="line" id="5" link="2" pos="MINUS"/>
+            <object type="line" id="6" link="5" />
+            <object type="line" id="7" link="4"/>
         </element>
         <element type="st" version="3">
-            <line id="1" rotate="r0"/>
-            <line id="2" link="1" rotate="r0"/>
-            <line id="3" link="2" pos="PLUS" rotate="r225"/>
-            <line id="4" link="3" rotate="r225"/>
-            <line id="5" link="2" pos="MINUS" rotate="r0"/>
-            <line id="6" link="5" rotate="r0"/>
+            <object type="line" id="1"/>
+            <object type="line" id="2" link="1"/>
+            <object type="line" id="3" link="2" pos="PLUS" rotate="45"/>
+            <object type="line" id="4" link="3" rotate="45"/>
+            <object type="line" id="5" link="2" pos="MINUS"/>
+            <object type="line" id="6" link="5" />
+            <object type="line" id="7" link="4"/>
         </element>
         <element type="st" version="4">
-            <line id="1" rotate="r0"/>
-            <line id="2" link="1" rotate="r0"/>
-            <line id="3" link="2" pos="PLUS" rotate="r315"/>
-            <line id="4" link="3" rotate="r315"/>
-            <line id="5" link="2" pos="MINUS" rotate="r0"/>
-            <line id="6" link="5" rotate="r0"/>
+            <object type="line" id="1"/>
+            <object type="line" id="2" link="1"/>
+            <object type="line" id="3" link="2" pos="PLUS" rotate="315"/>
+            <object type="line" id="4" link="3"/>
+            <object type="line" id="5" link="2" pos="MINUS"/>
+            <object type="line" id="6" link="5"/>
+            <object type="line" id="7" link="4"/>
         </element>
         <element type="up" version="1">
-            <line id="1" rotate="r0"/>
+            <object type="line" id="1"/>
         </element>
         <element type="kp" version="1">
-            <line id="1" rotate="r0"/>
+            <object type="line" id="1"/>
         </element>
     </base>
     <draw>
         <area code="SplitPoint.A" esr="000001">
             <!-- Пути -->
             <element type="kp" code="1" version="1">
-                <line id="1" x="" y="" length="60"/>
+                <line id="1" x="740" y="550" length="400"/>
             </element>
             <element type="kp" code="2" version="1">
-                <line id="1" length="60"/>
+                <line id="1" x="340" y="200" length="60"/>
             </element>
             <element type="kp" code="3" version="1">
-                <line id="1" length="60"/>
+                <line id="1" x="700" y="500" length="400"/>
             </element>
             <element type="kp" code="4" version="1">
-                <line id="1" length="60"/>
+                <line id="1" x="380" y="200" length="60"/>
             </element>
             <element type="kp" code="6" version="1">
-                <line id="1" length="60"/>
+                <line id="1" x="400" y="200" length="60"/>
             </element>
 
             <!-- Светофоры
@@ -64,133 +68,143 @@
             <sv code="Ч3" evenLink="3" oddLink="СТ9"/>
             <sv code="Ч4" evenLink="СТ13" oddLink="4"/>
             <sv code="Ч6" evenLink="СТ13" oddLink="6"/>
-    
+
             <sv code="Н1" evenLink="СТ14" oddLink="1"/>
             <sv code="Н2" evenLink="2" oddLink="СТ16"/>
             <sv code="Н3" evenLink="СТ14" oddLink="3"/>
             <sv code="Н4" evenLink="4" oddLink="СТ18"/>
             <sv code="Н6" evenLink="6" oddLink="СТ18"/>
-    
+
             <sv code="1Ч" evenLink="У1Н" oddLink="УУ1Ч" evenArea="Stage.A.C"/>
             <sv code="2Ч" evenLink="УП2Ч" oddLink="П1Ч" oddArea="Stage.C.A"/>
-    
+
             <sv code="НД" evenLink="У1Ч" oddLink="УУНД" evenArea="Stage.A.B"/>
             <sv code="Н" evenLink="УПН" oddLink="П1Н" oddArea="Stage.B.A"/>-->
 
             <!-- Участки приближения/ удаления -->
             <element type="up" code="УП2Ч" version="1">
-                <line id="1" length="20"/>
+                <line id="1" x="600" y="200" length="80"/>
             </element>
             <element type="up" code="УУ1Ч" version="1">
-                <line id="1" length="20"/>
+                <line id="1" x="620" y="200" length="80"/>
             </element>
             <element type="up" code="УУНД" version="1">
-                <line id="1" length="20"/>
+                <line id="1" x="640" y="200" length="80"/>
             </element>
             <element type="up" code="УПН" version="1">
-                <line id="1" length="20"/>
+                <line id="1" x="680" y="200" length="80"/>
             </element>
 
             <!-- Стрелки -->
             <element type="st" code="СТ1" version="1">
-                <line id="1" length="3"/>
-                <line id="2" length="3"/>
-                <line id="3" length="3"/>
-                <line id="4" length="3"/>
-                <line id="5" length="3"/>
-                <line id="6" length="3"/>
+                <line id="1" x="300" y="600" length="30"/>
+                <line id="2" length="30"/>
+                <line id="3" length="30"/>
+                <line id="4" length="30"/>
+                <line id="5" length="30"/>
+                <line id="6" length="30"/>
+                <line id="7" length="30"/>
             </element>
             <element type="st" code="СТ3" version="1">
-                <line id="1" length="3"/>
-                <line id="2" length="3"/>
-                <line id="3" length="3"/>
-                <line id="4" length="3"/>
-                <line id="5" length="3"/>
-                <line id="6" length="3"/>
+                <line id="1" x="300" y="640" length="30"/>
+                <line id="2" length="30"/>
+                <line id="3" length="30"/>
+                <line id="4" length="30"/>
+                <line id="5" length="30"/>
+                <line id="6" length="30"/>
+                <line id="7" length="30"/>
             </element>
             <element type="st" code="СТ5" version="1">
-                <line id="1" length="3"/>
-                <line id="2" length="3"/>
-                <line id="3" length="3"/>
-                <line id="4" length="3"/>
-                <line id="5" length="3"/>
-                <line id="6" length="3"/>
+                <line id="1" x="300" y="680" length="30"/>
+                <line id="2" length="30"/>
+                <line id="3" length="30"/>
+                <line id="4" length="30"/>
+                <line id="5" length="30"/>
+                <line id="6" length="30"/>
+                <line id="7" length="30"/>
             </element>
             <element type="st" code="СТ7" version="1">
-                <line id="1" length="3"/>
-                <line id="2" length="3"/>
-                <line id="3" length="3"/>
-                <line id="4" length="3"/>
-                <line id="5" length="3"/>
-                <line id="6" length="3"/>
+                <line id="1" x="300" y="720" length="30"/>
+                <line id="2" length="30"/>
+                <line id="3" length="30"/>
+                <line id="4" length="30"/>
+                <line id="5" length="30"/>
+                <line id="6" length="30"/>
+                <line id="7" length="30"/>
             </element>
-            <element type="st" code="СТ9" version="1">
-                <line id="1" length="3"/>
-                <line id="2" length="3"/>
-                <line id="3" length="3"/>
-                <line id="4" length="3"/>
-                <line id="5" length="3"/>
-                <line id="6" length="3"/>
+            <element type="st" code="СТ9" version="3">
+                <line id="1" x="1245" y="550" length="-20"/>
+                <line id="2" length="-20"/>
+                <line id="3" length="-40"/>
+                <line id="4" length="-31"/>
+                <line id="5" length="-40"/>
+                <line id="6" length="-20"/>
+                <line id="7" length="-50"/>
             </element>
             <element type="st" code="СТ11" version="1">
-                <line id="1" length="3"/>
-                <line id="2" length="3"/>
-                <line id="3" length="3"/>
-                <line id="4" length="3"/>
-                <line id="5" length="3"/>
-                <line id="6" length="3"/>
+                <line id="1" x="300" y="800" length="30"/>
+                <line id="2" length="30"/>
+                <line id="3" length="30"/>
+                <line id="4" length="30"/>
+                <line id="5" length="30"/>
+                <line id="6" length="30"/>
+                <line id="7" length="30"/>
             </element>
             <element type="st" code="СТ13" version="1">
-                <line id="1" length="3"/>
-                <line id="2" length="3"/>
-                <line id="3" length="3"/>
-                <line id="4" length="3"/>
-                <line id="5" length="3"/>
-                <line id="6" length="3"/>
+                <line id="1" x="300" y="840" length="30"/>
+                <line id="2" length="30"/>
+                <line id="3" length="30"/>
+                <line id="4" length="30"/>
+                <line id="5" length="30"/>
+                <line id="6" length="30"/>
+                <line id="7" length="30"/>
             </element>
             <element type="st" code="СТ14" version="1">
-                <line id="1" length="3"/>
-                <line id="2" length="3"/>
-                <line id="3" length="3"/>
-                <line id="4" length="3"/>
-                <line id="5" length="3"/>
-                <line id="6" length="3"/>
+                <line id="1" x="585" y="550" length="20"/>
+                <line id="2" length="20"/>
+                <line id="3" length="40"/>
+                <line id="4" length="31"/>
+                <line id="5" length="40"/>
+                <line id="6" length="70"/>
+                <line id="7" length="20"/>
             </element>
             <element type="st" code="СТ16" version="1">
-                <line id="1" length="3"/>
-                <line id="2" length="3"/>
-                <line id="3" length="3"/>
-                <line id="4" length="3"/>
-                <line id="5" length="3"/>
-                <line id="6" length="3"/>
+                <line id="1" x="300" y="940" length="30"/>
+                <line id="2" length="30"/>
+                <line id="3" length="30"/>
+                <line id="4" length="30"/>
+                <line id="5" length="30"/>
+                <line id="6" length="30"/>
+                <line id="7" length="30"/>
             </element>
             <element type="st" code="СТ18" version="1">
-                <line id="1" length="3"/>
-                <line id="2" length="3"/>
-                <line id="3" length="3"/>
-                <line id="4" length="3"/>
-                <line id="5" length="3"/>
-                <line id="6" length="3"/>
+                <line id="1" x="500" y="600" length="30"/>
+                <line id="2" length="30"/>
+                <line id="3" length="30"/>
+                <line id="4" length="30"/>
+                <line id="5" length="30"/>
+                <line id="6" length="30"/>
+                <line id="7" length="30"/>
             </element>
         </area>
         <area code="Stage.A.B" esr="000002">
             <element type="up" code="У1Ч" version="1">
-                <line id="1" length="20"/>
+                <line id="1" x="500" y="680" length="80"/>
             </element>
         </area>
         <area code="Stage.B.A" esr="000003">
             <element type="up" code="П1Н" version="1">
-                <line id="1" length="20"/>
+                <line id="1" x="500" y="690" length="80"/>
             </element>
         </area>
         <area code="Stage.A.C" esr="000004">
             <element type="up" code="У1Н" version="1">
-                <line id="1" length="20"/>
+                <line id="1" x="800" y="600" length="80"/>
             </element>
         </area>
         <area code="Stage.C.A" esr="000005">
             <element type="up" code="П1Ч" version="1">
-                <line id="1" length="20"/>
+                <line id="1" x="820" y="600" length="80"/>
             </element>
         </area>
     </draw>
