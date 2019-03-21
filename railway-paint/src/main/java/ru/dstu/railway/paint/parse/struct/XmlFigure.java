@@ -18,6 +18,9 @@ public class XmlFigure {
     @JacksonXmlProperty(isAttribute=true, localName="length")
     private Integer length;
 
+    @JacksonXmlProperty(isAttribute=true, localName="description")
+    private String description;
+
     public String getType() {
         return type;
     }
@@ -56,5 +59,13 @@ public class XmlFigure {
 
     public void setY(Double y) {
         this.y = y;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

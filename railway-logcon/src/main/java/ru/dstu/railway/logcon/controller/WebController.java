@@ -9,6 +9,7 @@ import ru.dstu.railway.area.IArea;
 import ru.dstu.railway.element.IStationElement;
 import ru.dstu.railway.message.IMessageHolder;
 import ru.dstu.railway.message.MessageLevel;
+import ru.dstu.railway.paint.IPaintPolygon;
 import ru.dstu.railway.polygon.IPolygon;
 
 import java.util.logging.Logger;
@@ -22,6 +23,8 @@ public class WebController  {
     private IPolygon polygon;
     @Autowired
     private IMessageHolder messageHolder;
+    @Autowired
+    private IPaintPolygon paintPolygon;
 
     @RequestMapping("/")
     public ModelAndView index() {
@@ -58,6 +61,8 @@ public class WebController  {
 
         elementByCode.setState(Integer.valueOf(state));
         modelAndView.addObject("msg", state + " установлен объекту " + element);
+
+        paintPolygon.setColors(areaByCode, elementByCode);
 
         return modelAndView;
     }

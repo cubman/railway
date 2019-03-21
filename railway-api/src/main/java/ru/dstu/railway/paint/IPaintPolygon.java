@@ -9,4 +9,6 @@ import java.util.List;
 public interface IPaintPolygon {
 
     List<IFigure> getElementFigures(IArea area, IStationElement element);
+
+    void setColors(IArea area, IStationElement element);
 }

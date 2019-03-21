@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.dstu.railway.area.IArea;
-import ru.dstu.railway.config.TestConfig;
+import ru.dstu.railway.paint.config.TestConfig;
 import ru.dstu.railway.element.IStationElement;
 import ru.dstu.railway.element.Ls;
 import ru.dstu.railway.element.St;

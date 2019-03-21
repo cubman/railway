@@ -1,12 +1,10 @@
-package ru.dstu.railway.config;
+package ru.dstu.railway.paint.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import java.io.File;
-import java.io.InputStream;
 import java.net.URL;
 
 @Configuration

@@ -2,7 +2,7 @@ package ru.dstu.railway.listener;
 
 import java.util.List;
 
-public interface IMessageListener {
+public interface IStateListener {
     /**
      * Уведомить о новом сообщении
      */

@@ -7,4 +7,12 @@ public interface IFigure {
     double getNextY();
 
     String getType();
+
+    int getWidth();
+
+    int getId();
+
+    void setColor(String color);
+
+    String getColor();
 }

@@ -4,13 +4,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import ru.dstu.railway.config.PaintConfig;
-import ru.dstu.railway.config.RailwayPolygonConfig;
-import ru.dstu.railway.logcon.controller.WebController;
+import ru.dstu.railway.paint.config.PaintConfig;
+import ru.dstu.railway.paint.config.RailwayPolygonConfig;
 import ru.dstu.railway.logcon.struct.JPolygonCreator;
 import ru.dstu.railway.paint.IPaintPolygon;
-import ru.dstu.railway.parse.polygon.PolygonParser;
-import ru.dstu.railway.parse.polygon.struct.XmlPolygon;
 import ru.dstu.railway.polygon.IPolygon;
 
 import java.net.URL;

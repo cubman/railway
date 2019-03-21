@@ -6,6 +6,7 @@ import ru.dstu.railway.element.IStationElement;
 import ru.dstu.railway.paint.IPaintPolygon;
 import ru.dstu.railway.paint.figure.Circle;
 import ru.dstu.railway.paint.figure.IFigure;
+import ru.dstu.railway.paint.figure.Label;
 import ru.dstu.railway.paint.figure.Line;
 import ru.dstu.railway.paint.parse.struct.*;
 import ru.dstu.railway.parse.IParser;
@@ -56,13 +57,6 @@ public class PaintParser implements IParser<IPaintPolygon> {
             for (XmlElementPaint xmlElementPaint : areaPaint.getXmlElementPaints()) {
                 IStationElement elementByCode = areaByCode.getElementByCode(xmlElementPaint.getCode());
 
-//                List<Line> lines = new ArrayList<>();
-//                for (XmlLine xmlLine : xmlElementPaint.getXmlLines()) {
-//
-//                    Line line = new Line(random.nextInt(1000), random.nextInt(1000),
-//                            random.nextInt(1000), random.nextInt(1000));
-//                    lines.add(line);
-//                }
                 paintPolygon.addElementDraw(areaByCode,
                         elementByCode,
                         createFigures(xmlElementPaint, xmlPaint));
@@ -116,12 +110,23 @@ public class PaintParser implements IParser<IPaintPolygon> {
 
         switch (objectById.getType()) {
             case "line":
-                figure = createLine(xmlFigure.getX(), xmlFigure.getY(),
-                        objectById.getRotate(), xmlFigure.getLength());
+                figure = createLine(xmlFigure.getId(),
+                        xmlFigure.getX(), xmlFigure.getY(),
+                        objectById.getRotate(), xmlFigure.getLength(),
+                        objectById.getWidth());
                 break;
             case "circle":
-                figure = createCircle(objectById.getPos(),
-                        xmlFigure.getX(), xmlFigure.getY(), xmlFigure.getLength());
+                figure = createCircle(xmlFigure.getId(),
+                        objectById.getPos(),
+                        xmlFigure.getX(), xmlFigure.getY(),
+                        xmlFigure.getLength(),
+                        objectById.getWidth());
+                break;
+            case "label":
+                figure = createLabel(xmlFigure.getId(),
+                        objectById.getPos(),
+                        xmlFigure.getX(), xmlFigure.getY(),
+                        xmlFigure.getDescription());
                 break;
             default:
                 throw new RuntimeException();
@@ -155,15 +160,20 @@ public class PaintParser implements IParser<IPaintPolygon> {
         return collect.get(0);
     }
 
-    private Line createLine(double x, double y, Integer rotate, int length) {
+    private Line createLine(int id, double x, double y, Integer rotate, int length, int width) {
         rotate = rotate == null ? 0 : rotate;
-        return new Line(x, y,
+        return new Line(id, x, y,
                 x + Math.cos(Math.toRadians(rotate)) * length,
-                y + Math.sin(Math.toRadians(rotate)) * length);
+                y + Math.sin(Math.toRadians(rotate)) * length,
+                width);
     }
 
-    private Circle createCircle(String direction, double x, double y, int r) {
-        return new Circle(direction, x, y, r);
+    private Circle createCircle(int id, String direction, double x, double y, int r, int width) {
+        return new Circle(id, direction, x, y, r, width);
+    }
+
+    private Label createLabel(int id, String direction, double x, double y, String text) {
+        return new Label(id, direction, x, y,text);
     }
 
     private double fromAngleToRadian(int angle) {

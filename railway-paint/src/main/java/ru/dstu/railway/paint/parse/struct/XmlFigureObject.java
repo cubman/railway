@@ -18,6 +18,9 @@ public class XmlFigureObject {
     @JacksonXmlProperty(isAttribute=true, localName="rotate")
     private Integer rotate;
 
+    @JacksonXmlProperty(isAttribute=true, localName="width")
+    private Integer width;
+
     public Integer getId() {
         return id;
     }
@@ -56,5 +59,13 @@ public class XmlFigureObject {
 
     public void setRotate(Integer rotate) {
         this.rotate = rotate;
+    }
+
+    public Integer getWidth() {
+        return width;
+    }
+
+    public void setWidth(Integer width) {
+        this.width = width;
     }
 }

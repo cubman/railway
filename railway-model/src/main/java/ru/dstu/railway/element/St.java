@@ -1,12 +1,6 @@
 package ru.dstu.railway.element;
 
-import ru.dstu.railway.exception.UnknownStateCodeException;
-import ru.dstu.railway.state.Direction;
-
 import java.util.List;
-
-import static ru.dstu.railway.constant.CodeConstant.ST_MINUS;
-import static ru.dstu.railway.constant.CodeConstant.ST_PLUS;
 
 /**
  * Объект стрелка
@@ -27,12 +21,12 @@ public class St extends AbstractElement {
 
     private IStationElement getElement(List<IStationElement> elements) {
         switch (state.getState()) {
-            case ST_PLUS:
+            case 1:
                 return elements.get(0);
-            case ST_MINUS:
-                return elements.get(1);
             default:
-                throw new UnknownStateCodeException("Неизвестный код: " + state.getState());
+                return elements.get(1);
+//            default:
+//                throw new UnknownStateCodeException("Неизвестный код: " + state.getState());
         }
     }
 
