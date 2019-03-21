@@ -1,20 +1,23 @@
-package ru.dstu.railway.parse.paint.struct;
+package ru.dstu.railway.paint.parse.struct;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import java.util.List;
 
-public class XmlTemplateElementPaint {
+public class XmlElementPaint {
     @JacksonXmlProperty(localName = "type")
     private String type;
+
+    @JacksonXmlProperty(isAttribute = true, localName = "code")
+    protected String code;
 
     @JacksonXmlProperty(localName = "version")
     private Integer version;
 
-    @JacksonXmlProperty(localName = "object")
+    @JacksonXmlProperty(localName = "line")
     @JacksonXmlElementWrapper(useWrapping = false)
-    private List<XmlFigureObject> xmlTemplateLines;
+    private List<XmlLine> xmlLines;
 
     public String getType() {
         return type;
@@ -22,6 +25,14 @@ public class XmlTemplateElementPaint {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public Integer getVersion() {
@@ -32,11 +43,11 @@ public class XmlTemplateElementPaint {
         this.version = version;
     }
 
-    public List<XmlFigureObject> getXmlTemplateLines() {
-        return xmlTemplateLines;
+    public List<XmlLine> getXmlLines() {
+        return xmlLines;
     }
 
-    public void setXmlTemplateLines(List<XmlFigureObject> xmlTemplateLines) {
-        this.xmlTemplateLines = xmlTemplateLines;
+    public void setXmlLines(List<XmlLine> xmlLines) {
+        this.xmlLines = xmlLines;
     }
 }

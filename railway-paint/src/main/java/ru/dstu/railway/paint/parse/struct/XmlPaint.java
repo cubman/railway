@@ -1,4 +1,4 @@
-package ru.dstu.railway.parse.paint.struct;
+package ru.dstu.railway.paint.parse.struct;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 

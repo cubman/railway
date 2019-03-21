@@ -3,7 +3,6 @@ package ru.dstu.railway.logcon.struct;
 import ru.dstu.railway.area.IArea;
 import ru.dstu.railway.element.IStationElement;
 import ru.dstu.railway.paint.IPaintPolygon;
-import ru.dstu.railway.parse.paint.PaintPolygon;
 import ru.dstu.railway.polygon.IPolygon;
 
 import java.util.ArrayList;

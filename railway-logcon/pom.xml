@@ -44,5 +44,9 @@
             <version>8.5.34</version>
             <!--<scope>provided</scope>-->
         </dependency>
+        <dependency>
+            <groupId>railway</groupId>
+            <artifactId>railway-paint</artifactId>
+        </dependency>
     </dependencies>
 </project>

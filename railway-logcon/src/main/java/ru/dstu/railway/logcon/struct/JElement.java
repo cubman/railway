@@ -1,6 +1,6 @@
 package ru.dstu.railway.logcon.struct;
 
-import ru.dstu.railway.paint.Line;
+import ru.dstu.railway.paint.figure.Line;
 import ru.dstu.railway.state.IState;
 
 import java.util.List;

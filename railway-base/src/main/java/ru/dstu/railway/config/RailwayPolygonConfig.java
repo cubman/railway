@@ -5,9 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.dstu.railway.message.IMessageHolder;
 import ru.dstu.railway.message.MessageHolder;
-import ru.dstu.railway.paint.IPaintPolygon;
 import ru.dstu.railway.parse.IParser;
-import ru.dstu.railway.parse.paint.PaintParser;
 import ru.dstu.railway.parse.polygon.PolygonParser;
 import ru.dstu.railway.parse.rule.RuleParser;
 import ru.dstu.railway.polygon.IPolygon;
@@ -33,11 +31,7 @@ public class RailwayPolygonConfig {
         return ruleParser.parse();
     }
 
-    @Bean
-    IPaintPolygon paintPolygon(@Qualifier("paint") String paintFileName, IPolygon polygon) {
-        PaintParser paintParser = new PaintParser(paintFileName, polygon);
-        return paintParser.parse();
-    }
+
 
     @Bean
     public IMessageHolder messageHolder() {

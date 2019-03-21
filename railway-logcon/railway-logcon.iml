@@ -62,5 +62,6 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-annotations-api:8.5.34" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:8.5.34" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jdt:ecj:3.12.3" level="project" />
+    <orderEntry type="module" module-name="railway-paint" />
   </component>
 </module>

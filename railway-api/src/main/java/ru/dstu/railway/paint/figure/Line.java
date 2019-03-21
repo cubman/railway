@@ -1,6 +1,6 @@
-package ru.dstu.railway.paint;
+package ru.dstu.railway.paint.figure;
 
-public class Line {
+public class Line implements IFigure {
     private double x1, x2, y1, y2;
 
     public Line(double x1, double y1, double x2, double y2) {

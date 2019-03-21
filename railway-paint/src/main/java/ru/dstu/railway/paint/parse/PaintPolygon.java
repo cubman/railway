@@ -1,10 +1,9 @@
-package ru.dstu.railway.parse.paint;
+package ru.dstu.railway.paint.parse;
 
 import ru.dstu.railway.area.IArea;
 import ru.dstu.railway.element.IStationElement;
-import ru.dstu.railway.element.Sv;
 import ru.dstu.railway.paint.IPaintPolygon;
-import ru.dstu.railway.paint.Line;
+import ru.dstu.railway.paint.figure.Line;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +30,7 @@ public class PaintPolygon implements IPaintPolygon {
 
     @Override
     public List<Line> getElementLines(IArea area, IStationElement element) {
-        return !Sv.class.isAssignableFrom(element.getClass()) ?
+        return paintStructure.get(area).get(element) != null ?
                 paintStructure.get(area).get(element) : new ArrayList<>();
     }
 }

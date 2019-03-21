@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import ru.dstu.railway.config.PaintConfig;
 import ru.dstu.railway.config.RailwayPolygonConfig;
 import ru.dstu.railway.logcon.controller.WebController;
 import ru.dstu.railway.logcon.struct.JPolygonCreator;
@@ -15,7 +16,7 @@ import ru.dstu.railway.polygon.IPolygon;
 import java.net.URL;
 
 @Configuration
-@Import(RailwayPolygonConfig.class)
+@Import({RailwayPolygonConfig.class, PaintConfig.class})
 public class LogConConfig {
     @Bean
     public JPolygonCreator jPolygonCreator(IPolygon polygon, IPaintPolygon paintPolygon) {

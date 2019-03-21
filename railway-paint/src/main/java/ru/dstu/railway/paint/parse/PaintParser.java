@@ -1,13 +1,13 @@
-package ru.dstu.railway.parse.paint;
+package ru.dstu.railway.paint.parse;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import ru.dstu.railway.area.IArea;
 import ru.dstu.railway.element.IStationElement;
 import ru.dstu.railway.paint.IPaintPolygon;
-import ru.dstu.railway.paint.Line;
+import ru.dstu.railway.paint.figure.Line;
+import ru.dstu.railway.paint.parse.struct.*;
 import ru.dstu.railway.parse.IParser;
 import ru.dstu.railway.parse.exception.ParseException;
-import ru.dstu.railway.parse.paint.struct.*;
 import ru.dstu.railway.polygon.IPolygon;
 
 import java.io.File;
@@ -152,11 +152,9 @@ public class PaintParser implements IParser<IPaintPolygon> {
     }
 
     private List<XmlFigureObject> getLinkedObjectById(XmlTemplateElementPaint templateElementPaint, Integer id) {
-        List<XmlFigureObject> collect = templateElementPaint.getXmlTemplateLines().stream()
+        return templateElementPaint.getXmlTemplateLines().stream()
                 .filter(xmlFigureObject -> id.equals(xmlFigureObject.getLink()))
                 .collect(Collectors.toList());
-
-        return collect;
     }
 
     private XmlFigureObject getIdObjectById(XmlTemplateElementPaint templateElementPaint, Integer id) {

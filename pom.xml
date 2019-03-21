@@ -13,6 +13,7 @@
         <module>railway-model</module>
         <module>railway-base</module>
         <module>railway-logcon</module>
+        <module>railway-paint</module>
     </modules>
 
     <properties>
@@ -24,6 +25,7 @@
         <cglib.version>2.2.2</cglib.version>
         <junit.version>4.12</junit.version>
         <jackson-dataformat-xml.version>2.9.8</jackson-dataformat-xml.version>
+        <railway-paint.version>1.0-SNAPSHOT</railway-paint.version>
     </properties>
 
     <dependencyManagement>
@@ -42,6 +44,11 @@
                 <groupId>railway</groupId>
                 <artifactId>railway-base</artifactId>
                 <version>${railway-base.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>railway</groupId>
+                <artifactId>railway-paint</artifactId>
+                <version>${railway-paint.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
