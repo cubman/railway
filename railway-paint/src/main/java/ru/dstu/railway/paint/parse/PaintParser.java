@@ -4,6 +4,8 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import ru.dstu.railway.area.IArea;
 import ru.dstu.railway.element.IStationElement;
 import ru.dstu.railway.paint.IPaintPolygon;
+import ru.dstu.railway.paint.figure.Circle;
+import ru.dstu.railway.paint.figure.IFigure;
 import ru.dstu.railway.paint.figure.Line;
 import ru.dstu.railway.paint.parse.struct.*;
 import ru.dstu.railway.parse.IParser;
@@ -63,27 +65,27 @@ public class PaintParser implements IParser<IPaintPolygon> {
 //                }
                 paintPolygon.addElementDraw(areaByCode,
                         elementByCode,
-                        createLines(xmlElementPaint, xmlPaint));
+                        createFigures(xmlElementPaint, xmlPaint));
             }
         }
     }
 
-    private List<Line> createLines(XmlElementPaint xmlElementPaint, XmlPaint xmlPaint) {
-        List<Line> lines = new ArrayList<>();
+    private List<IFigure> createFigures(XmlElementPaint xmlElementPaint, XmlPaint xmlPaint) {
+        List<IFigure> lines = new ArrayList<>();
 
-        XmlLine element = findInitialisedElement(xmlElementPaint.getXmlLines());
+        XmlFigure element = findInitialisedElement(xmlElementPaint.getXmlFigures());
 
         XmlTemplateElementPaint templateFigure =
                 getTemplateFigure(xmlPaint, xmlElementPaint.getType(), xmlElementPaint.getVersion());
 
-        initElementCoordinate(lines, element, templateFigure, xmlElementPaint.getXmlLines());
+        initElementCoordinate(lines, element, templateFigure, xmlElementPaint.getXmlFigures());
 
         return lines;
     }
 
-    private XmlLine findInitialisedElement(List<XmlLine> xmlLines) {
-        List<XmlLine> collect = xmlLines.stream()
-                .filter(xmlLine -> xmlLine.getX() != null && xmlLine.getY() != null)
+    private XmlFigure findInitialisedElement(List<XmlFigure> xmlFigures) {
+        List<XmlFigure> collect = xmlFigures.stream()
+                .filter(xmlFigure -> xmlFigure.getX() != null && xmlFigure.getY() != null)
                 .collect(Collectors.toList());
 
         isOnce(collect);
@@ -101,37 +103,50 @@ public class PaintParser implements IParser<IPaintPolygon> {
         return collect.get(0);
     }
 
-    private void initElementCoordinate(List<Line> resLines, XmlLine xmlLine,
+    private void initElementCoordinate(List<IFigure> resLines, XmlFigure xmlFigure,
                                        XmlTemplateElementPaint templateElementPaint,
-                                       List<XmlLine> xmlLines) {
+                                       List<XmlFigure> xmlLines) {
         List<XmlFigureObject> templateLines = templateElementPaint.getXmlTemplateLines();
         if (templateLines.size() == resLines.size()) {
             return;
         }
 
-        XmlFigureObject objectById = getIdObjectById(templateElementPaint, xmlLine.getId());
-        Line line = createLine(xmlLine.getX(), xmlLine.getY(),
-                objectById.getRotate(), xmlLine.getLength());
-        resLines.add(line);
+        XmlFigureObject objectById = getIdObjectById(templateElementPaint, xmlFigure.getId());
+        IFigure figure;
+
+        switch (objectById.getType()) {
+            case "line":
+                figure = createLine(xmlFigure.getX(), xmlFigure.getY(),
+                        objectById.getRotate(), xmlFigure.getLength());
+                break;
+            case "circle":
+                figure = createCircle(objectById.getPos(),
+                        xmlFigure.getX(), xmlFigure.getY(), xmlFigure.getLength());
+                break;
+            default:
+                throw new RuntimeException();
+        }
+
+        resLines.add(figure);
 
         if (templateLines.size() == 1) {
             return;
         }
 
-        List<XmlFigureObject> nextObjects = getLinkedObjectById(templateElementPaint, xmlLine.getId());
+        List<XmlFigureObject> nextObjects = getLinkedObjectById(templateElementPaint, xmlFigure.getId());
 
         for (XmlFigureObject nextObject : nextObjects) {
-            XmlLine figureObject = getLineFigureObject(nextObject, xmlLines);
+            XmlFigure figureObject = getLineFigureObject(nextObject, xmlLines);
 
-            figureObject.setX(line.getX2());
-            figureObject.setY(line.getY2());
+            figureObject.setX(figure.getNextX());
+            figureObject.setY(figure.getNextY());
 
             initElementCoordinate(resLines, figureObject, templateElementPaint, xmlLines);
         }
     }
 
-    private XmlLine getLineFigureObject(XmlFigureObject xmlFigureObject, List<XmlLine> xmlLines) {
-        List<XmlLine> collect = xmlLines.stream()
+    private XmlFigure getLineFigureObject(XmlFigureObject xmlFigureObject, List<XmlFigure> xmlLines) {
+        List<XmlFigure> collect = xmlLines.stream()
                 .filter(xmlLine -> xmlLine.getId().equals(xmlFigureObject.getId()))
                 .collect(Collectors.toList());
 
@@ -143,8 +158,12 @@ public class PaintParser implements IParser<IPaintPolygon> {
     private Line createLine(double x, double y, Integer rotate, int length) {
         rotate = rotate == null ? 0 : rotate;
         return new Line(x, y,
-                x + Math.cos(Math.toRadians(rotate))*length,
-                y + Math.sin(Math.toRadians(rotate))*length);
+                x + Math.cos(Math.toRadians(rotate)) * length,
+                y + Math.sin(Math.toRadians(rotate)) * length);
+    }
+
+    private Circle createCircle(String direction, double x, double y, int r) {
+        return new Circle(direction, x, y, r);
     }
 
     private double fromAngleToRadian(int angle) {

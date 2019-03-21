@@ -38,7 +38,7 @@ public class JPolygonCreator {
                         new JNextElement(element.getOdd().getElementCode(),
                                 element.getOdd().getClass().getSimpleName(),
                                 getAreasForElement(element.getOdd())));
-                jElement.setLines(paintPolygon.getElementLines(area, element));
+                jElement.setFigures(paintPolygon.getElementFigures(area, element));
                 elements.add(jElement);
             }
             areas.add(new JArea(area.getAreaCode(), area.getEsr(), elements));

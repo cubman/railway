@@ -25,4 +25,19 @@ public class Line implements IFigure {
     public double getY2() {
         return y2;
     }
+
+    @Override
+    public double getNextX() {
+        return x2;
+    }
+
+    @Override
+    public double getNextY() {
+        return y2;
+    }
+
+    @Override
+    public String getType() {
+        return "line";
+    }
 }

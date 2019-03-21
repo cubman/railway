@@ -15,9 +15,9 @@ public class XmlElementPaint {
     @JacksonXmlProperty(localName = "version")
     private Integer version;
 
-    @JacksonXmlProperty(localName = "line")
+    @JacksonXmlProperty(localName = "figure")
     @JacksonXmlElementWrapper(useWrapping = false)
-    private List<XmlLine> xmlLines;
+    private List<XmlFigure> xmlFigures;
 
     public String getType() {
         return type;
@@ -43,11 +43,11 @@ public class XmlElementPaint {
         this.version = version;
     }
 
-    public List<XmlLine> getXmlLines() {
-        return xmlLines;
+    public List<XmlFigure> getXmlFigures() {
+        return xmlFigures;
     }
 
-    public void setXmlLines(List<XmlLine> xmlLines) {
-        this.xmlLines = xmlLines;
+    public void setXmlFigures(List<XmlFigure> xmlFigures) {
+        this.xmlFigures = xmlFigures;
     }
 }

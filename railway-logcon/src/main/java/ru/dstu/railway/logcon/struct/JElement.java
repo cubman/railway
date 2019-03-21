@@ -1,5 +1,6 @@
 package ru.dstu.railway.logcon.struct;
 
+import ru.dstu.railway.paint.figure.IFigure;
 import ru.dstu.railway.paint.figure.Line;
 import ru.dstu.railway.state.IState;
 
@@ -15,7 +16,7 @@ public class JElement {
 
     private List<JOwnArea> ownAreas;
 
-    private List<Line> lines;
+    private List<IFigure> figures;
 
     public String getCode() {
         return code;
@@ -65,11 +66,11 @@ public class JElement {
         this.ownAreas = ownAreas;
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public List<IFigure> getFigures() {
+        return figures;
     }
 
-    public void setLines(List<Line> lines) {
-        this.lines = lines;
+    public void setFigures(List<IFigure> figures) {
+        this.figures = figures;
     }
 }
