@@ -50,27 +50,27 @@ public class PaintParser implements IParser<IPaintPolygon> {
     }
 
     private void initCoordinates(XmlPaint xmlPaint) {
-        Random random = new Random();
         for (XmlAreaPaint areaPaint : xmlPaint.getXmlDraw().getXmlAreaPaints()) {
             IArea areaByCode = polygon.getAreaByCode(areaPaint.getCode());
 
             for (XmlElementPaint xmlElementPaint : areaPaint.getXmlElementPaints()) {
                 IStationElement elementByCode = areaByCode.getElementByCode(xmlElementPaint.getCode());
 
+                XmlTemplateElementPaint templateFigure =
+                        getTemplateFigure(xmlPaint, xmlElementPaint.getType(), xmlElementPaint.getVersion());
+
                 paintPolygon.addElementDraw(areaByCode,
-                        elementByCode,
-                        createFigures(xmlElementPaint, xmlPaint));
+                        elementByCode, templateFigure.getVersion(),
+                        createFigures(xmlElementPaint, templateFigure));
             }
         }
     }
 
-    private List<IFigure> createFigures(XmlElementPaint xmlElementPaint, XmlPaint xmlPaint) {
+    private List<IFigure> createFigures(XmlElementPaint xmlElementPaint,
+                                        XmlTemplateElementPaint templateFigure) {
         List<IFigure> lines = new ArrayList<>();
 
         XmlFigure element = findInitialisedElement(xmlElementPaint.getXmlFigures());
-
-        XmlTemplateElementPaint templateFigure =
-                getTemplateFigure(xmlPaint, xmlElementPaint.getType(), xmlElementPaint.getVersion());
 
         initElementCoordinate(lines, element, templateFigure, xmlElementPaint.getXmlFigures());
 

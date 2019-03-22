@@ -76,6 +76,7 @@
             <object type="circle" id="5" link="4" pos="+x" width="2"/>
             <object type="circle" id="6" link="5" pos="+x" width="2"/>
             <object type="circle" id="7" link="6" pos="+x" width="2"/>
+            <object type="label" id="8" link="1" pos="-x"/>
         </element>
         <element type="sv" version="2">
             <object type="line" id="1" rotate="90" width="2"/>
@@ -85,6 +86,7 @@
             <object type="circle" id="5" link="4" pos="-x" width="2"/>
             <object type="circle" id="6" link="5" pos="-x" width="2"/>
             <object type="circle" id="7" link="6" pos="-x" width="2"/>
+            <object type="label" id="8" link="1" pos="+x"/>
         </element>
     </base>
     <draw>
@@ -125,6 +127,7 @@
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
                 <figure type="circle" id="7" length="0"/>
+                <figure type="label" id="8" description="Ч1"/>
             </element>
             <element type="sv" code="Ч2" version="1">
                 <figure type="line" id="1" x="1110" y="630" length="15"/>
@@ -134,6 +137,7 @@
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
                 <figure type="circle" id="7" length="0"/>
+                <figure type="label" id="8" description="Ч2"/>
             </element>
             <element type="sv" code="Ч3" version="1">
                 <figure type="line" id="1" x="1110" y="510" length="15"/>
@@ -143,6 +147,7 @@
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
                 <figure type="circle" id="7" length="0"/>
+                <figure type="label" id="8" description="Ч3"/>
             </element>
             <element type="sv" code="Ч4" version="1">
                 <figure type="line" id="1" x="1079" y="680" length="15"/>
@@ -152,6 +157,7 @@
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
                 <figure type="circle" id="7" length="0"/>
+                <figure type="label" id="8" description="Ч4"/>
             </element>
             <element type="sv" code="Ч6" version="1">
                 <figure type="line" id="1" x="1083" y="729" length="15"/>
@@ -161,6 +167,7 @@
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
                 <figure type="circle" id="7" length="0"/>
+                <figure type="label" id="8" description="Ч6"/>
             </element>
 
             <element type="sv" code="Н1" version="2">
@@ -171,6 +178,7 @@
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
                 <figure type="circle" id="7" length="0"/>
+                <figure type="label" id="8" description="Н1"/>
             </element>
             <element type="sv" code="Н2" version="2">
                 <figure type="line" id="1" x="670" y="610" length="-15"/>
@@ -180,6 +188,7 @@
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
                 <figure type="circle" id="7" length="0"/>
+                <figure type="label" id="8" description="Н2"/>
             </element>
             <element type="sv" code="Н3" version="2">
                 <figure type="line" id="1" x="700" y="490" length="-15"/>
@@ -189,6 +198,7 @@
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
                 <figure type="circle" id="7" length="0"/>
+                <figure type="label" id="8" description="Н3"/>
             </element>
             <element type="sv" code="Н4" version="2">
                 <figure type="line" id="1" x="726" y="665" length="-15"/>
@@ -198,6 +208,7 @@
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
                 <figure type="circle" id="7" length="0"/>
+                <figure type="label" id="8" description="Н4"/>
             </element>
             <element type="sv" code="Н6" version="2">
                 <figure type="line" id="1" x="760" y="712" length="-15"/>
@@ -207,26 +218,29 @@
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
                 <figure type="circle" id="7" length="0"/>
+                <figure type="label" id="8" description="Н6"/>
             </element>
 
 
-             <element type="sv" code="1Ч" version="1">
+            <element type="sv" code="1Ч" version="1">
                 <figure type="line" id="1" x="470" y="560" length="15"/>
                 <figure type="line" id="2" length="0"/>
                 <figure type="line" id="3" length="15"/>
                 <figure type="circle" id="4" length="6"/>
                 <figure type="circle" id="5" length="6"/>
-                 <figure type="circle" id="6" length="6"/>
-                 <figure type="circle" id="7" length="6"/>
+                <figure type="circle" id="6" length="6"/>
+                <figure type="circle" id="7" length="6"/>
+                <figure type="label" id="8" description="1Ч"/>
             </element>
-             <element type="sv" code="2Ч" version="1">
+            <element type="sv" code="2Ч" version="1">
                 <figure type="line" id="1" x="470" y="630" length="15"/>
                 <figure type="line" id="2" length="0"/>
                 <figure type="line" id="3" length="15"/>
                 <figure type="circle" id="4" length="6"/>
                 <figure type="circle" id="5" length="6"/>
-                 <figure type="circle" id="6" length="6"/>
-                 <figure type="circle" id="7" length="6"/>
+                <figure type="circle" id="6" length="6"/>
+                <figure type="circle" id="7" length="6"/>
+                <figure type="label" id="8" description="2Ч"/>
             </element>
 
             <element type="sv" code="НД" version="2">
@@ -237,6 +251,7 @@
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
                 <figure type="circle" id="7" length="6"/>
+                <figure type="label" id="8" description="НД"/>
             </element>
             <element type="sv" code="Н" version="2">
                 <figure type="line" id="1" x="1490" y="630" length="15"/>
@@ -246,6 +261,7 @@
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
                 <figure type="circle" id="7" length="6"/>
+                <figure type="label" id="8" description="Н"/>
             </element>
 
             <!-- Участки приближения/ удаления -->

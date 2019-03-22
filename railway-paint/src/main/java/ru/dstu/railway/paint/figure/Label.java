@@ -7,7 +7,7 @@ public class Label implements IFigure {
     private int id;
 
     public Label(int id, String direction, double x, double y, String description) {
-        this.x = x;
+        this.x = moveX(direction, x);
         this.y = moveY(direction, y);
         this.description = description;
         this.id = id;
@@ -20,7 +20,17 @@ public class Label implements IFigure {
         } else if ("+y".equals(direction)) {
             return y + delta;
         } else
-            throw new RuntimeException(direction + " не изветсно");
+            return y;
+    }
+
+    private double moveX(String direction, double x) {
+        int delta = 20;
+        if ("-x".equals(direction)) {
+            return x - delta;
+        } else if ("+x".equals(direction)) {
+            return x + delta;
+        } else
+            return x;
     }
 
     @Override

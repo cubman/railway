@@ -2,6 +2,8 @@ package ru.dstu.railway.element;
 
 import java.util.List;
 
+import static ru.dstu.railway.constant.Constant.ST_PLUS;
+
 /**
  * Объект стрелка
  */
@@ -20,14 +22,12 @@ public class St extends AbstractElement {
     }
 
     private IStationElement getElement(List<IStationElement> elements) {
-        switch (state.getState()) {
-            case 1:
-                return elements.get(0);
-            default:
-                return elements.get(1);
+        if (state.getState() == ST_PLUS) {
+            return elements.get(0);
+        }
+        return elements.get(1);
 //            default:
 //                throw new UnknownStateCodeException("Неизвестный код: " + state.getState());
-        }
     }
 
     public void setEvenElement(List<IStationElement> evenElement) {

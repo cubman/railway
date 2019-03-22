@@ -16,6 +16,9 @@ import ru.dstu.railway.rule.IRule;
 
 import java.util.List;
 
+import static ru.dstu.railway.constant.Constant.ST_MINUS;
+import static ru.dstu.railway.constant.Constant.ST_PLUS;
+
 @ContextConfiguration(classes = TestConfig.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ParseTest {
@@ -41,11 +44,11 @@ public class ParseTest {
                 checkLink(area, element);
 
                 if (element instanceof St) {
-                    element.setState(1);
+                    element.setState(ST_MINUS);
 
                     checkLink(area, element);
 
-                    element.setState(0);
+                    element.setState(ST_PLUS);
                 }
             }
         }
@@ -59,15 +62,15 @@ public class ParseTest {
             if (elementEven instanceof St) {
                 if (area.isPartyChanges(element, elementEven)) {
                     if (!element.equals(elementEven.getEven())) {
-                        elementEven.setState(1);
+                        elementEven.setState(ST_MINUS);
                         Assert.assertEquals(element, elementEven.getEven());
-                        elementEven.setState(0);
+                        elementEven.setState(ST_PLUS);
                         return;
                     }
                 } else if (!element.equals(elementEven.getOdd())) {
-                    elementEven.setState(1);
+                    elementEven.setState(ST_MINUS);
                     Assert.assertEquals(element, elementEven.getOdd());
-                    elementEven.setState(0);
+                    elementEven.setState(ST_PLUS);
                     return;
                 }
 
@@ -79,15 +82,15 @@ public class ParseTest {
             if (elementOdd instanceof St) {
                 if (area.isPartyChanges(element, elementOdd)) {
                     if (!element.equals(elementOdd.getOdd())) {
-                        elementOdd.setState(1);
+                        elementOdd.setState(ST_MINUS);
                         Assert.assertEquals(element, elementOdd.getOdd());
-                        elementOdd.setState(0);
+                        elementOdd.setState(ST_PLUS);
                         return;
                     }
                 } else if (!element.equals(elementOdd.getEven())) {
-                    elementOdd.setState(1);
+                    elementOdd.setState(ST_MINUS);
                     Assert.assertEquals(element, elementOdd.getEven());
-                    elementOdd.setState(0);
+                    elementOdd.setState(ST_PLUS);
                     return;
                 }
             }

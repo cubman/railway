@@ -18,7 +18,7 @@ public abstract class AbstractElement implements IStationElement {
     private final List<ICheckedRuleListener> сheckedRuleListeners;
 
     public AbstractElement() {
-        this.state = new State(new Date(), 0);
+        this.state = new State(new Date(), 1);
         this.areas = new ArrayList<>();
         this.rules = new ArrayList<>();
         this.сheckedRuleListeners = new ArrayList<>();
