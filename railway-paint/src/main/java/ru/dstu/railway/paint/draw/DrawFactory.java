@@ -26,7 +26,17 @@ public class DrawFactory {
                 drawElement = new DrawSt(stationElement);
             }
         } else if (stationElement instanceof Ls) {
-            drawElement = new DrawLs();
+            if (templateVersion == 1) {
+                drawElement = new DrawLs();
+            }
+        } else if (stationElement instanceof Pr) {
+            if (templateVersion == 1) {
+                drawElement = new DrawPr(stationElement);
+            }
+        } else if (stationElement instanceof Mr) {
+            if (templateVersion == 1) {
+                drawElement = new DrawMr(stationElement);
+            }
         }
 
         return drawElement;

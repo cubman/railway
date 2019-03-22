@@ -4,10 +4,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import ru.dstu.railway.area.IArea;
 import ru.dstu.railway.element.IStationElement;
 import ru.dstu.railway.paint.IPaintPolygon;
-import ru.dstu.railway.paint.figure.Circle;
-import ru.dstu.railway.paint.figure.IFigure;
-import ru.dstu.railway.paint.figure.Label;
-import ru.dstu.railway.paint.figure.Line;
+import ru.dstu.railway.paint.figure.*;
 import ru.dstu.railway.paint.parse.struct.*;
 import ru.dstu.railway.parse.IParser;
 import ru.dstu.railway.parse.exception.ParseException;
@@ -128,6 +125,12 @@ public class PaintParser implements IParser<IPaintPolygon> {
                         xmlFigure.getDescription(),
                         objectById.getWidth());
                 break;
+            case "mrLabel":
+                figure = createMrLabel(xmlFigure.getId(),
+                        xmlFigure.getX(), xmlFigure.getY(),
+                        xmlFigure.getDescription(),
+                        objectById.getWidth());
+                break;
             default:
                 throw new RuntimeException();
         }
@@ -176,8 +179,8 @@ public class PaintParser implements IParser<IPaintPolygon> {
         return new Label(id, direction, x, y, text, width);
     }
 
-    private double fromAngleToRadian(int angle) {
-        return angle * Math.PI / 180;
+    private MrLabel createMrLabel(int id, double x, double y, String text, int width) {
+        return new MrLabel(id, x, y, text, width);
     }
 
     private List<XmlFigureObject> getLinkedObjectById(XmlTemplateElementPaint templateElementPaint, Integer id) {

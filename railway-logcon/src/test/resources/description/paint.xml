@@ -8,7 +8,7 @@
             <object type="line" id="5" link="2" pos="-" width="5"/>
             <object type="line" id="6" link="5" width="5"/>
             <object type="line" id="7" link="4" width="5"/>
-            <object type="label" id="8" link="2" pos="-y"/>
+            <object type="label" id="8" link="2" pos="-y" width="14"/>
         </element>
         <element type="st" version="2">
             <object type="line" id="1" width="5"/>
@@ -18,7 +18,7 @@
             <object type="line" id="5" link="2" pos="-" width="5"/>
             <object type="line" id="6" link="5" width="5"/>
             <object type="line" id="7" link="4" width="5"/>
-            <object type="label" id="8" link="2" pos="+y"/>
+            <object type="label" id="8" link="2" pos="+y" width="14"/>
         </element>
         <element type="st" version="3">
             <object type="line" id="1" width="5"/>
@@ -28,7 +28,7 @@
             <object type="line" id="5" link="2" pos="-" width="5"/>
             <object type="line" id="6" link="5" width="5"/>
             <object type="line" id="7" link="4" width="5"/>
-            <object type="label" id="8" link="2" pos="-y"/>
+            <object type="label" id="8" link="2" pos="-y" width="14"/>
         </element>
         <element type="st" version="4">
             <object type="line" id="1" width="5"/>
@@ -38,7 +38,7 @@
             <object type="line" id="5" link="2" pos="-" width="5"/>
             <object type="line" id="6" link="5" width="5"/>
             <object type="line" id="7" link="4" width="5"/>
-            <object type="label" id="8" link="2" pos="+y"/>
+            <object type="label" id="8" link="2" pos="+y" width="14"/>
         </element>
         <element type="st" version="5">
             <object type="line" id="1" rotate="45" width="5"/>
@@ -48,7 +48,7 @@
             <object type="line" id="5" link="2" pos="-" width="5"/>
             <object type="line" id="6" link="5" width="5"/>
             <object type="line" id="7" link="4" width="5"/>
-            <object type="label" id="8" link="2" pos="+y"/>
+            <object type="label" id="8" link="2" pos="+y" width="14"/>
         </element>
         <element type="st" version="6">
             <object type="line" id="1" rotate="315" width="5"/>
@@ -58,7 +58,7 @@
             <object type="line" id="5" link="2" pos="-" width="5"/>
             <object type="line" id="6" link="5" width="5"/>
             <object type="line" id="7" link="4" width="5"/>
-            <object type="label" id="8" link="2" pos="+y"/>
+            <object type="label" id="8" link="2" pos="+y" width="14"/>
         </element>
         <element type="up" version="1">
             <object type="line" id="1" width="5"/>
@@ -66,7 +66,7 @@
         <element type="kp" version="1">
             <object type="line" id="1" width="5"/>
             <object type="line" id="2" link="1" width="5"/>
-            <object type="label" id="3" link="1" pos="+y"/>
+            <object type="label" id="3" link="1" pos="+y" width="14"/>
         </element>
         <element type="sv" version="1">
             <object type="line" id="1" rotate="90" width="2"/>
@@ -76,7 +76,7 @@
             <object type="circle" id="5" link="4" pos="+x" width="2"/>
             <object type="circle" id="6" link="5" pos="+x" width="2"/>
             <object type="circle" id="7" link="6" pos="+x" width="2"/>
-            <object type="label" id="8" link="1" pos="-x"/>
+            <object type="label" id="8" link="1" pos="-x" width="14"/>
         </element>
         <element type="sv" version="2">
             <object type="line" id="1" rotate="90" width="2"/>
@@ -86,7 +86,17 @@
             <object type="circle" id="5" link="4" pos="-x" width="2"/>
             <object type="circle" id="6" link="5" pos="-x" width="2"/>
             <object type="circle" id="7" link="6" pos="-x" width="2"/>
-            <object type="label" id="8" link="1" pos="+x"/>
+            <object type="label" id="8" link="1" pos="+x" width="14"/>
+        </element>
+        <element type="ls" version="1">
+            <object type="label" id="1" width="24"/>
+        </element>
+        <element type="pr" version="1">
+            <object type="line" id="1" rotate="315" width="4"/>
+            <object type="line" id="2" link="1" rotate="90" width="6"/>
+            <object type="line" id="3" link="1" rotate="45" width="4"/>
+            <object type="line" id="4" link="2" rotate="135" width="4"/>
+            <object type="line" id="5" link="2" rotate="225" width="4"/>
         </element>
     </base>
     <draw>
@@ -378,6 +388,16 @@
                 <figure type="line" id="6" length="30"/>
                 <figure type="line" id="7" length="50"/>
                 <figure type="label" id="8" description="18"/>
+            </element>
+            <element type="ls" code="" version="1">
+                <figure type="label" id="1" x="900" y="300" description="SplitPoint.A (000001)"/>
+            </element>
+            <element type="pr" code="ПР1" version="1">
+                <figure type="line" id="1" x="1100" y="955" length="10"/>
+                <figure type="line" id="2" length="80"/>
+                <figure type="line" id="3" length="10"/>
+                <figure type="line" id="4" length="10"/>
+                <figure type="line" id="5" length="10"/>
             </element>
         </area>
         <area code="Stage.A.B" esr="000002">

@@ -62,6 +62,8 @@ public class PolygonParser implements IParser<IPolygon> {
             linkKp(xmlArea);
             linkUp(xmlArea);
             linkSv(xmlArea);
+            linkPr(xmlArea);
+            linkMr(xmlArea);
 
             addParty(xmlArea);
 
@@ -97,6 +99,8 @@ public class PolygonParser implements IParser<IPolygon> {
         addElements(xmlArea, xmlArea.getSvs(), Sv.class);
         addElements(xmlArea, xmlArea.getUps(), Up.class);
         addElements(xmlArea, xmlArea.getKps(), Kp.class);
+        addElements(xmlArea, xmlArea.getPrs(), Pr.class);
+        addElements(xmlArea, xmlArea.getMrs(), Mr.class);
     }
 
     private void addElements(XmlArea xmlArea, List<? extends AbstractXmlElement> elements,
@@ -204,6 +208,52 @@ public class PolygonParser implements IParser<IPolygon> {
                                 xmlSv.getOddArea() != null ? xmlSv.getOddArea() : xmlArea.getCode(),
                                 xmlSv.getOddLink()));
                 sv.addArea(area);
+            }
+        }
+    }
+
+    private void linkPr(XmlArea xmlArea) {
+        IArea area = areas.get(xmlArea.getCode());
+
+        if (xmlArea.getPrs() != null) {
+            for (XmlPr xmlPr : xmlArea.getPrs()) {
+                IStationElement element = getElement(xmlArea, xmlPr.getCode());
+
+                Pr pr = (Pr) element;
+
+                pr.setEven(
+                        getElement(
+                                xmlPr.getEvenArea() != null ? xmlPr.getEvenArea() : xmlArea.getCode(),
+                                xmlPr.getEvenLink()));
+                pr.setOdd(
+                        getElement(
+                                xmlPr.getOddArea() != null ? xmlPr.getOddArea() : xmlArea.getCode(),
+                                xmlPr.getOddLink()));
+
+                pr.addArea(area);
+            }
+        }
+    }
+
+    private void linkMr(XmlArea xmlArea) {
+        IArea area = areas.get(xmlArea.getCode());
+
+        if (xmlArea.getMrs() != null) {
+            for (XmlMr xmlMr : xmlArea.getMrs()) {
+                IStationElement element = getElement(xmlArea, xmlMr.getCode());
+
+                Mr mr = (Mr) element;
+
+                mr.setEven(
+                        getElement(
+                                xmlMr.getEvenArea() != null ? xmlMr.getEvenArea() : xmlArea.getCode(),
+                                xmlMr.getEvenLink()));
+                mr.setOdd(
+                        getElement(
+                                xmlMr.getOddArea() != null ? xmlMr.getOddArea() : xmlArea.getCode(),
+                                xmlMr.getOddLink()));
+
+                mr.addArea(area);
             }
         }
     }

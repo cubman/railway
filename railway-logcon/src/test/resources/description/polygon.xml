@@ -45,6 +45,8 @@
         <st code="СТ16" evenLinkP="Н2" evenLinkM="СТ18" oddLinkP="УП2Ч" oddLinkM="УП2Ч"/>
         <st code="СТ18" evenLinkP="Н4" evenLinkM="Н6" oddLinkP="СТ16" oddLinkM="СТ16"/>
 
+        <pr code="ПР1" evenLink="" oddLink=""/>
+
         <party codeFirst="СТ1" codeSecond="СТ3"/>
         <party codeFirst="СТ5" codeSecond="СТ7"/>
     </area>

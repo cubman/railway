@@ -29,6 +29,14 @@ public class XmlArea extends AbstractXmlElement {
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<XmlUp> ups;
 
+    @JacksonXmlProperty(localName = "pr")
+    @JacksonXmlElementWrapper(useWrapping = false)
+    private List<XmlPr> prs;
+
+    @JacksonXmlProperty(localName = "mr")
+    @JacksonXmlElementWrapper(useWrapping = false)
+    private List<XmlMr> mrs;
+
     @JacksonXmlProperty(localName = "party")
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<XmlParty> parties;
@@ -87,5 +95,21 @@ public class XmlArea extends AbstractXmlElement {
 
     public void setParties(List<XmlParty> parties) {
         this.parties = parties;
+    }
+
+    public List<XmlPr> getPrs() {
+        return prs;
+    }
+
+    public void setPrs(List<XmlPr> prs) {
+        this.prs = prs;
+    }
+
+    public List<XmlMr> getMrs() {
+        return mrs;
+    }
+
+    public void setMrs(List<XmlMr> mrs) {
+        this.mrs = mrs;
     }
 }

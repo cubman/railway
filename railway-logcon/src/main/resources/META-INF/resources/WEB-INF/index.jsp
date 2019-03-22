@@ -8,7 +8,7 @@
     <head>
         <meta charset="UTF-8">
         <title>DSTU railway</title>
-        <meta http-equiv="refresh" content="3" />
+        <!--<meta http-equiv="refresh" content="3" />-->
         <script type="text/javascript" src="/resources/js/raphael.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
             <script type="text/javascript">
@@ -25,11 +25,11 @@
                     });
 
                     var t = function(areas) {
-        				var h = 600;
-        				var w = 1300;
+        				var h = 1600;
+        				var w = 2300;
 
                         var mainPaper = paper(w, h);
-        				mainPaper.rect(0, 0, w, h).attr("fill", "#CAC8C8");
+        				mainPaper.rect(0, 0, w, h).attr("fill", "#CAC8C8").toBack();
 
 
                         $.each(areas, function(i, area) {
@@ -56,7 +56,9 @@
         							drawCircle(figure.x + moveX, figure.y + moveY, figure.r, figure.color, figure.width, figure.id + " " + element.code, mainPaper);
         						} else if (figure.type == "label") {
         							drawLabel(figure.x + moveX, figure.y + moveY, figure.description, figure.color, figure.width, figure.id + " " + element.code, mainPaper);
-        						}
+        						} else if (figure.type == "mrLabel") {
+                                    drawMrLabel(figure.x + moveX, figure.y + moveY, figure.description, figure.textColor, figure.borderColor, figure.width, figure.id + " " + element.code, mainPaper);
+                                }
         					});
         					});
 
@@ -101,17 +103,44 @@
 
                     }
 
-        			 var drawLabel = function(x, y, description, color, width, text, paper) {
+                     var drawLabel = function(x, y, description, color, width, text, paper) {
 
-        				var c = paper.text(x, y, description);
+                        var c = paper.text(x, y, description);
 
                         c.attr({
                             "stroke": "#000",
-        					title: text,
-        					fill: color,
-        					"font-size": width
+                            title: text,
+                            fill: color,
+                            "font-size": width
                         });
 
+                    }
+
+                    var drawMrLabelText = function(x, y, description, textColor, width, text, paper) {
+                        var contactText = paper.text(x, y, description);
+                        contactText.attr({
+                            "stroke": textColor,
+                            title: text,
+                            fill: textColor,
+                            "font-size": width
+                        });
+
+                        return contactText;
+                    }
+
+                    var drawMrLabel = function(x, y, description, textColor, borderColor, width, text, paper) {
+
+                        var contactText = drawMrLabelText(x, y, description, textColor, width, text, paper);
+
+                        var dimensions = contactText.getBBox();
+                        var contactRect = paper.rect(x - dimensions.width / 2, y - dimensions.height / 2, dimensions.width, dimensions.height);
+                        contactRect.attr({
+                            "stroke": borderColor,
+                            fill: borderColor,
+                            title: text
+                        });
+
+                        drawMrLabelText(x, y, description, textColor, width, text, paper);
                     }
 
                 </script>

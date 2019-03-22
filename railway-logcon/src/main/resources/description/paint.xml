@@ -91,6 +91,16 @@
         <element type="ls" version="1">
             <object type="label" id="1" width="24"/>
         </element>
+        <element type="pr" version="1">
+            <object type="line" id="1" rotate="135" width="2"/>
+            <object type="line" id="2" link="1" rotate="90" width="4"/>
+            <object type="line" id="3" link="1" rotate="225" width="2"/>
+            <object type="line" id="4" link="2" rotate="135" width="2"/>
+            <object type="line" id="5" link="2" rotate="45" width="2"/>
+        </element>
+        <element type="mr" version="1">
+            <object type="mrLabel" id="1" width="10"/>
+        </element>
     </base>
     <draw>
         <area code="SplitPoint.A" esr="000001">
@@ -384,6 +394,19 @@
             </element>
             <element type="ls" code="" version="1">
                 <figure type="label" id="1" x="900" y="300" description="SplitPoint.A (000001)"/>
+            </element>
+            <element type="pr" code="ПР1" version="1">
+                <figure type="line" id="1" x="1440" y="500" length="10"/>
+                <figure type="line" id="2" length="160"/>
+                <figure type="line" id="3" length="10"/>
+                <figure type="line" id="4" length="10"/>
+                <figure type="line" id="5" length="10"/>
+            </element>
+            <element type="mr" code="ЧКЖ" version="1">
+                <figure type="mrLabel" id="1" x="900" y="350" description="ЧКЖ"/>
+            </element>
+            <element type="mr" code="НКЖ" version="1">
+                <figure type="mrLabel" id="1" x="930" y="350" description="НКЖ"/>
             </element>
         </area>
         <area code="Stage.A.B" esr="000002">
