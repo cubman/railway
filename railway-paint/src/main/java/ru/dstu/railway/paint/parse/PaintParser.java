@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class PaintParser implements IParser<IPaintPolygon> {
@@ -126,7 +125,8 @@ public class PaintParser implements IParser<IPaintPolygon> {
                 figure = createLabel(xmlFigure.getId(),
                         objectById.getPos(),
                         xmlFigure.getX(), xmlFigure.getY(),
-                        xmlFigure.getDescription());
+                        xmlFigure.getDescription(),
+                        objectById.getWidth());
                 break;
             default:
                 throw new RuntimeException();
@@ -172,8 +172,8 @@ public class PaintParser implements IParser<IPaintPolygon> {
         return new Circle(id, direction, x, y, r, width);
     }
 
-    private Label createLabel(int id, String direction, double x, double y, String text) {
-        return new Label(id, direction, x, y,text);
+    private Label createLabel(int id, String direction, double x, double y, String text, int width) {
+        return new Label(id, direction, x, y, text, width);
     }
 
     private double fromAngleToRadian(int angle) {

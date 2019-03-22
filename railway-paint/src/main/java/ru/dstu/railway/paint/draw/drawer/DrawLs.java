@@ -11,13 +11,7 @@ import static ru.dstu.railway.constant.Constant.*;
 import static ru.dstu.railway.paint.draw.drawer.BaseDraw.NON_STATE_COLOR;
 import static ru.dstu.railway.paint.draw.drawer.BaseDraw.RED_COLOR;
 
-public class DrawKp implements IDrawElement {
-
-    private IStationElement element;
-
-    public DrawKp(IStationElement element) {
-        this.element = element;
-    }
+public class DrawLs implements IDrawElement {
 
     private void ifNotBusy(List<IFigure> figures) {
         BaseDraw.setBaseColors(figures);
@@ -33,20 +27,6 @@ public class DrawKp implements IDrawElement {
 
     @Override
     public void drawColors(List<IFigure> figures) {
-        IState state = element.getState();
 
-        switch (state.getState()) {
-            case KP_NON:
-                ifNon(figures);
-                break;
-            case KP_NOT_BUSY:
-                ifNotBusy(figures);
-                break;
-            case KP_BUSY:
-                ifBusy(figures);
-                break;
-            default:
-                throw new UnsupportedOperationException("Состояние не известно для стрелки: " + state);
-        }
     }
 }

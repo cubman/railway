@@ -5,12 +5,14 @@ public class Label implements IFigure {
     private double x, y;
     private String description;
     private int id;
+    private int width;
 
-    public Label(int id, String direction, double x, double y, String description) {
+    public Label(int id, String direction, double x, double y, String description, int width) {
         this.x = moveX(direction, x);
         this.y = moveY(direction, y);
         this.description = description;
         this.id = id;
+        this.width = width;
     }
 
     private double moveY(String direction, double y) {
@@ -50,7 +52,7 @@ public class Label implements IFigure {
 
     @Override
     public int getWidth() {
-        return 0;
+        return width;
     }
 
     public double getX() {
@@ -79,4 +81,6 @@ public class Label implements IFigure {
     public String getColor() {
         return "#fff";
     }
+
+
 }

@@ -47,10 +47,6 @@ public class PolygonParser implements IParser<IPolygon> {
         return polygon;
     }
 
-    public XmlPolygon getXmlPolygon() {
-        return xmlPolygon;
-    }
-
     private void firstInit(XmlPolygon xmlPolygon) {
         for (XmlArea xmlArea : xmlPolygon.getXmlAreas()) {
             createArea(xmlArea);
@@ -68,6 +64,11 @@ public class PolygonParser implements IParser<IPolygon> {
             linkSv(xmlArea);
 
             addParty(xmlArea);
+
+            IArea area = areas.get(xmlArea.getCode());
+            if (area.getElementByCode("") == null) {
+                area.addElement(new Ls(""));
+            }
 
             polygon.addArea(areas.get(xmlArea.getCode()));
         }

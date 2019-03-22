@@ -2,10 +2,7 @@ package ru.dstu.railway.paint.draw;
 
 import ru.dstu.railway.element.*;
 import ru.dstu.railway.paint.IDrawElement;
-import ru.dstu.railway.paint.draw.drawer.DrawKp;
-import ru.dstu.railway.paint.draw.drawer.DrawSt;
-import ru.dstu.railway.paint.draw.drawer.DrawSv;
-import ru.dstu.railway.paint.draw.drawer.DrawUp;
+import ru.dstu.railway.paint.draw.drawer.*;
 
 public class DrawFactory {
 
@@ -28,6 +25,8 @@ public class DrawFactory {
             if (templateVersion >= 1 && templateVersion <= 6) {
                 drawElement = new DrawSt(stationElement);
             }
+        } else if (stationElement instanceof Ls) {
+            drawElement = new DrawLs();
         }
 
         return drawElement;

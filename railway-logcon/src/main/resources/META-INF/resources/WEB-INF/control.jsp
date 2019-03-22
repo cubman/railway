@@ -17,5 +17,9 @@
             <input  type = "text" name = "state" value = "" >
             <input  type = "submit" name = "submit" value = "Отправить" >
         </form>
+
+        <form action="test/" method=POST>
+            <input  type = "submit" name = "submit" value = "TEST" >
+        </form>
     </body>
 </html>

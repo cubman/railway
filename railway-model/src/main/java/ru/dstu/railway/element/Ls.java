@@ -13,11 +13,11 @@ public class Ls extends AbstractElement {
 
     @Override
     public IStationElement getEven() {
-        throw new UnsupportedOperationException("getEven");
+        return null;
     }
 
     @Override
     public IStationElement getOdd() {
-        throw new UnsupportedOperationException("getOdd");
+        return null;
     }
 }

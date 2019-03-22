@@ -14,6 +14,8 @@ import ru.dstu.railway.polygon.IPolygon;
 
 import java.util.logging.Logger;
 
+import static ru.dstu.railway.constant.Constant.*;
+
 @Controller
 public class WebController  {
 
@@ -28,7 +30,10 @@ public class WebController  {
 
     @RequestMapping("/")
     public ModelAndView index() {
-        return new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("infoMessages", messageHolder.getMessages(MessageLevel.INFO));
+        modelAndView.addObject("errorMessages", messageHolder.getMessages(MessageLevel.ERROR));
+        return modelAndView;
     }
 
     @RequestMapping("statistic/")
@@ -65,5 +70,35 @@ public class WebController  {
         paintPolygon.setColors(areaByCode, elementByCode);
 
         return modelAndView;
+    }
+
+    @RequestMapping("control/test/")
+    public ModelAndView test() {
+
+        ModelAndView modelAndView = new ModelAndView("control");
+        setState("SplitPoint.A", "СТ7", ST_PLUS);
+        setState("SplitPoint.A", "СТ9", ST_MINUS);
+        setState("SplitPoint.A", "СТ9", ST_BUSY);
+        setState("SplitPoint.A", "СТ14", ST_NON);
+        setState("SplitPoint.A", "2", KP_NON);
+        setState("SplitPoint.A", "4", KP_NOT_BUSY);
+        setState("SplitPoint.A", "6", KP_BUSY);
+        setState("SplitPoint.A", "Н2", SV_OPEN);
+        setState("SplitPoint.A", "Н4", SV_CLOSED);
+        setState("SplitPoint.A", "Н6", SV_NON);
+        setState("SplitPoint.A", "УП2Ч", UP_NON);
+        setState("SplitPoint.A", "УУ1Ч", UP_NOT_BUSY);
+        setState("Stage.A.C", "У1Н", UP_BUSY);
+
+        modelAndView.addObject("msg", "Тестовая установка отработала");
+
+        return modelAndView;
+    }
+
+    private void setState(String area, String element, int state) {
+        IArea areaByCode = polygon.getAreaByCode(area);
+        IStationElement elementByCode = areaByCode.getElementByCode(element);
+        elementByCode.setState(state);
+        paintPolygon.setColors(areaByCode, elementByCode);
     }
 }
