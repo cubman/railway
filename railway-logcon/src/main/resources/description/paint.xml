@@ -97,6 +97,7 @@
             <object type="line" id="3" link="1" rotate="225" width="2"/>
             <object type="line" id="4" link="2" rotate="135" width="2"/>
             <object type="line" id="5" link="2" rotate="45" width="2"/>
+            <object type="label" id="6" link="2" pos="+y" width="14"/>
         </element>
         <element type="mr" version="1">
             <object type="mrLabel" id="1" width="10"/>
@@ -401,6 +402,7 @@
                 <figure type="line" id="3" length="10"/>
                 <figure type="line" id="4" length="10"/>
                 <figure type="line" id="5" length="10"/>
+                <figure type="label" id="6" description="ПР1"/>
             </element>
             <element type="mr" code="ЧКЖ" version="1">
                 <figure type="mrLabel" id="1" x="900" y="350" description="ЧКЖ"/>
