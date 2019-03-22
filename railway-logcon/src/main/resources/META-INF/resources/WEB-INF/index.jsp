@@ -25,8 +25,8 @@
                     });
 
                     var t = function(areas) {
-        				var h = 1600;
-        				var w = 2300;
+        				var h = 600;
+        				var w = 1200;
 
                         var mainPaper = paper(w, h);
         				mainPaper.rect(0, 0, w, h).attr("fill", "#CAC8C8").toBack();
@@ -41,7 +41,7 @@
         						<!--var div_data =
         						<!--"<div >" + element.code + " || " + element.type + "</div>";
         						<!--$(div_data).appendTo("#json");
-        						var moveX = -300;
+        						var moveX = -380;
         						var moveY = -250;
         						$.each(element.figures, function(i, figure) {
         						<!--var div_data =
@@ -155,27 +155,6 @@
         <form action="statistic/" method=POST>
             <input  type = "submit" name = "submit" value = "Общая статистика" >
         </form>
-
-        <h1> Статистика </h1>
-
-        <h3> Сводная информация </h1>
-        <div>
-            <div style="width: 50%; float:left;">
-               <ul style="background: #ccc;">
-                <c:forEach items="${infoMessages}" var="message">
-                     <li>${message}</li>
-                 </c:forEach>
-               </ul>
-            </div>
-
-            <div style="width: 50%; float:left;">
-               <ul style="background: red;">
-                 <c:forEach items="${errorMessages}" var="message">
-                     <li>${message}</li>
-                 </c:forEach>
-               </ul>
-            </div>
-        </div>
 
         <div id="placeholder"></div>
         <div id="9lessonsLinks"></div>
