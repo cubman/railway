@@ -21,6 +21,10 @@ public class DrawSt implements IDrawElement {
         BaseDraw.setColorsById(figures, RED_COLOR, 1, 4, 6, 7);
     }
 
+    private void ifNotBusy(IStationElement element, List<IFigure> figures) {
+        BaseDraw.setColorsById(figures, BASE_COLOR, 1, 4, 6, 7);
+    }
+
     private void ifPlus(List<IFigure> figures) {
         BaseDraw.setBaseColors(figures);
         BaseDraw.setColorsById(figures, TRANSPARENT_COLOR, 3);
@@ -53,6 +57,9 @@ public class DrawSt implements IDrawElement {
                 break;
             case ST_BUSY:
                 ifBusy(element, figures);
+                break;
+            case ST_NOT_BUSY:
+                ifNotBusy(element, figures);
                 break;
             default:
                 throw new UnsupportedOperationException("Состояние не известно для стрелки: " + state);

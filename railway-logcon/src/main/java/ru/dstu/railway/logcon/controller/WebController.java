@@ -11,7 +11,9 @@ import ru.dstu.railway.api.base.message.IMessageHolder;
 import ru.dstu.railway.api.base.message.MessageLevel;
 import ru.dstu.railway.api.paint.IPaintPolygon;
 import ru.dstu.railway.api.polygon.IPolygon;
+import ru.dstu.railway.model.element.Sv;
 
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import static ru.dstu.railway.api.constant.Constant.*;
@@ -73,29 +75,76 @@ public class WebController  {
     public ModelAndView test() {
 
         ModelAndView modelAndView = new ModelAndView("control");
-        setState("SplitPoint.A", "СТ7", ST_PLUS);
-        setState("SplitPoint.A", "СТ9", ST_MINUS);
-        setState("SplitPoint.A", "СТ9", ST_BUSY);
-        setState("SplitPoint.A", "СТ14", ST_NON);
-        setState("SplitPoint.A", "2", PT_NON);
-        setState("SplitPoint.A", "4", PT_NOT_BUSY);
-        setState("SplitPoint.A", "6", PT_BUSY);
-        setState("SplitPoint.A", "Н2", SV_OPEN);
-        setState("SplitPoint.A", "Н4", SV_CLOSED);
-        setState("SplitPoint.A", "Н6", SV_NON);
-        setState("SplitPoint.A", "УП2Ч", UP_NON);
-        setState("SplitPoint.A", "УУ1Ч", UP_NOT_BUSY);
-        setState("Stage.A.C", "У1Н", UP_BUSY);
+        test1();
 
         modelAndView.addObject("msg", "Тестовая установка отработала");
 
         return modelAndView;
     }
 
-    private void setState(String area, String element, int state) {
+    private void test1() {
+        Thread thread = new Thread(() -> {
+            try {
+                IArea areaByCode = polygon.getAreaByCode("SplitPoint.A");
+                areaByCode.getElementsByType(Sv.class).forEach(iStationElement ->
+                        {
+                            try {
+                                setState("SplitPoint.A", iStationElement.getElementCode(), SV_CLOSED, 0);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        );
+
+                setState("SplitPoint.A", "ПР1", PR_BUSY, 0);
+                setState("Stage.A.B", "У1Ч", UP_BUSY, 1);
+
+                setState("SplitPoint.A", "НД", SV_OPEN, 0);
+                setState("SplitPoint.A", "УПН", UP_BUSY, 1);
+
+                setState("Stage.A.B", "У1Ч", UP_NOT_BUSY, 0);
+                setState("SplitPoint.A", "СТ1", ST_BUSY, 1);
+
+                setState("SplitPoint.A", "УПН", UP_NOT_BUSY, 0);
+                setState("SplitPoint.A", "НД", SV_CLOSED, 0);
+                setState("SplitPoint.A", "СТ9", ST_MINUS, 0);
+                setState("SplitPoint.A", "СТ5", ST_BUSY, 1);
+
+                setState("SplitPoint.A", "УПН", UP_NOT_BUSY, 0);
+                setState("SplitPoint.A", "СТ1", ST_NOT_BUSY, 0);
+                setState("SplitPoint.A", "ПР1", PR_NOT_BUSY, 0);
+                setState("SplitPoint.A", "Ч3", SV_OPEN, 0);
+                setState("SplitPoint.A", "СТ9", ST_BUSY, 1);
+
+
+                setState("SplitPoint.A", "СТ5", ST_NOT_BUSY, 0);
+                setState("SplitPoint.A", "3", PT_BUSY, 1);
+
+                setState("SplitPoint.A", "СТ9", ST_NOT_BUSY, 0);
+                setState("SplitPoint.A", "Ч3", SV_CLOSED, 1);
+
+//                setState("SplitPoint.A", "2", PT_NON);
+//                setState("SplitPoint.A", "4", PT_NOT_BUSY);
+//                setState("SplitPoint.A", "6", PT_BUSY);
+//                setState("SplitPoint.A", "Н2", SV_OPEN);
+//                setState("SplitPoint.A", "Н4", SV_CLOSED);
+//                setState("SplitPoint.A", "Н6", SV_NON);
+//                setState("SplitPoint.A", "УП2Ч", UP_NON);
+//                setState("SplitPoint.A", "УУ1Ч", UP_NOT_BUSY);
+//                setState("Stage.A.C", "У1Н", UP_BUSY);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        thread.run();
+    }
+
+    private void setState(String area, String element, int state, int sleep) throws InterruptedException {
         IArea areaByCode = polygon.getAreaByCode(area);
         IStationElement elementByCode = areaByCode.getElementByCode(element);
         elementByCode.setState(state);
         paintPolygon.setColors(areaByCode, elementByCode);
+        TimeUnit.SECONDS.sleep(sleep);
     }
 }
