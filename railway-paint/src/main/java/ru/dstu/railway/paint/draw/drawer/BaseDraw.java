@@ -1,6 +1,6 @@
 package ru.dstu.railway.paint.draw.drawer;
 
-import ru.dstu.railway.paint.figure.IFigure;
+import ru.dstu.railway.api.figure.IFigure;
 
 import java.util.List;
 import java.util.Optional;

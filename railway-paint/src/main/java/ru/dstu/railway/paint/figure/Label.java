@@ -1,5 +1,7 @@
 package ru.dstu.railway.paint.figure;
 
+import ru.dstu.railway.api.figure.IFigure;
+
 public class Label implements IFigure {
 
     private double x, y;

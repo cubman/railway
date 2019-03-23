@@ -1,5 +1,7 @@
 package ru.dstu.railway.paint.figure;
 
+import ru.dstu.railway.api.figure.IFigure;
+
 public class Circle implements IFigure {
     private String direction;
     private double x, y, r;

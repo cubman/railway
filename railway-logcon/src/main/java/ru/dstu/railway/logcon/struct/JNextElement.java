@@ -1,7 +1,5 @@
 package ru.dstu.railway.logcon.struct;
 
-import ru.dstu.railway.state.State;
-
 import java.util.List;
 
 public class JNextElement {

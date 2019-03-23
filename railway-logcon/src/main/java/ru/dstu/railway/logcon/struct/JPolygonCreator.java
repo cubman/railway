@@ -1,9 +1,9 @@
 package ru.dstu.railway.logcon.struct;
 
-import ru.dstu.railway.area.IArea;
-import ru.dstu.railway.element.IStationElement;
-import ru.dstu.railway.paint.IPaintPolygon;
-import ru.dstu.railway.polygon.IPolygon;
+import ru.dstu.railway.api.area.IArea;
+import ru.dstu.railway.api.element.IStationElement;
+import ru.dstu.railway.api.paint.IPaintPolygon;
+import ru.dstu.railway.api.polygon.IPolygon;
 
 import java.util.ArrayList;
 import java.util.List;

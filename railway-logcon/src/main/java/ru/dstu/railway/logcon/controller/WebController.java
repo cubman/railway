@@ -5,16 +5,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ru.dstu.railway.area.IArea;
-import ru.dstu.railway.element.IStationElement;
-import ru.dstu.railway.message.IMessageHolder;
-import ru.dstu.railway.message.MessageLevel;
-import ru.dstu.railway.paint.IPaintPolygon;
-import ru.dstu.railway.polygon.IPolygon;
+import ru.dstu.railway.api.area.IArea;
+import ru.dstu.railway.api.element.IStationElement;
+import ru.dstu.railway.api.base.message.IMessageHolder;
+import ru.dstu.railway.api.base.message.MessageLevel;
+import ru.dstu.railway.api.paint.IPaintPolygon;
+import ru.dstu.railway.api.polygon.IPolygon;
 
 import java.util.logging.Logger;
 
-import static ru.dstu.railway.constant.Constant.*;
+import static ru.dstu.railway.api.constant.Constant.*;
 
 @Controller
 public class WebController  {

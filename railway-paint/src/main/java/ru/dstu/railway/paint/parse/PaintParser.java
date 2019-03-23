@@ -1,14 +1,18 @@
 package ru.dstu.railway.paint.parse;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import ru.dstu.railway.area.IArea;
-import ru.dstu.railway.element.IStationElement;
-import ru.dstu.railway.paint.IPaintPolygon;
-import ru.dstu.railway.paint.figure.*;
+import ru.dstu.railway.api.area.IArea;
+import ru.dstu.railway.api.element.IStationElement;
+import ru.dstu.railway.api.paint.IPaintPolygon;
+import ru.dstu.railway.api.figure.*;
+import ru.dstu.railway.paint.figure.Circle;
+import ru.dstu.railway.paint.figure.Label;
+import ru.dstu.railway.paint.figure.Line;
+import ru.dstu.railway.paint.figure.MrLabel;
 import ru.dstu.railway.paint.parse.struct.*;
-import ru.dstu.railway.parse.IParser;
-import ru.dstu.railway.parse.exception.ParseException;
-import ru.dstu.railway.polygon.IPolygon;
+import ru.dstu.railway.api.base.parse.IParser;
+import ru.dstu.railway.base.parse.exception.ParseException;
+import ru.dstu.railway.api.polygon.IPolygon;
 
 import java.io.File;
 import java.io.IOException;

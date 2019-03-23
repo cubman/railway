@@ -3,9 +3,9 @@ package ru.dstu.railway.paint.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import ru.dstu.railway.paint.IPaintPolygon;
+import ru.dstu.railway.api.paint.IPaintPolygon;
 import ru.dstu.railway.paint.parse.PaintParser;
-import ru.dstu.railway.polygon.IPolygon;
+import ru.dstu.railway.api.polygon.IPolygon;
 
 @Configuration
 public class PaintConfig {

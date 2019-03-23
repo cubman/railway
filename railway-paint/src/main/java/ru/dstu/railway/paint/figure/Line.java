@@ -1,5 +1,7 @@
 package ru.dstu.railway.paint.figure;
 
+import ru.dstu.railway.api.figure.IFigure;
+
 public class Line implements IFigure {
     private double x1, x2, y1, y2;
     private int width;

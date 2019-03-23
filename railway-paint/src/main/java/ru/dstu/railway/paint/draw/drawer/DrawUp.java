@@ -1,13 +1,13 @@
 package ru.dstu.railway.paint.draw.drawer;
 
-import ru.dstu.railway.element.IStationElement;
-import ru.dstu.railway.paint.IDrawElement;
-import ru.dstu.railway.paint.figure.IFigure;
-import ru.dstu.railway.state.IState;
+import ru.dstu.railway.api.element.IStationElement;
+import ru.dstu.railway.api.paint.IDrawElement;
+import ru.dstu.railway.api.figure.IFigure;
+import ru.dstu.railway.api.state.IState;
 
 import java.util.List;
 
-import static ru.dstu.railway.constant.Constant.*;
+import static ru.dstu.railway.api.constant.Constant.*;
 import static ru.dstu.railway.paint.draw.drawer.BaseDraw.NON_STATE_COLOR;
 import static ru.dstu.railway.paint.draw.drawer.BaseDraw.RED_COLOR;
 

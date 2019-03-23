@@ -1,11 +1,11 @@
 package ru.dstu.railway.paint.parse;
 
-import ru.dstu.railway.area.IArea;
-import ru.dstu.railway.element.IStationElement;
-import ru.dstu.railway.paint.IDrawElement;
-import ru.dstu.railway.paint.IPaintPolygon;
+import ru.dstu.railway.api.area.IArea;
+import ru.dstu.railway.api.element.IStationElement;
+import ru.dstu.railway.api.paint.IDrawElement;
+import ru.dstu.railway.api.paint.IPaintPolygon;
 import ru.dstu.railway.paint.draw.DrawFactory;
-import ru.dstu.railway.paint.figure.IFigure;
+import ru.dstu.railway.api.figure.IFigure;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;

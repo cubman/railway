@@ -1,7 +1,8 @@
 package ru.dstu.railway.paint.draw;
 
-import ru.dstu.railway.element.*;
-import ru.dstu.railway.paint.IDrawElement;
+import ru.dstu.railway.api.element.*;
+import ru.dstu.railway.api.paint.IDrawElement;
+import ru.dstu.railway.model.element.*;
 import ru.dstu.railway.paint.draw.drawer.*;
 
 public class DrawFactory {

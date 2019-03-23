@@ -7,18 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import ru.dstu.railway.area.IArea;
-import ru.dstu.railway.element.IStationElement;
-import ru.dstu.railway.element.Ls;
-import ru.dstu.railway.element.St;
-import ru.dstu.railway.paint.config.RailwayPolygonConfig;
-import ru.dstu.railway.polygon.IPolygon;
-import ru.dstu.railway.rule.IRule;
+import ru.dstu.railway.api.area.IArea;
+import ru.dstu.railway.api.element.IStationElement;
+import ru.dstu.railway.model.element.Ls;
+import ru.dstu.railway.model.element.St;
+import ru.dstu.railway.base.config.RailwayPolygonConfig;
+import ru.dstu.railway.api.polygon.IPolygon;
+import ru.dstu.railway.api.rule.IRule;
 
 import java.util.List;
 
-import static ru.dstu.railway.constant.Constant.ST_MINUS;
-import static ru.dstu.railway.constant.Constant.ST_PLUS;
+import static ru.dstu.railway.api.constant.Constant.ST_MINUS;
+import static ru.dstu.railway.api.constant.Constant.ST_PLUS;
 
 @ContextConfiguration(classes = RailwayPolygonConfig.class)
 @RunWith(SpringJUnit4ClassRunner.class)
