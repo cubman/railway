@@ -1,11 +1,11 @@
 <polygon>
     <area code="SplitPoint.A" esr="000001" type="SPLITPOINT">
         <!-- Пути -->
-        <kp code="1" evenLink="Н1" oddLink="Ч1"/>
-        <kp code="2" evenLink="Ч2" oddLink="Н2"/>
-        <kp code="3" evenLink="Н3" oddLink="Ч3"/>
-        <kp code="4" evenLink="Ч4" oddLink="Н4"/>
-        <kp code="6" evenLink="Ч6" oddLink="Н6"/>
+        <pt code="1" evenLink="Н1" oddLink="Ч1"/>
+        <pt code="2" evenLink="Ч2" oddLink="Н2"/>
+        <pt code="3" evenLink="Н3" oddLink="Ч3"/>
+        <pt code="4" evenLink="Ч4" oddLink="Н4"/>
+        <pt code="6" evenLink="Ч6" oddLink="Н6"/>
 
         <!-- Светофоры -->
         <sv code="Ч1" evenLink="1" oddLink="СТ9"/>

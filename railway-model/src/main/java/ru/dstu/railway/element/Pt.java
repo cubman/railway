@@ -3,7 +3,7 @@ package ru.dstu.railway.element;
 /**
  * Объект путь
  */
-public class Kp extends AbstractElement {
+public class Pt extends AbstractElement {
 
     private IStationElement even;
     private IStationElement odd;

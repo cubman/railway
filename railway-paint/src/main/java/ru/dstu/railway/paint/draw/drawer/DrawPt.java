@@ -11,11 +11,11 @@ import static ru.dstu.railway.constant.Constant.*;
 import static ru.dstu.railway.paint.draw.drawer.BaseDraw.NON_STATE_COLOR;
 import static ru.dstu.railway.paint.draw.drawer.BaseDraw.RED_COLOR;
 
-public class DrawKp implements IDrawElement {
+public class DrawPt implements IDrawElement {
 
     private IStationElement element;
 
-    public DrawKp(IStationElement element) {
+    public DrawPt(IStationElement element) {
         this.element = element;
     }
 
@@ -36,13 +36,13 @@ public class DrawKp implements IDrawElement {
         IState state = element.getState();
 
         switch (state.getState()) {
-            case KP_NON:
+            case PT_NON:
                 ifNon(figures);
                 break;
-            case KP_NOT_BUSY:
+            case PT_NOT_BUSY:
                 ifNotBusy(figures);
                 break;
-            case KP_BUSY:
+            case PT_BUSY:
                 ifBusy(figures);
                 break;
             default:

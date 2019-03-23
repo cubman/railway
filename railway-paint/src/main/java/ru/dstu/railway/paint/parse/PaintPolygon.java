@@ -70,8 +70,8 @@ public class PaintPolygon implements IPaintPolygon {
 //            DrawSt.updateColors(element, figures);
 //        } else if (element instanceof Up) {
 //            DrawUp.updateColors(element, figures);
-//        } else if (element instanceof Kp) {
-//            DrawKp.updateColors(element, figures);
+//        } else if (element instanceof Pt) {
+//            DrawPt.updateColors(element, figures);
 //        } else if (element instanceof Sv) {
 //            DrawSv.updateColors(element, figures);
 //        }

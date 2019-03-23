@@ -59,7 +59,7 @@ public class PolygonParser implements IParser<IPolygon> {
     private void secondInit(XmlPolygon xmlPolygon) {
         for (XmlArea xmlArea : xmlPolygon.getXmlAreas()) {
             linkSt(xmlArea);
-            linkKp(xmlArea);
+            linkPt(xmlArea);
             linkUp(xmlArea);
             linkSv(xmlArea);
             linkPr(xmlArea);
@@ -98,7 +98,7 @@ public class PolygonParser implements IParser<IPolygon> {
         addElements(xmlArea, xmlArea.getSts(), St.class);
         addElements(xmlArea, xmlArea.getSvs(), Sv.class);
         addElements(xmlArea, xmlArea.getUps(), Up.class);
-        addElements(xmlArea, xmlArea.getKps(), Kp.class);
+        addElements(xmlArea, xmlArea.getPts(), Pt.class);
         addElements(xmlArea, xmlArea.getPrs(), Pr.class);
         addElements(xmlArea, xmlArea.getMrs(), Mr.class);
     }
@@ -169,24 +169,24 @@ public class PolygonParser implements IParser<IPolygon> {
         }
     }
 
-    private void linkKp(XmlArea xmlArea) {
+    private void linkPt(XmlArea xmlArea) {
         IArea area = areas.get(xmlArea.getCode());
 
-        if (xmlArea.getKps() != null) {
-            for (XmlKp xmlKp : xmlArea.getKps()) {
-                IStationElement element = getElement(xmlArea, xmlKp.getCode());
+        if (xmlArea.getPts() != null) {
+            for (XmlPt xmlPt : xmlArea.getPts()) {
+                IStationElement element = getElement(xmlArea, xmlPt.getCode());
 
-                Kp kp = (Kp) element;
-                kp.setEven(
+                Pt pt = (Pt) element;
+                pt.setEven(
                         getElement(
-                                xmlKp.getEvenArea() != null ? xmlKp.getEvenArea() : xmlArea.getCode(),
-                                xmlKp.getEvenLink()));
-                kp.setOdd(
+                                xmlPt.getEvenArea() != null ? xmlPt.getEvenArea() : xmlArea.getCode(),
+                                xmlPt.getEvenLink()));
+                pt.setOdd(
                         getElement(
-                                xmlKp.getOddArea() != null ? xmlKp.getOddArea() : xmlArea.getCode(),
-                                xmlKp.getOddLink()));
+                                xmlPt.getOddArea() != null ? xmlPt.getOddArea() : xmlArea.getCode(),
+                                xmlPt.getOddLink()));
 
-                kp.addArea(area);
+                pt.addArea(area);
             }
         }
     }

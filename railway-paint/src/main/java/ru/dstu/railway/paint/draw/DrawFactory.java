@@ -9,9 +9,9 @@ public class DrawFactory {
     public IDrawElement getDrawer(IStationElement stationElement, int templateVersion) {
         IDrawElement drawElement = null;
 
-        if (stationElement instanceof Kp) {
+        if (stationElement instanceof Pt) {
             if (templateVersion == 1) {
-                drawElement = new DrawKp(stationElement);
+                drawElement = new DrawPt(stationElement);
             }
         } else if (stationElement instanceof Up) {
             if (templateVersion == 1) {

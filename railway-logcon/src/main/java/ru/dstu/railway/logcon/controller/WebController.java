@@ -77,9 +77,9 @@ public class WebController  {
         setState("SplitPoint.A", "СТ9", ST_MINUS);
         setState("SplitPoint.A", "СТ9", ST_BUSY);
         setState("SplitPoint.A", "СТ14", ST_NON);
-        setState("SplitPoint.A", "2", KP_NON);
-        setState("SplitPoint.A", "4", KP_NOT_BUSY);
-        setState("SplitPoint.A", "6", KP_BUSY);
+        setState("SplitPoint.A", "2", PT_NON);
+        setState("SplitPoint.A", "4", PT_NOT_BUSY);
+        setState("SplitPoint.A", "6", PT_BUSY);
         setState("SplitPoint.A", "Н2", SV_OPEN);
         setState("SplitPoint.A", "Н4", SV_CLOSED);
         setState("SplitPoint.A", "Н6", SV_NON);

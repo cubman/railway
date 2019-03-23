@@ -63,7 +63,7 @@
         <element type="up" version="1">
             <object type="line" id="1" width="5"/>
         </element>
-        <element type="kp" version="1">
+        <element type="pt" version="1">
             <object type="line" id="1" width="5"/>
             <object type="line" id="2" link="1" width="5"/>
             <object type="label" id="3" link="1" pos="+y" width="14"/>
@@ -102,27 +102,27 @@
     <draw>
         <area code="SplitPoint.A" esr="000001">
             <!-- Пути -->
-            <element type="kp" code="1" version="1">
+            <element type="pt" code="1" version="1">
                 <figure type="line" id="1" x="740" y="550" length="200"/>
                 <figure type="line" id="2" length="200"/>
                 <figure type="label" id="3" description="1"/>
             </element>
-            <element type="kp" code="2" version="1">
+            <element type="pt" code="2" version="1">
                 <figure type="line" id="1" x="680" y="620" length="210"/>
                 <figure type="line" id="2" length="210"/>
                 <figure type="label" id="3" description="2"/>
             </element>
-            <element type="kp" code="3" version="1">
+            <element type="pt" code="3" version="1">
                 <figure type="line" id="1" x="700" y="500" length="200"/>
                 <figure type="line" id="2" length="200"/>
                 <figure type="label" id="3" description="3"/>
             </element>
-            <element type="kp" code="4" version="1">
+            <element type="pt" code="4" version="1">
                 <figure type="line" id="1" x="730" y="676" length="170"/>
                 <figure type="line" id="2" length="170"/>
                 <figure type="label" id="3" description="4"/>
             </element>
-            <element type="kp" code="6" version="1">
+            <element type="pt" code="6" version="1">
                 <figure type="line" id="1" x="763" y="719" length="155"/>
                 <figure type="line" id="2" length="155"/>
                 <figure type="label" id="3" description="6"/>
