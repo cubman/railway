@@ -170,113 +170,46 @@ public class PolygonParser implements IParser<IPolygon> {
     }
 
     private void linkPt(XmlArea xmlArea) {
-        IArea area = areas.get(xmlArea.getCode());
-
-        if (xmlArea.getPts() != null) {
-            for (XmlPt xmlPt : xmlArea.getPts()) {
-                IStationElement element = getElement(xmlArea, xmlPt.getCode());
-
-                Pt pt = (Pt) element;
-                pt.setEven(
-                        getElement(
-                                xmlPt.getEvenArea() != null ? xmlPt.getEvenArea() : xmlArea.getCode(),
-                                xmlPt.getEvenLink()));
-                pt.setOdd(
-                        getElement(
-                                xmlPt.getOddArea() != null ? xmlPt.getOddArea() : xmlArea.getCode(),
-                                xmlPt.getOddLink()));
-
-                pt.addArea(area);
-            }
-        }
+        linkSingleNeighbour(xmlArea, xmlArea.getPts());
     }
 
     private void linkSv(XmlArea xmlArea) {
-        IArea area = areas.get(xmlArea.getCode());
-
-        if (xmlArea.getSvs() != null) {
-            for (XmlSv xmlSv : xmlArea.getSvs()) {
-                IStationElement element = getElement(xmlArea, xmlSv.getCode());
-
-                Sv sv = (Sv) element;
-                sv.setEven(
-                        getElement(
-                                xmlSv.getEvenArea() != null ? xmlSv.getEvenArea() : xmlArea.getCode(),
-                                xmlSv.getEvenLink()));
-                sv.setOdd(
-                        getElement(
-                                xmlSv.getOddArea() != null ? xmlSv.getOddArea() : xmlArea.getCode(),
-                                xmlSv.getOddLink()));
-                sv.addArea(area);
-            }
-        }
+        linkSingleNeighbour(xmlArea, xmlArea.getSvs());
     }
 
     private void linkPr(XmlArea xmlArea) {
-        IArea area = areas.get(xmlArea.getCode());
-
-        if (xmlArea.getPrs() != null) {
-            for (XmlPr xmlPr : xmlArea.getPrs()) {
-                IStationElement element = getElement(xmlArea, xmlPr.getCode());
-
-                Pr pr = (Pr) element;
-
-                pr.setEven(
-                        getElement(
-                                xmlPr.getEvenArea() != null ? xmlPr.getEvenArea() : xmlArea.getCode(),
-                                xmlPr.getEvenLink()));
-                pr.setOdd(
-                        getElement(
-                                xmlPr.getOddArea() != null ? xmlPr.getOddArea() : xmlArea.getCode(),
-                                xmlPr.getOddLink()));
-
-                pr.addArea(area);
-            }
-        }
+        linkSingleNeighbour(xmlArea, xmlArea.getPrs());
     }
 
     private void linkMr(XmlArea xmlArea) {
-        IArea area = areas.get(xmlArea.getCode());
-
-        if (xmlArea.getMrs() != null) {
-            for (XmlMr xmlMr : xmlArea.getMrs()) {
-                IStationElement element = getElement(xmlArea, xmlMr.getCode());
-
-                Mr mr = (Mr) element;
-
-                mr.setEven(
-                        getElement(
-                                xmlMr.getEvenArea() != null ? xmlMr.getEvenArea() : xmlArea.getCode(),
-                                xmlMr.getEvenLink()));
-                mr.setOdd(
-                        getElement(
-                                xmlMr.getOddArea() != null ? xmlMr.getOddArea() : xmlArea.getCode(),
-                                xmlMr.getOddLink()));
-
-                mr.addArea(area);
-            }
-        }
+        linkSingleNeighbour(xmlArea, xmlArea.getMrs());
     }
 
     private void linkUp(XmlArea xmlArea) {
+        linkSingleNeighbour(xmlArea, xmlArea.getUps());
+    }
+
+    private void linkSingleNeighbour(XmlArea xmlArea, List<? extends AbstractXmlElement> list) {
+        if (list == null) {
+            return;
+        }
+
         IArea area = areas.get(xmlArea.getCode());
 
-        if (xmlArea.getUps() != null) {
-            for (XmlUp xmlUp : xmlArea.getUps()) {
-                IStationElement element = getElement(xmlArea, xmlUp.getCode());
+        for (AbstractXmlElement xmlElement : list) {
+            IStationElement element = getElement(xmlArea, xmlElement.getCode());
 
-                Up up = (Up) element;
-                up.setEven(
-                        getElement(
-                                xmlUp.getEvenArea() != null ? xmlUp.getEvenArea() : xmlArea.getCode(),
-                                xmlUp.getEvenLink()));
-                up.setOdd(
-                        getElement(
-                                xmlUp.getOddArea() != null ? xmlUp.getOddArea() : xmlArea.getCode(),
-                                xmlUp.getOddLink()));
+            SingleLinkNeigbour linkNeigbour = (SingleLinkNeigbour) element;
+            linkNeigbour.setEven(
+                    getElement(
+                            xmlElement.getEvenArea() != null ? xmlElement.getEvenArea() : xmlArea.getCode(),
+                            xmlElement.getEvenLink()));
+            linkNeigbour.setOdd(
+                    getElement(
+                            xmlElement.getOddArea() != null ? xmlElement.getOddArea() : xmlArea.getCode(),
+                            xmlElement.getOddLink()));
 
-                up.addArea(area);
-            }
+            linkNeigbour.addArea(area);
         }
     }
 

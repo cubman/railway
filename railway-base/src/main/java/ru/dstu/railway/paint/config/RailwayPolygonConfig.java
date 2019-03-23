@@ -35,8 +35,6 @@ public class RailwayPolygonConfig {
         return ruleParser.parse();
     }
 
-
-
     @Bean
     public IMessageHolder messageHolder() {
         return new MessageHolder();
