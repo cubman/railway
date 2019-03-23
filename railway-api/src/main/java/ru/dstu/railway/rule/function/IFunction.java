@@ -3,6 +3,7 @@ package ru.dstu.railway.rule.function;
 /**
  * Интерфейс функции
  */
+@FunctionalInterface
 public interface IFunction {
 
     /**

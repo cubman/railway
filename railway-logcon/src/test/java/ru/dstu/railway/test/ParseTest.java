@@ -5,12 +5,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.dstu.railway.area.IArea;
-import ru.dstu.railway.paint.config.TestConfig;
 import ru.dstu.railway.element.IStationElement;
 import ru.dstu.railway.element.Ls;
 import ru.dstu.railway.element.St;
+import ru.dstu.railway.paint.config.RailwayPolygonConfig;
 import ru.dstu.railway.polygon.IPolygon;
 import ru.dstu.railway.rule.IRule;
 
@@ -19,8 +20,9 @@ import java.util.List;
 import static ru.dstu.railway.constant.Constant.ST_MINUS;
 import static ru.dstu.railway.constant.Constant.ST_PLUS;
 
-@ContextConfiguration(classes = TestConfig.class)
+@ContextConfiguration(classes = RailwayPolygonConfig.class)
 @RunWith(SpringJUnit4ClassRunner.class)
+@TestPropertySource(locations="classpath:test.properties")
 public class ParseTest {
 
     @Autowired

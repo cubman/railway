@@ -1,6 +1,6 @@
 package ru.dstu.railway.paint.config;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.dstu.railway.message.IMessageHolder;
@@ -16,15 +16,19 @@ import java.util.List;
 @Configuration
 public class RailwayPolygonConfig {
 
+    @Value("${file.polygon}")
+    private String polygonDescriptionFileName;
+    @Value("${file.rule}")
+    private String ruleDescriptionFileName;
+
     @Bean
-    public IPolygon polygon(@Qualifier("polygon") String polygonDescriptionFileName) {
+    public IPolygon polygon() {
         PolygonParser polygonParser = new PolygonParser(polygonDescriptionFileName);
         return polygonParser.parse();
     }
 
     @Bean
-    public List<IRule> rules(@Qualifier("rule") String ruleDescriptionFileName,
-                             IPolygon polygon,
+    public List<IRule> rules(IPolygon polygon,
                              IMessageHolder messageHolder) {
         IParser<List<IRule>> ruleParser =
                 new RuleParser(ruleDescriptionFileName, polygon, messageHolder);

@@ -1,6 +1,6 @@
 package ru.dstu.railway.paint.config;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.dstu.railway.paint.IPaintPolygon;
@@ -9,8 +9,11 @@ import ru.dstu.railway.polygon.IPolygon;
 
 @Configuration
 public class PaintConfig {
+    @Value("${file.paint}")
+    private String paintFileName;
+
     @Bean
-    IPaintPolygon paintPolygon(@Qualifier("paint") String paintFileName, IPolygon polygon) {
+    IPaintPolygon paintPolygon(IPolygon polygon) {
         PaintParser paintParser = new PaintParser(paintFileName, polygon);
         return paintParser.parse();
     }
