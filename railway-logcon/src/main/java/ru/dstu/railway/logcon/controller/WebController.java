@@ -118,20 +118,30 @@ public class WebController  {
 
 
                 setState("SplitPoint.A", "СТ5", ST_NOT_BUSY, 0);
+                setState("SplitPoint.A", "СТ9", ST_PLUS, 0);
                 setState("SplitPoint.A", "3", PT_BUSY, 1);
 
                 setState("SplitPoint.A", "СТ9", ST_NOT_BUSY, 0);
-                setState("SplitPoint.A", "Ч3", SV_CLOSED, 1);
+                setState("SplitPoint.A", "Ч3", SV_CLOSED, 2);
 
-//                setState("SplitPoint.A", "2", PT_NON);
-//                setState("SplitPoint.A", "4", PT_NOT_BUSY);
-//                setState("SplitPoint.A", "6", PT_BUSY);
-//                setState("SplitPoint.A", "Н2", SV_OPEN);
-//                setState("SplitPoint.A", "Н4", SV_CLOSED);
-//                setState("SplitPoint.A", "Н6", SV_NON);
-//                setState("SplitPoint.A", "УП2Ч", UP_NON);
-//                setState("SplitPoint.A", "УУ1Ч", UP_NOT_BUSY);
-//                setState("Stage.A.C", "У1Н", UP_BUSY);
+                setState("SplitPoint.A", "СТ14", ST_MINUS, 0);
+                setState("SplitPoint.A", "Н3", SV_OPEN, 2);
+
+                setState("SplitPoint.A", "1Ч", SV_OPEN, 0);
+                setState("SplitPoint.A", "СТ14", ST_BUSY, 1);
+
+                setState("SplitPoint.A", "УУ1Ч", UP_BUSY, 0);
+                setState("SplitPoint.A", "3", PR_NOT_BUSY, 0);
+                setState("SplitPoint.A", "Н3", SV_CLOSED, 1);
+
+                setState("SplitPoint.A", "СТ14", ST_NOT_BUSY, 0);
+                setState("Stage.A.C", "У1Н", UP_BUSY, 1);
+
+                setState("SplitPoint.A", "1Ч", SV_CLOSED, 0);
+                setState("SplitPoint.A", "УУ1Ч", UP_NOT_BUSY, 0);
+                setState("Stage.A.C", "У1Н", UP_BUSY, 1);
+
+                setState("Stage.A.C", "У1Н", UP_NOT_BUSY, 1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
