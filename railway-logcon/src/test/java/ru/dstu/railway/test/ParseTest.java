@@ -9,27 +9,21 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.dstu.railway.api.area.IArea;
 import ru.dstu.railway.api.element.IStationElement;
+import ru.dstu.railway.logcon.config.LogConConfig;
 import ru.dstu.railway.model.element.Ls;
 import ru.dstu.railway.model.element.St;
 import ru.dstu.railway.base.config.RailwayPolygonConfig;
 import ru.dstu.railway.api.polygon.IPolygon;
 import ru.dstu.railway.api.rule.IRule;
+import ru.dstu.railway.test.base.BaseTest;
 
 import java.util.List;
 
 import static ru.dstu.railway.api.constant.Constant.ST_MINUS;
 import static ru.dstu.railway.api.constant.Constant.ST_PLUS;
 
-@ContextConfiguration(classes = RailwayPolygonConfig.class)
-@RunWith(SpringJUnit4ClassRunner.class)
-@TestPropertySource(locations="classpath:test.properties")
-public class ParseTest {
 
-    @Autowired
-    private IPolygon polygon;
-
-    @Autowired
-    private List<IRule> rules;
+public class ParseTest extends BaseTest {
 
     @Test
     public void testPolygonParse() {

@@ -4,25 +4,22 @@ import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.EventListener;
 import ru.dstu.railway.api.area.IArea;
 import ru.dstu.railway.api.element.IStationElement;
-import ru.dstu.railway.api.listener.ICheckedRuleListener;
 import ru.dstu.railway.api.polygon.IPolygon;
-import ru.dstu.railway.api.rule.IRule;
 
 import java.util.*;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 
-public class RailwayPolygon implements IPolygon, ICheckedRuleListener {
+public class RailwayPolygon implements IPolygon {
     private final Map<String, IArea> polygonAreas;
 
-    private static final int THREAD_COUNT = 10;
+
 
     private ExecutorService service;
 
     public RailwayPolygon() {
         this.polygonAreas = new HashMap<>();
-        service = Executors.newFixedThreadPool(THREAD_COUNT);
+
     }
 
     @Override
@@ -47,11 +44,6 @@ public class RailwayPolygon implements IPolygon, ICheckedRuleListener {
     @Override
     public List<IArea> getAreas() {
         return new ArrayList<>(polygonAreas.values());
-    }
-
-    @Override
-    public void notify(List<IRule> checkedRules) {
-        checkedRules.forEach(rule -> service.submit(rule::execute));
     }
 
     @EventListener(classes = ContextClosedEvent.class)

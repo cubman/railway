@@ -3,8 +3,10 @@ package ru.dstu.railway.paint.parse;
 import ru.dstu.railway.api.area.IArea;
 import ru.dstu.railway.api.constant.Pair;
 import ru.dstu.railway.api.element.IStationElement;
+import ru.dstu.railway.api.listener.IStateListener;
 import ru.dstu.railway.api.paint.IDrawElement;
 import ru.dstu.railway.api.paint.IPaintPolygon;
+import ru.dstu.railway.model.element.AbstractElement;
 import ru.dstu.railway.paint.draw.DrawFactory;
 import ru.dstu.railway.api.figure.IFigure;
 
@@ -14,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PaintPolygon implements IPaintPolygon {
+public class PaintPolygon implements IPaintPolygon, IStateListener {
 
     private Map<IArea, Map<IStationElement, Pair<Integer, List<IFigure>>>> paintStructure;
 
@@ -30,6 +32,7 @@ public class PaintPolygon implements IPaintPolygon {
             listMap = paintStructure.get(area);
         }
 
+        ((AbstractElement)element).addStateListener(this);
         if (listMap.putIfAbsent(element, new Pair<>(templateVersion, figures)) != null) {
             throw new IndexOutOfBoundsException("Множественная запись в поле: " + area + " " + element);
         }
@@ -70,4 +73,8 @@ public class PaintPolygon implements IPaintPolygon {
         refresh();
     }
 
+    @Override
+    public void notify(IArea area, IStationElement element) {
+        setColors(area, element);
+    }
 }

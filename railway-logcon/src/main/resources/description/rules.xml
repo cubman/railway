@@ -27,8 +27,15 @@
                     </and>
                 </condition>
                 <then>
-                    <print out="console" level="info"
-                           text="1. Стрелка СТ9 находится в состоянии 1."/>
+                    <and>
+                        <condition>
+                            <print out="console" level="info"
+                                   text="1. Стрелка СТ9 находится в состоянии 1и выставляем объекту СТ5 состояние."/>
+                        </condition>
+                        <condition>
+                            <setstate area="SplitPoint.A" code="СТ5" state="2"/>
+                        </condition>
+                    </and>
                 </then>
                 <else>
                     <if>

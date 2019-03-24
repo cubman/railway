@@ -1,17 +1,25 @@
 package ru.dstu.railway.base.parse.rule;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import ru.dstu.railway.api.area.IArea;
+import ru.dstu.railway.api.element.IStationElement;
+import ru.dstu.railway.api.listener.IStateListener;
 import ru.dstu.railway.api.message.IMessageHolder;
 import ru.dstu.railway.api.message.MessageLevel;
 import ru.dstu.railway.api.rule.IRule;
 import ru.dstu.railway.api.rule.function.IFunction;
 import ru.dstu.railway.api.rule.function.IFunctionResult;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
-public class Rule implements IRule {
+public class Rule implements IRule, IStateListener {
+
+    private static final int THREAD_COUNT = 10;
 
     private static final Logger LOGGER = Logger.getLogger(Rule.class.getName());
+    private static final ExecutorService service = Executors.newFixedThreadPool(THREAD_COUNT);
 
     private String name;
     private IFunction checkFunction;
@@ -45,6 +53,13 @@ public class Rule implements IRule {
             check.getErrors().forEach(iFunctionError ->
                     messageHolder.addMessage(iFunctionError.getCode(),
                             iFunctionError.getDescription(), MessageLevel.ERROR));
+        }
+    }
+
+    @Override
+    public void notify(IArea area, IStationElement element) {
+        if (check()) {
+            service.submit(this::execute);
         }
     }
 }

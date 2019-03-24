@@ -2,39 +2,40 @@ package ru.dstu.railway.model.element;
 
 import ru.dstu.railway.api.area.IArea;
 import ru.dstu.railway.api.element.IStationElement;
+import ru.dstu.railway.api.listener.IStateListener;
 import ru.dstu.railway.api.rule.IRule;
-import ru.dstu.railway.api.listener.ICheckedRuleListener;
 import ru.dstu.railway.api.state.IState;
 import ru.dstu.railway.model.state.State;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public abstract class AbstractElement implements IStationElement {
 
     private String elementCode;
-    private final List<IRule> rules;
+//    private final List<IRule> rules;
     protected final State state;
     private final List<IArea> areas;
-    private final List<ICheckedRuleListener> сheckedRuleListeners;
+    private final List<IStateListener> stateListeners;
 
     public AbstractElement() {
         this.state = new State(new Date(), 1);
         this.areas = new ArrayList<>();
-        this.rules = new ArrayList<>();
-        this.сheckedRuleListeners = new ArrayList<>();
+//        this.rules = new ArrayList<>();
+        this.stateListeners = new ArrayList<>();
     }
 
     public void setElementCode(String elementCode) {
         this.elementCode = elementCode;
     }
 
-    public void addRule(IRule rule) {
-        rules.add(rule);
-    }
+//    public void addRule(IRule rule) {
+//        rules.add(rule);
+//    }
 
-    public void addCheckRuleListener(ICheckedRuleListener ruleListener) {
-        сheckedRuleListeners.add(ruleListener);
+    public void addStateListener(IStateListener stateListener) {
+        stateListeners.add(stateListener);
     }
 
 
@@ -48,10 +49,11 @@ public abstract class AbstractElement implements IStationElement {
         this.state.setState(state);
         this.state.setLastChange(new Date());
 
-        List<IRule> checked = rules.stream().filter(IRule::check).collect(Collectors.toList());
-        if (!checked.isEmpty()) {
-            сheckedRuleListeners.forEach(iCheckedRuleListener -> iCheckedRuleListener.notify(checked));
-        }
+        stateListeners.forEach(stateListener -> stateListener.notify(areas.get(0), this));
+//        List<IRule> checked = rules.stream().filter(IRule::check).collect(Collectors.toList());
+//        if (!checked.isEmpty()) {
+//            сheckedRuleListeners.forEach(iCheckedRuleListener -> iCheckedRuleListener.notify(checked));
+//        }
     }
 
     @Override

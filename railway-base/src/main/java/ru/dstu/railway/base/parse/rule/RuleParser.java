@@ -9,6 +9,7 @@ import ru.dstu.railway.api.element.IStationElement;
 import ru.dstu.railway.api.polygon.IPolygon;
 import ru.dstu.railway.api.rule.IRule;
 import ru.dstu.railway.api.rule.function.IFunction;
+import ru.dstu.railway.api.state.IStateSender;
 import ru.dstu.railway.base.parse.exception.ParseException;
 import ru.dstu.railway.base.parse.rule.function.And;
 import ru.dstu.railway.base.parse.rule.function.If;
@@ -37,11 +38,16 @@ public class RuleParser implements IParser<List<IRule>> {
     private String ruleDescriptionFileName;
     private IPolygon polygon;
     private IMessageHolder messageHolder;
+    private IStateSender stateSender;
 
-    public RuleParser(String ruleDescriptionFileName, IPolygon polygon, IMessageHolder messageHolder) {
+    public RuleParser(String ruleDescriptionFileName,
+                      IPolygon polygon,
+                      IMessageHolder messageHolder,
+                      IStateSender stateSender) {
         this.ruleDescriptionFileName = ruleDescriptionFileName;
         this.polygon = polygon;
         this.messageHolder = messageHolder;
+        this.stateSender = stateSender;
     }
 
     @Override
@@ -70,9 +76,9 @@ public class RuleParser implements IParser<List<IRule>> {
                 IFunction preCondition = createFunction(rule.getXmlPreCondition(), element);
                 IFunction postCondition = createFunction(rule.getXmlPostCondition(), element);
 
-                IRule elementRule = new Rule(rule.getName(), preCondition, postCondition, messageHolder);
+                Rule elementRule = new Rule(rule.getName(), preCondition, postCondition, messageHolder);
 
-                ((AbstractElement) element).addRule(elementRule);
+                ((AbstractElement) element).addStateListener(elementRule);
                 rules.add(elementRule);
             }
         }
@@ -91,6 +97,10 @@ public class RuleParser implements IParser<List<IRule>> {
 
         if (xmlFunction instanceof XmlTimer) {
             return ifTimer((XmlTimer) xmlFunction, element);
+        }
+
+        if (xmlFunction instanceof XmlSetState) {
+            return ifSetState((XmlSetState) xmlFunction);
         }
 
         if (xmlFunction instanceof XmlIf) {
@@ -144,6 +154,10 @@ public class RuleParser implements IParser<List<IRule>> {
 
         if (xmlFunction.getXmlPrint() != null) {
             return createFunction(xmlFunction.getXmlPrint(), element);
+        }
+
+        if (xmlFunction.getXmlSetState() != null) {
+            return createFunction(xmlFunction.getXmlSetState(), element);
         }
 
         if (xmlFunction.getXmlSimple() != null) {
@@ -230,6 +244,16 @@ public class RuleParser implements IParser<List<IRule>> {
                 return new FunctionResult(Boolean.FALSE,
                         Collections.singletonList(new FunctionError("INERRUPTED", xmlFunction.getSleep() + " не были выдержаны")));
             }
+            return new FunctionResult(Boolean.TRUE);
+        });
+    }
+
+    private IFunction ifSetState(XmlSetState xmlFunction) {
+        return new Simple(() -> {
+            IArea areaByCode = polygon.getAreaByCode(xmlFunction.getArea());
+            IStationElement element = areaByCode.getElementByCode(xmlFunction.getCode());
+            stateSender.sendState(areaByCode, element, xmlFunction.getState());
+
             return new FunctionResult(Boolean.TRUE);
         });
     }

@@ -12,6 +12,9 @@ public abstract class XmlAbstractSimpleFunction implements XmlIFunction {
     @JacksonXmlProperty(localName = "print")
     private XmlPrint xmlPrint;
 
+    @JacksonXmlProperty(localName = "setstate")
+    private XmlSetState xmlSetState;
+
     @JacksonXmlProperty(localName = "if")
     private XmlIf xmlIf;
 
@@ -67,5 +70,13 @@ public abstract class XmlAbstractSimpleFunction implements XmlIFunction {
 
     public void setXmlOr(XmlOr xmlOr) {
         this.xmlOr = xmlOr;
+    }
+
+    public XmlSetState getXmlSetState() {
+        return xmlSetState;
+    }
+
+    public void setXmlSetState(XmlSetState xmlSetState) {
+        this.xmlSetState = xmlSetState;
     }
 }

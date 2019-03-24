@@ -127,8 +127,6 @@ public class PolygonParser implements IParser<IPolygon> {
             throw new DuplicationException(stationElement.getElementCode());
         }
 
-        ((AbstractElement) stationElement).addCheckRuleListener(polygon);
-
         return stationElement;
     }
 

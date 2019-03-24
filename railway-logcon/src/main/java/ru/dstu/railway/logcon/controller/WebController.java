@@ -9,7 +9,6 @@ import ru.dstu.railway.api.area.IArea;
 import ru.dstu.railway.api.element.IStationElement;
 import ru.dstu.railway.api.message.IMessageHolder;
 import ru.dstu.railway.api.message.MessageLevel;
-import ru.dstu.railway.api.paint.IPaintPolygon;
 import ru.dstu.railway.api.polygon.IPolygon;
 import ru.dstu.railway.model.element.Sv;
 
@@ -19,7 +18,7 @@ import java.util.logging.Logger;
 import static ru.dstu.railway.api.constant.Constant.*;
 
 @Controller
-public class WebController  {
+public class WebController {
 
     private static final Logger LOGGER = Logger.getLogger(WebController.class.getName());
 
@@ -27,12 +26,10 @@ public class WebController  {
     private IPolygon polygon;
     @Autowired
     private IMessageHolder messageHolder;
-    @Autowired
-    private IPaintPolygon paintPolygon;
 
     @RequestMapping("/")
     public ModelAndView index() {
-       return new ModelAndView("index");
+        return new ModelAndView("index");
     }
 
     @RequestMapping("statistic/")
@@ -66,8 +63,6 @@ public class WebController  {
         elementByCode.setState(Integer.valueOf(state));
         modelAndView.addObject("msg", state + " установлен объекту " + element);
 
-        paintPolygon.setColors(areaByCode, elementByCode);
-
         return modelAndView;
     }
 
@@ -94,7 +89,7 @@ public class WebController  {
                                 e.printStackTrace();
                             }
                         }
-                        );
+                );
 
                 setState("SplitPoint.A", "ПР1", PR_BUSY, 0);
                 setState("Stage.A.B", "У1Ч", UP_BUSY, 1);
@@ -154,7 +149,6 @@ public class WebController  {
         IArea areaByCode = polygon.getAreaByCode(area);
         IStationElement elementByCode = areaByCode.getElementByCode(element);
         elementByCode.setState(state);
-        paintPolygon.setColors(areaByCode, elementByCode);
         TimeUnit.SECONDS.sleep(sleep);
     }
 }
