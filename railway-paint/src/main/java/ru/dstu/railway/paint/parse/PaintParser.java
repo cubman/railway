@@ -10,7 +10,7 @@ import ru.dstu.railway.paint.figure.Label;
 import ru.dstu.railway.paint.figure.Line;
 import ru.dstu.railway.paint.figure.MrLabel;
 import ru.dstu.railway.paint.parse.struct.*;
-import ru.dstu.railway.api.base.parse.IParser;
+import ru.dstu.railway.api.parse.IParser;
 import ru.dstu.railway.base.parse.exception.ParseException;
 import ru.dstu.railway.api.polygon.IPolygon;
 

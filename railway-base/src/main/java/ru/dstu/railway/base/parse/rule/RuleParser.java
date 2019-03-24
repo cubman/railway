@@ -2,9 +2,9 @@ package ru.dstu.railway.base.parse.rule;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import ru.dstu.railway.api.area.IArea;
-import ru.dstu.railway.api.base.message.IMessageHolder;
-import ru.dstu.railway.api.base.message.MessageLevel;
-import ru.dstu.railway.api.base.parse.IParser;
+import ru.dstu.railway.api.message.IMessageHolder;
+import ru.dstu.railway.api.message.MessageLevel;
+import ru.dstu.railway.api.parse.IParser;
 import ru.dstu.railway.api.element.IStationElement;
 import ru.dstu.railway.api.polygon.IPolygon;
 import ru.dstu.railway.api.rule.IRule;
@@ -27,6 +27,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+
+import static ru.dstu.railway.base.parse.rule.function.description.ErrorCodes.SIMPLE_CHECK;
 
 public class RuleParser implements IParser<List<IRule>> {
 
@@ -68,7 +70,7 @@ public class RuleParser implements IParser<List<IRule>> {
                 IFunction preCondition = createFunction(rule.getXmlPreCondition(), element);
                 IFunction postCondition = createFunction(rule.getXmlPostCondition(), element);
 
-                IRule elementRule = new Rule(rule.getName(), preCondition, postCondition);
+                IRule elementRule = new Rule(rule.getName(), preCondition, postCondition, messageHolder);
 
                 ((AbstractElement) element).addRule(elementRule);
                 rules.add(elementRule);
@@ -193,9 +195,9 @@ public class RuleParser implements IParser<List<IRule>> {
             case "user":
                 return new Simple(() -> {
                     if (xmlPrint.getLevel() == null || "info".equals(xmlPrint.getLevel())) {
-                        messageHolder.addMessage(xmlPrint.getText(), MessageLevel.INFO);
+                        messageHolder.addMessage(SIMPLE_CHECK, xmlPrint.getText(), MessageLevel.INFO);
                     } else if ("error".equals(xmlPrint.getLevel())) {
-                        messageHolder.addMessage(xmlPrint.getText(), MessageLevel.ERROR);
+                        messageHolder.addMessage(SIMPLE_CHECK, xmlPrint.getText(), MessageLevel.ERROR);
                     }
                     else {
                         throw new UnsupportedOperationException(

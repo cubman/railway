@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import ru.dstu.railway.logcon.struct.JArea;
+import ru.dstu.railway.logcon.struct.JMessage;
 import ru.dstu.railway.logcon.struct.JPolygonCreator;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("api")
 public class ApiController {
 
     @Autowired
@@ -30,8 +31,13 @@ public class ApiController {
         };
     }
 
-    @GetMapping(name = "/", produces = "application/json")
+    @GetMapping(path = "/area/", produces = "application/json")
     public List<JArea> areaApi() {
         return polygonCreator.getJsonPolygon();
+    }
+
+    @GetMapping(path = "/message/", produces = "application/json")
+    public List<JMessage> messageApi() {
+        return polygonCreator.getJsonMessages();
     }
 }

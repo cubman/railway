@@ -2,7 +2,7 @@ package ru.dstu.railway.base.parse.polygon;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import ru.dstu.railway.api.area.IArea;
-import ru.dstu.railway.api.base.parse.IParser;
+import ru.dstu.railway.api.parse.IParser;
 import ru.dstu.railway.api.element.IStationElement;
 import ru.dstu.railway.api.polygon.IPolygon;
 import ru.dstu.railway.base.parse.exception.ParseException;

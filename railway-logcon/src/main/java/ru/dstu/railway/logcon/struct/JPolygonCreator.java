@@ -1,7 +1,10 @@
 package ru.dstu.railway.logcon.struct;
 
 import ru.dstu.railway.api.area.IArea;
+import ru.dstu.railway.api.constant.Pair;
 import ru.dstu.railway.api.element.IStationElement;
+import ru.dstu.railway.api.message.IMessageHolder;
+import ru.dstu.railway.api.message.MessageLevel;
 import ru.dstu.railway.api.paint.IPaintPolygon;
 import ru.dstu.railway.api.polygon.IPolygon;
 
@@ -13,10 +16,33 @@ public class JPolygonCreator {
 
     private IPolygon polygon;
     private IPaintPolygon paintPolygon;
+    private IMessageHolder messageHolder;
 
-    public JPolygonCreator(IPolygon polygon, IPaintPolygon paintPolygon) {
+    public JPolygonCreator(IPolygon polygon,
+                           IPaintPolygon paintPolygon,
+                           IMessageHolder messageHolder) {
         this.paintPolygon = paintPolygon;
         this.polygon = polygon;
+        this.messageHolder = messageHolder;
+    }
+
+    public List<JMessage> getJsonMessages() {
+        List<JMessage> messages = new ArrayList<>();
+
+        messages.addAll(getJMessageByLevel(MessageLevel.ERROR));
+        messages.addAll(getJMessageByLevel(MessageLevel.INFO));
+
+        return messages;
+    }
+
+    private List<JMessage> getJMessageByLevel(MessageLevel messageLevel) {
+        return messageHolder.getMessages(messageLevel).stream().map(stringStringPair -> {
+            JMessage jMessage = new JMessage();
+            jMessage.setMessageLevel(messageLevel);
+            jMessage.setCode(stringStringPair.getT1());
+            jMessage.setDescription(stringStringPair.getT2());
+            return jMessage;
+        }).collect(Collectors.toList());
     }
 
     public List<JArea> getJsonPolygon() {

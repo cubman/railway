@@ -8,26 +8,52 @@
     <head>
         <meta charset="UTF-8">
         <title>DSTU railway</title>
-        <!--<meta http-equiv="refresh" content="3" />-->
         <script type="text/javascript" src="/resources/js/raphael.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
             <script type="text/javascript">
 
-                $(document).ready(
-                function() {
-                    setInterval(drawPolygon, 1000);
+                $(function() {
+                    drawPolygon();
+                    setInterval(function() {
+                        drawMessage();
+                        drawPolygon();
+                    }, 1000);
                 });
 
-                var drawPolygon = function() {
-                        $.getJSON("http://localhost:8080/api/", function(areas) {
-                                t(areas);
-                            }
-                        );
-                        return false;
+                var drawMessage = function() {
+                    var messageNotExists = document.getElementById('mes') == null;
+                    $.getJSON("http://localhost:8080/api/message/", function(messages) {
+                        var div_data; = "<ul>";
+                        if (messageNotExists) {
+                            div_data = "<div class=prokrutka id=mes>" + div_data;
+                        }
 
+                        $.each(messages, function(i, message) {
+                            div_data = div_data +
+                            "<li>" +
+                                "( " +
+                                    message.code + " )" +
+                                    message.description +
+                            "</li>";
+                        });
+
+                        div_data = div_data + "</ul>";
+
+                        if (messageNotExists) {
+                            div_data = div_data + "</div>";"
+                        }
+                        $(div_data).appendTo("#message");
+                    });
                 };
 
-                var t = function(areas) {
+                var drawPolygon = function() {
+                    $.getJSON("http://localhost:8080/api/area/", function(areas) {
+                            drawArea(areas);
+                        }
+                    );
+                };
+
+                var drawArea = function(areas) {
                     var h = 600;
                     var w = 1200;
 
@@ -148,6 +174,15 @@
                 }
 
             </script>
+            <style>
+                .prokrutka {
+                    height: 50%; /* высота нашего блока */
+                    width: 100%; /* ширина нашего блока */
+                    background: #fff; /* цвет фона, белый */
+                    border: 1px solid #C1C1C1; /* размер и цвет границы блока */
+                    overflow-y: scroll; /* прокрутка по вертикали */
+                }
+            </style>
     </head>
 
     <body>
@@ -161,6 +196,7 @@
         </form>
 
         <div id="placeholder"></div>
-        <div id="9lessonsLinks"></div>
+        <div id="message">
+        </div>
     </body>
 </html>

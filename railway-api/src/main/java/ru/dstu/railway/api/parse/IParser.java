@@ -1,4 +1,4 @@
-package ru.dstu.railway.api.base.parse;
+package ru.dstu.railway.api.parse;
 
 @FunctionalInterface
 public interface IParser<T> {

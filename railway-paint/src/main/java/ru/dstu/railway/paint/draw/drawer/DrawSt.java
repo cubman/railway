@@ -18,7 +18,12 @@ public class DrawSt implements IDrawElement {
     }
 
     private void ifBusy(IStationElement element, List<IFigure> figures) {
-        BaseDraw.setColorsById(figures, RED_COLOR, 1, 4, 6, 7);
+        IFigure figure = figureById(figures, 5);
+        if (TRANSPARENT_COLOR.equals(figure.getColor())) {
+            BaseDraw.setColorsById(figures, RED_COLOR, 1, 4, 7);
+        } else {
+            BaseDraw.setColorsById(figures, RED_COLOR, 1, 6);
+        }
     }
 
     private void ifNotBusy(IStationElement element, List<IFigure> figures) {

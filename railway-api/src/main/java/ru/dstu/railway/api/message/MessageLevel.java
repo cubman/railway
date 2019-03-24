@@ -1,4 +1,4 @@
-package ru.dstu.railway.api.base.message;
+package ru.dstu.railway.api.message;
 
 public enum MessageLevel {
     INFO, ERROR

@@ -2,7 +2,12 @@ package ru.dstu.railway.base.parse.rule.function;
 
 import ru.dstu.railway.api.rule.function.IFunction;
 import ru.dstu.railway.api.rule.function.IFunctionResult;
+import ru.dstu.railway.base.parse.rule.function.description.FunctionError;
 import ru.dstu.railway.base.parse.rule.function.description.FunctionResult;
+
+import java.util.Collections;
+
+import static ru.dstu.railway.base.parse.rule.function.description.ErrorCodes.ELSE_UNDEFINED;
 
 /**
  * Условие ветвления
@@ -26,7 +31,11 @@ public class If implements IFunction {
         if (check.getResult()) {
             return thenFunction.check();
         } else {
-            return elseFunction != null ? elseFunction.check() : new FunctionResult(Boolean.FALSE);
+            return elseFunction != null ?
+                    elseFunction.check() :
+                    new FunctionResult(Boolean.FALSE,
+                            Collections.singletonList(
+                                    new FunctionError(ELSE_UNDEFINED, "условие по else не определено")));
         }
     }
 }
