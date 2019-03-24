@@ -22,8 +22,9 @@
 
                 var drawMessage = function() {
                     var messageNotExists = document.getElementById('mes') == null;
+                    $("#info").html("");
                     $.getJSON("http://localhost:8080/api/message/", function(messages) {
-                        var div_data; = "<ul>";
+                        var div_data = "<ul id=info>";
                         if (messageNotExists) {
                             div_data = "<div class=prokrutka id=mes>" + div_data;
                         }
@@ -32,6 +33,7 @@
                             div_data = div_data +
                             "<li>" +
                                 "( " +
+                                    message.messageLevel + " | " +
                                     message.code + " )" +
                                     message.description +
                             "</li>";
@@ -40,9 +42,12 @@
                         div_data = div_data + "</ul>";
 
                         if (messageNotExists) {
-                            div_data = div_data + "</div>";"
+                            div_data = div_data + "</div>"
+
+                            $(div_data).appendTo("#message");
+                        } else {
+                            $(div_data).appendTo("#info");
                         }
-                        $(div_data).appendTo("#message");
                     });
                 };
 
@@ -180,7 +185,7 @@
                     width: 100%; /* ширина нашего блока */
                     background: #fff; /* цвет фона, белый */
                     border: 1px solid #C1C1C1; /* размер и цвет границы блока */
-                    overflow-y: scroll; /* прокрутка по вертикали */
+                    overflow: auto;
                 }
             </style>
     </head>
