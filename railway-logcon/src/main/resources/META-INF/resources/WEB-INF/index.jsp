@@ -201,7 +201,7 @@
         </form>
 
         <div id="placeholder"></div>
-        <div id="message">
+        <!--<div id="message">-->
         </div>
     </body>
 </html>

@@ -30,9 +30,10 @@ public interface IStationElement {
 
     /**
      * Установить состяние объекту в виде числового значения
+     * @param area область, инициирующая выставление состояния
      * @param state состояние
      */
-    void setState(int state);
+    void setState(IArea area, int state);
 
     /**
      * Получить состояние объекта

@@ -40,11 +40,11 @@ public class ParseTest extends BaseTest {
                 checkLink(area, element);
 
                 if (element instanceof St) {
-                    element.setState(ST_MINUS);
+                    element.setState(area, ST_MINUS);
 
                     checkLink(area, element);
 
-                    element.setState(ST_PLUS);
+                    element.setState(area, ST_PLUS);
                 }
             }
         }
@@ -58,15 +58,15 @@ public class ParseTest extends BaseTest {
             if (elementEven instanceof St) {
                 if (area.isPartyChanges(element, elementEven)) {
                     if (!element.equals(elementEven.getEven())) {
-                        elementEven.setState(ST_MINUS);
+                        elementEven.setState(area, ST_MINUS);
                         Assert.assertEquals(element, elementEven.getEven());
-                        elementEven.setState(ST_PLUS);
+                        elementEven.setState(area, ST_PLUS);
                         return;
                     }
                 } else if (!element.equals(elementEven.getOdd())) {
-                    elementEven.setState(ST_MINUS);
+                    elementEven.setState(area, ST_MINUS);
                     Assert.assertEquals(element, elementEven.getOdd());
-                    elementEven.setState(ST_PLUS);
+                    elementEven.setState(area, ST_PLUS);
                     return;
                 }
 
@@ -78,15 +78,15 @@ public class ParseTest extends BaseTest {
             if (elementOdd instanceof St) {
                 if (area.isPartyChanges(element, elementOdd)) {
                     if (!element.equals(elementOdd.getOdd())) {
-                        elementOdd.setState(ST_MINUS);
+                        elementOdd.setState(area, ST_MINUS);
                         Assert.assertEquals(element, elementOdd.getOdd());
-                        elementOdd.setState(ST_PLUS);
+                        elementOdd.setState(area, ST_PLUS);
                         return;
                     }
                 } else if (!element.equals(elementOdd.getEven())) {
-                    elementOdd.setState(ST_MINUS);
+                    elementOdd.setState(area, ST_MINUS);
                     Assert.assertEquals(element, elementOdd.getEven());
-                    elementOdd.setState(ST_PLUS);
+                    elementOdd.setState(area, ST_PLUS);
                     return;
                 }
             }

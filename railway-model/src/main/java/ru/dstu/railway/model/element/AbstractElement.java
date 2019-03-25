@@ -14,7 +14,6 @@ import java.util.List;
 public abstract class AbstractElement implements IStationElement {
 
     private String elementCode;
-//    private final List<IRule> rules;
     protected final State state;
     private final List<IArea> areas;
     private final List<IStateListener> stateListeners;
@@ -22,17 +21,12 @@ public abstract class AbstractElement implements IStationElement {
     public AbstractElement() {
         this.state = new State(new Date(), 1);
         this.areas = new ArrayList<>();
-//        this.rules = new ArrayList<>();
         this.stateListeners = new ArrayList<>();
     }
 
     public void setElementCode(String elementCode) {
         this.elementCode = elementCode;
     }
-
-//    public void addRule(IRule rule) {
-//        rules.add(rule);
-//    }
 
     public void addStateListener(IStateListener stateListener) {
         stateListeners.add(stateListener);
@@ -45,15 +39,15 @@ public abstract class AbstractElement implements IStationElement {
     }
 
     @Override
-    public void setState(int state) {
+    public void setState(IArea area, int state) {
+        if (!areas.contains(area)) {
+            throw new UnsupportedOperationException(area + " не принадлежит объекту" + this);
+        }
+
         this.state.setState(state);
         this.state.setLastChange(new Date());
 
-        stateListeners.forEach(stateListener -> stateListener.notify(areas.get(0), this));
-//        List<IRule> checked = rules.stream().filter(IRule::check).collect(Collectors.toList());
-//        if (!checked.isEmpty()) {
-//            сheckedRuleListeners.forEach(iCheckedRuleListener -> iCheckedRuleListener.notify(checked));
-//        }
+        stateListeners.forEach(stateListener -> stateListener.notify(area, this));
     }
 
     @Override

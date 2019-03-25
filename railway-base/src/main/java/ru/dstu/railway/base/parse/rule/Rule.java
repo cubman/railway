@@ -16,21 +16,21 @@ import java.util.logging.Logger;
 
 public class Rule implements IRule, IStateListener {
 
-    private static final int THREAD_COUNT = 10;
-
     private static final Logger LOGGER = Logger.getLogger(Rule.class.getName());
-    private static final ExecutorService service = Executors.newFixedThreadPool(THREAD_COUNT);
 
     private String name;
     private IFunction checkFunction;
     private IFunction executeFunction;
     private IMessageHolder messageHolder;
+    private RuleExecutor ruleExecutor;
 
-    Rule(String name, IFunction checkFunction, IFunction executeFunction, IMessageHolder messageHolder) {
+    Rule(String name, IFunction checkFunction, IFunction executeFunction,
+         IMessageHolder messageHolder, RuleExecutor ruleExecutor) {
         this.name = name;
         this.checkFunction = checkFunction;
         this.executeFunction = executeFunction;
         this.messageHolder = messageHolder;
+        this.ruleExecutor = ruleExecutor;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class Rule implements IRule, IStateListener {
     @Override
     public void notify(IArea area, IStationElement element) {
         if (check()) {
-            service.submit(this::execute);
+            ruleExecutor.execute(this::execute);
         }
     }
 }

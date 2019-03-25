@@ -39,6 +39,7 @@ public class RuleParser implements IParser<List<IRule>> {
     private IPolygon polygon;
     private IMessageHolder messageHolder;
     private IStateSender stateSender;
+    private RuleExecutor ruleExecutor;
 
     public RuleParser(String ruleDescriptionFileName,
                       IPolygon polygon,
@@ -48,6 +49,7 @@ public class RuleParser implements IParser<List<IRule>> {
         this.polygon = polygon;
         this.messageHolder = messageHolder;
         this.stateSender = stateSender;
+        this.ruleExecutor = new RuleExecutor();
     }
 
     @Override
@@ -76,7 +78,8 @@ public class RuleParser implements IParser<List<IRule>> {
                 IFunction preCondition = createFunction(rule.getXmlPreCondition(), element);
                 IFunction postCondition = createFunction(rule.getXmlPostCondition(), element);
 
-                Rule elementRule = new Rule(rule.getName(), preCondition, postCondition, messageHolder);
+                Rule elementRule = new Rule(rule.getName(), preCondition,
+                        postCondition, messageHolder, ruleExecutor);
 
                 ((AbstractElement) element).addStateListener(elementRule);
                 rules.add(elementRule);
@@ -91,8 +94,8 @@ public class RuleParser implements IParser<List<IRule>> {
             return ifXmlPrint((XmlPrint) xmlFunction);
         }
 
-        if (xmlFunction instanceof XmlSimple) {
-            return ifSimple((XmlSimple) xmlFunction, element);
+        if (xmlFunction instanceof XmlCheck) {
+            return ifSimple((XmlCheck) xmlFunction, element);
         }
 
         if (xmlFunction instanceof XmlTimer) {
@@ -160,8 +163,8 @@ public class RuleParser implements IParser<List<IRule>> {
             return createFunction(xmlFunction.getXmlSetState(), element);
         }
 
-        if (xmlFunction.getXmlSimple() != null) {
-            return createFunction(xmlFunction.getXmlSimple(), element);
+        if (xmlFunction.getXmlCheck() != null) {
+            return createFunction(xmlFunction.getXmlCheck(), element);
         }
 
         if (xmlFunction.getXmlTimer() != null) {
@@ -225,11 +228,11 @@ public class RuleParser implements IParser<List<IRule>> {
         }
     }
 
-    private IFunction ifSimple(XmlSimple xmlSimple, IStationElement stationElement) {
-        if (xmlSimple.getCode() != null) {
-            return new Simple(() -> new FunctionResult(stationElement.getElementCode().equals(xmlSimple.getCode())));
-        } else if (xmlSimple.getState() != null) {
-            return new Simple(() -> new FunctionResult(stationElement.getState().getState() == xmlSimple.getState()));
+    private IFunction ifSimple(XmlCheck xmlCheck, IStationElement stationElement) {
+        if (xmlCheck.getCode() != null) {
+            return new Simple(() -> new FunctionResult(stationElement.getElementCode().equals(xmlCheck.getCode())));
+        } else if (xmlCheck.getState() != null) {
+            return new Simple(() -> new FunctionResult(stationElement.getState().getState() == xmlCheck.getState()));
         } else {
             throw new ParseException("Сформировать условие simple не удалось по существующим правилам");
         }

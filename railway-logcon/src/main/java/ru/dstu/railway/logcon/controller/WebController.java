@@ -60,7 +60,7 @@ public class WebController {
             return modelAndView;
         }
 
-        elementByCode.setState(Integer.valueOf(state));
+        elementByCode.setState(areaByCode, Integer.valueOf(state));
         modelAndView.addObject("msg", state + " установлен объекту " + element);
 
         return modelAndView;
@@ -148,7 +148,7 @@ public class WebController {
     private void setState(String area, String element, int state, int sleep) throws InterruptedException {
         IArea areaByCode = polygon.getAreaByCode(area);
         IStationElement elementByCode = areaByCode.getElementByCode(element);
-        elementByCode.setState(state);
+        elementByCode.setState(areaByCode, state);
         TimeUnit.SECONDS.sleep(sleep);
     }
 }

@@ -3,8 +3,8 @@ package ru.dstu.railway.base.parse.rule.struct;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 public abstract class XmlAbstractSimpleFunction implements XmlIFunction {
-    @JacksonXmlProperty(localName = "simple")
-    private XmlSimple xmlSimple;
+    @JacksonXmlProperty(localName = "check")
+    private XmlCheck xmlCheck;
 
     @JacksonXmlProperty(localName = "timer")
     private XmlTimer xmlTimer;
@@ -24,12 +24,12 @@ public abstract class XmlAbstractSimpleFunction implements XmlIFunction {
     @JacksonXmlProperty(localName = "or")
     private XmlOr xmlOr;
 
-    public XmlSimple getXmlSimple() {
-        return xmlSimple;
+    public XmlCheck getXmlCheck() {
+        return xmlCheck;
     }
 
-    public void setXmlSimple(XmlSimple xmlSimple) {
-        this.xmlSimple = xmlSimple;
+    public void setXmlCheck(XmlCheck xmlCheck) {
+        this.xmlCheck = xmlCheck;
     }
 
     public XmlTimer getXmlTimer() {

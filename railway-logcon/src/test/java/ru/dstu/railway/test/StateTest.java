@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import ru.dstu.railway.api.area.IArea;
 import ru.dstu.railway.api.constant.Pair;
 import ru.dstu.railway.api.message.IMessageHolder;
 import ru.dstu.railway.api.message.MessageLevel;
@@ -29,8 +30,9 @@ public class StateTest extends BaseTest {
     public void testState() throws InterruptedException {
         messageHolder.clear(MessageLevel.ERROR);
         Assert.assertEquals(0, messageHolder.getMessages(MessageLevel.ERROR).size());
-        IStationElement st5 = polygon.getElementByAreaAndCode("SplitPoint.A", "СТ5");
-        st5.setState(1);
+        IArea area = polygon.getAreaByCode("SplitPoint.A");
+        IStationElement st5 = area.getElementByCode("СТ5");
+        st5.setState(area, 1);
         TimeUnit.SECONDS.sleep(1);
 
         List<Pair<String, String>> messages = messageHolder.getMessages(MessageLevel.ERROR);

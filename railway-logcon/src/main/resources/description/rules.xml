@@ -1,5 +1,5 @@
 <rules>
-    <rule name="Проверка функционирования стрелки 4 вариант" type="ST" area="SplitPoint.A">
+    <rule name="Проверка функционирования стрелки" type="ST" area="SplitPoint.A">
         <group>
             <element code="СТ5"/>
             <element code="СТ9"/>
@@ -7,10 +7,10 @@
         <preCondition>
             <or>
                 <condition>
-                    <simple state="1"/>
+                    <check state="1"/>
                 </condition>
                 <condition>
-                    <simple state="3"/>
+                    <check state="3"/>
                 </condition>
             </or>
         </preCondition>
@@ -19,10 +19,10 @@
                 <condition>
                     <and>
                         <condition>
-                            <simple state="1"/>
+                            <check state="1"/>
                         </condition>
                         <condition>
-                            <simple code="СТ9"/>
+                            <check code="СТ9"/>
                         </condition>
                     </and>
                 </condition>
@@ -42,10 +42,10 @@
                         <condition>
                             <and>
                                 <condition>
-                                    <simple state="3"/>
+                                    <check state="3"/>
                                 </condition>
                                 <condition>
-                                    <simple code="СТ5"/>
+                                    <check code="СТ5"/>
                                 </condition>
                             </and>
                         </condition>
@@ -61,7 +61,7 @@
                                 <condition>
                                     <if>
                                         <condition>
-                                            <simple state="3"/>
+                                            <check state="3"/>
                                         </condition>
                                         <then>
                                             <print out="console" level="info"
