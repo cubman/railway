@@ -114,7 +114,6 @@
                 };
 
                 var drawLine = function(x1, y1, x2, y2, color, width, text, paper) {
-
                     var c = paper.path("M" + x1 + "," + y1 + "L" + x2 + "," + y2);
 
                     c.attr({
@@ -122,7 +121,6 @@
                         title: text,
                         "stroke-width": width
                     });
-
                 }
 
                 var drawCircle = function(x, y, r, color, width, text, paper) {

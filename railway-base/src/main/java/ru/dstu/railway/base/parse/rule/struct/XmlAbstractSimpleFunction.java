@@ -24,6 +24,9 @@ public abstract class XmlAbstractSimpleFunction implements XmlIFunction {
     @JacksonXmlProperty(localName = "or")
     private XmlOr xmlOr;
 
+    @JacksonXmlProperty(localName = "not")
+    private XmlNot xmlNot;
+
     public XmlCheck getXmlCheck() {
         return xmlCheck;
     }
@@ -78,5 +81,13 @@ public abstract class XmlAbstractSimpleFunction implements XmlIFunction {
 
     public void setXmlSetState(XmlSetState xmlSetState) {
         this.xmlSetState = xmlSetState;
+    }
+
+    public XmlNot getXmlNot() {
+        return xmlNot;
+    }
+
+    public void setXmlNot(XmlNot xmlNot) {
+        this.xmlNot = xmlNot;
     }
 }

@@ -33,7 +33,7 @@ public class DrawSv implements IDrawElement {
     }
 
     @Override
-    public void drawColors(List<IFigure> figures) {
+    public void drawFigures(List<IFigure> figures) {
         IState state = element.getState();
 
         switch (state.getState()) {

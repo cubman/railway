@@ -61,7 +61,11 @@
                                 <condition>
                                     <if>
                                         <condition>
-                                            <check state="3"/>
+                                            <not>
+                                                <condition>
+                                                    <check state="3"/>
+                                                </condition>
+                                            </not>
                                         </condition>
                                         <then>
                                             <print out="console" level="info"

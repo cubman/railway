@@ -11,10 +11,7 @@ import ru.dstu.railway.api.rule.IRule;
 import ru.dstu.railway.api.rule.function.IFunction;
 import ru.dstu.railway.api.state.IStateSender;
 import ru.dstu.railway.base.parse.exception.ParseException;
-import ru.dstu.railway.base.parse.rule.function.And;
-import ru.dstu.railway.base.parse.rule.function.If;
-import ru.dstu.railway.base.parse.rule.function.Or;
-import ru.dstu.railway.base.parse.rule.function.Simple;
+import ru.dstu.railway.base.parse.rule.function.*;
 import ru.dstu.railway.base.parse.rule.function.description.FunctionError;
 import ru.dstu.railway.base.parse.rule.function.description.FunctionResult;
 import ru.dstu.railway.base.parse.rule.struct.*;
@@ -118,12 +115,18 @@ public class RuleParser implements IParser<List<IRule>> {
             return ifOr((XmlOr) xmlFunction, element);
         }
 
+        if (xmlFunction instanceof XmlNot) {
+            return ifNot((XmlNot) xmlFunction, element);
+        }
+
         if (xmlFunction instanceof XmlCondition) {
             return ifCondition((XmlCondition) xmlFunction, element);
         }
 
         throw new ParseException("Необработанный тип функции: " + xmlFunction.getClass().getName());
     }
+
+
 
     private IFunction ifOr(XmlOr xmlFunction, IStationElement element) {
         List<IFunction> functions = new ArrayList<>();
@@ -135,6 +138,12 @@ public class RuleParser implements IParser<List<IRule>> {
         }
 
         return new Or(functions);
+    }
+
+    private IFunction ifNot(XmlNot xmlFunction, IStationElement element) {
+        XmlCondition condition = xmlFunction.getXmlCondition();
+
+        return new Not(ifCondition(condition, element));
     }
 
     private IFunction ifAnd(XmlAnd xmlFunction, IStationElement element) {
@@ -177,6 +186,10 @@ public class RuleParser implements IParser<List<IRule>> {
 
         if (xmlFunction.getXmlOr() != null) {
             return createFunction(xmlFunction.getXmlOr(), element);
+        }
+
+        if (xmlFunction.getXmlNot() != null) {
+            return createFunction(xmlFunction.getXmlNot(), element);
         }
 
         throw new ParseException("Необработанный тип условия функции");

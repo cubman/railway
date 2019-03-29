@@ -3,6 +3,6 @@ package ru.dstu.railway.model.element;
 /**
  * Объект путь
  */
-public class Pt extends SingleLinkNeigbour {
+public class Pt extends SingleLinkNeighbour {
 
 }

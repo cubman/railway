@@ -198,7 +198,7 @@ public class PolygonParser implements IParser<IPolygon> {
         for (AbstractXmlElement xmlElement : list) {
             IStationElement element = getElement(xmlArea, xmlElement.getCode());
 
-            SingleLinkNeigbour linkNeigbour = (SingleLinkNeigbour) element;
+            SingleLinkNeighbour linkNeigbour = (SingleLinkNeighbour) element;
             linkNeigbour.setEven(
                     getElement(
                             xmlElement.getEvenArea() != null ? xmlElement.getEvenArea() : xmlArea.getCode(),

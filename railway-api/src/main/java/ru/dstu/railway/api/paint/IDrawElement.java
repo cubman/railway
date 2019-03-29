@@ -4,7 +4,8 @@ import ru.dstu.railway.api.figure.IFigure;
 
 import java.util.List;
 
+@FunctionalInterface
 public interface IDrawElement {
 
-    void drawColors(List<IFigure> figures);
+    void drawFigures(List<IFigure> figures);
 }

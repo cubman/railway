@@ -57,7 +57,7 @@ public class PaintPolygon implements IPaintPolygon, IStateListener {
         Pair<Integer, List<IFigure>> listPair = getElement(area, element);
 
         IDrawElement drawer = drawFactory.getDrawer(element, listPair.getT1());
-        drawer.drawColors(listPair.getT2());
+        drawer.drawFigures(listPair.getT2());
     }
 
     @Override

@@ -2,7 +2,7 @@ package ru.dstu.railway.model.element;
 
 import ru.dstu.railway.api.element.IStationElement;
 
-public abstract class SingleLinkNeigbour extends AbstractElement {
+public abstract class SingleLinkNeighbour extends AbstractElement {
     private IStationElement even;
     private IStationElement odd;
 
