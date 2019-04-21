@@ -52,10 +52,4 @@ public interface IStationElement {
      * @return
      */
     List<IArea> getAreas();
-
-    /**
-     * Получить правила, не прошедшие проверку
-     * @return список правил
-     */
-    List<IRule> getUncheckedRules();
 }

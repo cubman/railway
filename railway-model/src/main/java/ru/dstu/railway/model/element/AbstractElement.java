@@ -10,8 +10,11 @@ import ru.dstu.railway.model.state.State;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 public abstract class AbstractElement implements IStationElement {
+
+    private static final Logger LOGGER = Logger.getLogger(AbstractElement.class.getName());
 
     private String elementCode;
     protected final State state;
@@ -43,6 +46,8 @@ public abstract class AbstractElement implements IStationElement {
         if (!areas.contains(area)) {
             throw new UnsupportedOperationException(area + " не принадлежит объекту" + this);
         }
+
+        LOGGER.info(String.format("Выставление состояния: объект %s, область %s, состояние %s", this, area, state));
 
         this.state.setState(state);
         this.state.setLastChange(new Date());
@@ -77,11 +82,6 @@ public abstract class AbstractElement implements IStationElement {
         AbstractElement that = (AbstractElement) obj;
 
         return elementCode != null ? elementCode.equals(that.elementCode) : that.elementCode == null;
-    }
-
-    @Override
-    public List<IRule> getUncheckedRules() {
-        return null;
     }
 
     @Override

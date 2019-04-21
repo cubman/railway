@@ -111,7 +111,7 @@ public abstract class AbstractArea implements IArea {
 
     @Override
     public String toString() {
-        return getClass() +
+        return getClass().getSimpleName() +
                 "{areaCode='" + areaCode + '\'' +
                 ", esr='" + esr + '\'' +
                 '}';
