@@ -17,7 +17,7 @@ public class DrawSt implements IDrawElement {
         this.element = element;
     }
 
-    private void ifBusy(IStationElement element, List<IFigure> figures) {
+    private void ifBusy(List<IFigure> figures) {
         IFigure figure = figureById(figures, 5);
         if (TRANSPARENT_COLOR.equals(figure.getColor())) {
             BaseDraw.setColorsById(figures, RED_COLOR, 1, 4, 7);
@@ -26,20 +26,36 @@ public class DrawSt implements IDrawElement {
         }
     }
 
-    private void ifNotBusy(IStationElement element, List<IFigure> figures) {
+    private void ifNotBusy(List<IFigure> figures) {
         BaseDraw.setColorsById(figures, BASE_COLOR, 1, 4, 6, 7);
     }
 
     private void ifPlus(List<IFigure> figures) {
         BaseDraw.setBaseColors(figures);
-        BaseDraw.setColorsById(figures, TRANSPARENT_COLOR, 3);
-        BaseDraw.setColorsById(figures, YELLOW_COLOR, 2, 5);
+
+        if (BaseDraw.figureById(figures, 5).isPlus()) {
+            BaseDraw.setColorsById(figures, YELLOW_COLOR, 2, 5);
+            BaseDraw.setColorsById(figures, TRANSPARENT_COLOR, 3);
+        } else if (BaseDraw.figureById(figures, 3).isPlus()) {
+            BaseDraw.setColorsById(figures, YELLOW_COLOR, 2, 3);
+            BaseDraw.setColorsById(figures, TRANSPARENT_COLOR, 5);
+        } else {
+            throw new UnsupportedOperationException(element + " не имеет однозначного определения положения стрелки");
+        }
     }
 
     private void ifMinus(List<IFigure> figures) {
         BaseDraw.setBaseColors(figures);
-        BaseDraw.setColorsById(figures, TRANSPARENT_COLOR, 5);
-        BaseDraw.setColorsById(figures, YELLOW_COLOR, 2, 3);
+
+        if (BaseDraw.figureById(figures, 5).isPlus()) {
+            BaseDraw.setColorsById(figures, YELLOW_COLOR, 2, 3);
+            BaseDraw.setColorsById(figures, TRANSPARENT_COLOR, 5);
+        } else if (BaseDraw.figureById(figures, 3).isPlus()) {
+            BaseDraw.setColorsById(figures, YELLOW_COLOR, 2, 5);
+            BaseDraw.setColorsById(figures, TRANSPARENT_COLOR, 3);
+        } else {
+            throw new UnsupportedOperationException(element + " не имеет однозначного определения положения стрелки");
+        }
     }
 
     private static void ifNon(List<IFigure> figures) {
@@ -61,10 +77,10 @@ public class DrawSt implements IDrawElement {
                 ifMinus(figures);
                 break;
             case ST_BUSY:
-                ifBusy(element, figures);
+                ifBusy(figures);
                 break;
             case ST_NOT_BUSY:
-                ifNotBusy(element, figures);
+                ifNotBusy(figures);
                 break;
             default:
                 throw new UnsupportedOperationException("Состояние не известно для стрелки: " + state);

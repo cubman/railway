@@ -3,9 +3,9 @@
         <element type="st" version="1">
             <object type="line" id="1" width="5"/>
             <object type="line" id="2" link="1" width="5"/>
-            <object type="line" id="3" link="2" pos="+" rotate="315" width="5"/>
+            <object type="line" id="3" link="2" rotate="315" width="5"/>
             <object type="line" id="4" link="3" rotate="315" width="5"/>
-            <object type="line" id="5" link="2" pos="-" width="5"/>
+            <object type="line" id="5" link="2" width="5"/>
             <object type="line" id="6" link="5" width="5"/>
             <object type="line" id="7" link="4" width="5"/>
             <object type="label" id="8" link="2" pos="-y" width="14"/>
@@ -13,9 +13,9 @@
         <element type="st" version="2">
             <object type="line" id="1" width="5"/>
             <object type="line" id="2" link="1" width="5"/>
-            <object type="line" id="3" link="2" pos="+" rotate="45" width="5"/>
+            <object type="line" id="3" link="2" rotate="45" width="5"/>
             <object type="line" id="4" link="3" rotate="45" width="5"/>
-            <object type="line" id="5" link="2" pos="-" width="5"/>
+            <object type="line" id="5" link="2" width="5"/>
             <object type="line" id="6" link="5" width="5"/>
             <object type="line" id="7" link="4" width="5"/>
             <object type="label" id="8" link="2" pos="+y" width="14"/>
@@ -23,9 +23,9 @@
         <element type="st" version="3">
             <object type="line" id="1" width="5"/>
             <object type="line" id="2" link="1" width="5"/>
-            <object type="line" id="3" link="2" pos="+" rotate="45" width="5"/>
+            <object type="line" id="3" link="2" rotate="45" width="5"/>
             <object type="line" id="4" link="3" rotate="45" width="5"/>
-            <object type="line" id="5" link="2" pos="-" width="5"/>
+            <object type="line" id="5" link="2" width="5"/>
             <object type="line" id="6" link="5" width="5"/>
             <object type="line" id="7" link="4" width="5"/>
             <object type="label" id="8" link="2" pos="-y" width="14"/>
@@ -33,9 +33,9 @@
         <element type="st" version="4">
             <object type="line" id="1" width="5"/>
             <object type="line" id="2" link="1" width="5"/>
-            <object type="line" id="3" link="2" pos="+" rotate="315" width="5"/>
+            <object type="line" id="3" link="2" rotate="315" width="5"/>
             <object type="line" id="4" link="3" rotate="315" width="5"/>
-            <object type="line" id="5" link="2" pos="-" width="5"/>
+            <object type="line" id="5" link="2" width="5"/>
             <object type="line" id="6" link="5" width="5"/>
             <object type="line" id="7" link="4" width="5"/>
             <object type="label" id="8" link="2" pos="+y" width="14"/>
@@ -43,9 +43,9 @@
         <element type="st" version="5">
             <object type="line" id="1" rotate="45" width="5"/>
             <object type="line" id="2" link="1" rotate="45" width="5"/>
-            <object type="line" id="3" link="2" pos="+" rotate="45" width="5"/>
+            <object type="line" id="3" link="2" rotate="45" width="5"/>
             <object type="line" id="4" link="3" rotate="45" width="5"/>
-            <object type="line" id="5" link="2" pos="-" width="5"/>
+            <object type="line" id="5" link="2" width="5"/>
             <object type="line" id="6" link="5" width="5"/>
             <object type="line" id="7" link="4" width="5"/>
             <object type="label" id="8" link="2" pos="+y" width="14"/>
@@ -53,9 +53,9 @@
         <element type="st" version="6">
             <object type="line" id="1" rotate="315" width="5"/>
             <object type="line" id="2" link="1" rotate="315" width="5"/>
-            <object type="line" id="3" link="2" pos="+" rotate="315" width="5"/>
+            <object type="line" id="3" link="2" rotate="315" width="5"/>
             <object type="line" id="4" link="3" rotate="315" width="5"/>
-            <object type="line" id="5" link="2" pos="-" width="5"/>
+            <object type="line" id="5" link="2" width="5"/>
             <object type="line" id="6" link="5" width="5"/>
             <object type="line" id="7" link="4" width="5"/>
             <object type="label" id="8" link="2" pos="+y" width="14"/>
@@ -184,50 +184,50 @@
                 <figure type="label" id="8" description="Ч6"/>
             </element>
 
-            <element type="sv" code="Н1" version="2">
-                <figure type="line" id="1" x="735" y="540" length="-15"/>
-                <figure type="line" id="2" length="-3"/>
-                <figure type="line" id="3" length="-15"/>
+            <element type="sv" code="Н1" version="2" back="true">
+                <figure type="line" id="1" x="735" y="540" length="15"/>
+                <figure type="line" id="2" length="3"/>
+                <figure type="line" id="3" length="15"/>
                 <figure type="circle" id="4" length="6"/>
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
                 <figure type="circle" id="7" length="0"/>
                 <figure type="label" id="8" description="Н1"/>
             </element>
-            <element type="sv" code="Н2" version="2">
-                <figure type="line" id="1" x="670" y="610" length="-15"/>
-                <figure type="line" id="2" length="-3"/>
-                <figure type="line" id="3" length="-15"/>
+            <element type="sv" code="Н2" version="2" back="true">
+                <figure type="line" id="1" x="670" y="610" length="15"/>
+                <figure type="line" id="2" length="3"/>
+                <figure type="line" id="3" length="15"/>
                 <figure type="circle" id="4" length="6"/>
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
                 <figure type="circle" id="7" length="0"/>
                 <figure type="label" id="8" description="Н2"/>
             </element>
-            <element type="sv" code="Н3" version="2">
-                <figure type="line" id="1" x="700" y="490" length="-15"/>
-                <figure type="line" id="2" length="-3"/>
-                <figure type="line" id="3" length="-15"/>
+            <element type="sv" code="Н3" version="2" back="true">
+                <figure type="line" id="1" x="700" y="490" length="15"/>
+                <figure type="line" id="2" length="3"/>
+                <figure type="line" id="3" length="15"/>
                 <figure type="circle" id="4" length="6"/>
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
                 <figure type="circle" id="7" length="0"/>
                 <figure type="label" id="8" description="Н3"/>
             </element>
-            <element type="sv" code="Н4" version="2">
-                <figure type="line" id="1" x="726" y="665" length="-15"/>
-                <figure type="line" id="2" length="-3"/>
-                <figure type="line" id="3" length="-15"/>
+            <element type="sv" code="Н4" version="2" back="true">
+                <figure type="line" id="1" x="726" y="665" length="15"/>
+                <figure type="line" id="2" length="3"/>
+                <figure type="line" id="3" length="15"/>
                 <figure type="circle" id="4" length="6"/>
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
                 <figure type="circle" id="7" length="0"/>
                 <figure type="label" id="8" description="Н4"/>
             </element>
-            <element type="sv" code="Н6" version="2">
-                <figure type="line" id="1" x="760" y="712" length="-15"/>
-                <figure type="line" id="2" length="-3"/>
-                <figure type="line" id="3" length="-15"/>
+            <element type="sv" code="Н6" version="2" back="true">
+                <figure type="line" id="1" x="760" y="712" length="15"/>
+                <figure type="line" id="2" length="3"/>
+                <figure type="line" id="3" length="15"/>
                 <figure type="circle" id="4" length="6"/>
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
@@ -257,10 +257,10 @@
                 <figure type="label" id="8" description="2Ч"/>
             </element>
 
-            <element type="sv" code="НД" version="2">
-                <figure type="line" id="1" x="1490" y="540" length="-15"/>
-                <figure type="line" id="2" length="-6"/>
-                <figure type="line" id="3" length="-15"/>
+            <element type="sv" code="НД" version="2" back="true">
+                <figure type="line" id="1" x="1490" y="540" length="15"/>
+                <figure type="line" id="2" length="6"/>
+                <figure type="line" id="3" length="15"/>
                 <figure type="circle" id="4" length="6"/>
                 <figure type="circle" id="5" length="6"/>
                 <figure type="circle" id="6" length="6"/>
@@ -293,20 +293,20 @@
             </element>
 
             <!-- Стрелки -->
-            <element type="st" code="СТ1" version="4">
-                <figure type="line" id="1" x="1445" y="550" length="-30"/>
-                <figure type="line" id="2" length="-30"/>
-                <figure type="line" id="3" length="-30"/>
-                <figure type="line" id="4" length="-20"/>
-                <figure type="line" id="5" length="-15"/>
-                <figure type="line" id="6" length="-20"/>
+            <element type="st" code="СТ1" version="4" back="true">
+                <figure type="line" id="1" x="1445" y="550" length="30"/>
+                <figure type="line" id="2" length="30"/>
+                <figure type="line" id="3" length="30" plus="true"/>
+                <figure type="line" id="4" length="20"/>
+                <figure type="line" id="5" length="15"/>
+                <figure type="line" id="6" length="20"/>
                 <figure type="line" id="7" length="0"/>
                 <figure type="label" id="8" description="1"/>
             </element>
             <element type="st" code="СТ3" version="1">
                 <figure type="line" id="1" x="1275 " y="620" length="10"/>
                 <figure type="line" id="2" length="30"/>
-                <figure type="line" id="3" length="30"/>
+                <figure type="line" id="3" length="30" plus="true"/>
                 <figure type="line" id="4" length="10"/>
                 <figure type="line" id="5" length="20"/>
                 <figure type="line" id="6" length="10"/>
@@ -316,51 +316,51 @@
             <element type="st" code="СТ5" version="2">
                 <figure type="line" id="1" x="1250" y="550" length="30"/>
                 <figure type="line" id="2" length="30"/>
-                <figure type="line" id="3" length="30"/>
+                <figure type="line" id="3" length="30" plus="true"/>
                 <figure type="line" id="4" length="20"/>
                 <figure type="line" id="5" length="20"/>
                 <figure type="line" id="6" length="10"/>
                 <figure type="line" id="7" length="0"/>
                 <figure type="label" id="8" description="5"/>
             </element>
-            <element type="st" code="СТ7" version="3">
-                <figure type="line" id="1" x="1440" y="620" length="-30"/>
-                <figure type="line" id="2" length="-30"/>
-                <figure type="line" id="3" length="-30"/>
-                <figure type="line" id="4" length="-15"/>
-                <figure type="line" id="5" length="-20"/>
-                <figure type="line" id="6" length="-10"/>
+            <element type="st" code="СТ7" version="3" back="true">
+                <figure type="line" id="1" x="1440" y="620" length="30"/>
+                <figure type="line" id="2" length="30"/>
+                <figure type="line" id="3" length="30" plus="true"/>
+                <figure type="line" id="4" length="15"/>
+                <figure type="line" id="5" length="20"/>
+                <figure type="line" id="6" length="10"/>
                 <figure type="line" id="7" length="0"/>
                 <figure type="label" id="8" description="7"/>
             </element>
-            <element type="st" code="СТ9" version="3">
-                <figure type="line" id="1" x="1245" y="550" length="-20"/>
-                <figure type="line" id="2" length="-20"/>
-                <figure type="line" id="3" length="-40"/>
-                <figure type="line" id="4" length="-31"/>
-                <figure type="line" id="5" length="-40"/>
-                <figure type="line" id="6" length="-20"/>
-                <figure type="line" id="7" length="-50"/>
+            <element type="st" code="СТ9" version="3" back="true">
+                <figure type="line" id="1" x="1245" y="550" length="20"/>
+                <figure type="line" id="2" length="20"/>
+                <figure type="line" id="3" length="40" plus="true"/>
+                <figure type="line" id="4" length="31"/>
+                <figure type="line" id="5" length="40"/>
+                <figure type="line" id="6" length="20"/>
+                <figure type="line" id="7" length="50"/>
                 <figure type="label" id="8" description="9"/>
             </element>
-            <element type="st" code="СТ11" version="4">
-                <figure type="line" id="1" x="1270" y="620" length="-30"/>
-                <figure type="line" id="2" length="-30"/>
-                <figure type="line" id="3" length="-30"/>
-                <figure type="line" id="4" length="-20"/>
-                <figure type="line" id="5" length="-30"/>
-                <figure type="line" id="6" length="-70"/>
+            <element type="st" code="СТ11" version="4" back="true">
+                <figure type="line" id="1" x="1270" y="620" length="30"/>
+                <figure type="line" id="2" length="30"/>
+                <figure type="line" id="3" length="30" plus="true"/>
+                <figure type="line" id="4" length="20"/>
+                <figure type="line" id="5" length="30"/>
+                <figure type="line" id="6" length="70"/>
                 <figure type="line" id="7" length="0"/>
                 <figure type="label" id="8" description="11"/>
             </element>
-            <element type="st" code="СТ13" version="6">
-                <figure type="line" id="1" x="1170" y="660" length="-2"/>
-                <figure type="line" id="2" length="-21"/>
-                <figure type="line" id="3" length="-30"/>
-                <figure type="line" id="4" length="-30"/>
-                <figure type="line" id="5" length="-30"/>
-                <figure type="line" id="6" length="-45"/>
-                <figure type="line" id="7" length="-30"/>
+            <element type="st" code="СТ13" version="6" back="true">
+                <figure type="line" id="1" x="1170" y="660" length="2"/>
+                <figure type="line" id="2" length="21"/>
+                <figure type="line" id="3" length="30" plus="true"/>
+                <figure type="line" id="4" length="30"/>
+                <figure type="line" id="5" length="30"/>
+                <figure type="line" id="6" length="45"/>
+                <figure type="line" id="7" length="30"/>
                 <figure type="label" id="8" description="13"/>
             </element>
             <element type="st" code="СТ14" version="1">
@@ -368,7 +368,7 @@
                 <figure type="line" id="2" length="20"/>
                 <figure type="line" id="3" length="40"/>
                 <figure type="line" id="4" length="31"/>
-                <figure type="line" id="5" length="40"/>
+                <figure type="line" id="5" length="40" plus="true"/>
                 <figure type="line" id="6" length="70"/>
                 <figure type="line" id="7" length="20"/>
                 <figure type="label" id="8" description="14"/>
@@ -376,7 +376,7 @@
             <element type="st" code="СТ16" version="2">
                 <figure type="line" id="1" x="550" y="620" length="30"/>
                 <figure type="line" id="2" length="30"/>
-                <figure type="line" id="3" length="30"/>
+                <figure type="line" id="3" length="30" plus="true"/>
                 <figure type="line" id="4" length="10"/>
                 <figure type="line" id="5" length="30"/>
                 <figure type="line" id="6" length="30"/>
@@ -386,7 +386,7 @@
             <element type="st" code="СТ18" version="5">
                 <figure type="line" id="1" x="645" y="655" length="10"/>
                 <figure type="line" id="2" length="20"/>
-                <figure type="line" id="3" length="30"/>
+                <figure type="line" id="3" length="30" plus="true"/>
                 <figure type="line" id="4" length="30"/>
                 <figure type="line" id="5" length="30"/>
                 <figure type="line" id="6" length="30"/>
@@ -410,6 +410,77 @@
             <element type="mr" code="НКЖ" version="1">
                 <figure type="mrLabel" id="1" x="930" y="350" description="НКЖ"/>
             </element>
+
+
+
+
+
+
+
+
+
+            <element type="st" code="TEST1" version="1">
+                <figure type="line" id="1" x="400" y="350" length="20"/>
+                <figure type="line" id="2" length="20"/>
+                <figure type="line" id="3" length="20"/>
+                <figure type="line" id="4" length="20"/>
+                <figure type="line" id="5" length="20" plus="true"/>
+                <figure type="line" id="6" length="20"/>
+                <figure type="line" id="7" length="20"/>
+                <figure type="label" id="8" description="TEST"/>
+            </element>
+            <element type="st" code="TEST2" version="2">
+                <figure type="line" id="1" x="500" y="350" length="20"/>
+                <figure type="line" id="2" length="20"/>
+                <figure type="line" id="3" length="20"/>
+                <figure type="line" id="4" length="20"/>
+                <figure type="line" id="5" length="20" plus="true"/>
+                <figure type="line" id="6" length="20"/>
+                <figure type="line" id="7" length="20"/>
+                <figure type="label" id="8" description="TEST"/>
+            </element>
+            <element type="st" code="TEST3" version="3">
+                <figure type="line" id="1" x="400" y="450" length="20"/>
+                <figure type="line" id="2" length="20"/>
+                <figure type="line" id="3" length="20"/>
+                <figure type="line" id="4" length="20"/>
+                <figure type="line" id="5" length="20" plus="true"/>
+                <figure type="line" id="6" length="20"/>
+                <figure type="line" id="7" length="20"/>
+                <figure type="label" id="8" description="TEST"/>
+            </element>
+            <element type="st" code="TEST4" version="4">
+                <figure type="line" id="1" x="500" y="450" length="20"/>
+                <figure type="line" id="2" length="20"/>
+                <figure type="line" id="3" length="20"/>
+                <figure type="line" id="4" length="20"/>
+                <figure type="line" id="5" length="20" plus="true"/>
+                <figure type="line" id="6" length="20"/>
+                <figure type="line" id="7" length="20"/>
+                <figure type="label" id="8" description="TEST"/>
+            </element>
+            <element type="st" code="TEST5" version="5">
+                <figure type="line" id="1" x="400" y="750" length="20"/>
+                <figure type="line" id="2" length="20"/>
+                <figure type="line" id="3" length="20"/>
+                <figure type="line" id="4" length="20"/>
+                <figure type="line" id="5" length="20" plus="true"/>
+                <figure type="line" id="6" length="20"/>
+                <figure type="line" id="7" length="20"/>
+                <figure type="label" id="8" description="TEST"/>
+            </element>
+            <element type="st" code="TEST6" version="6">
+                <figure type="line" id="1" x="500" y="750" length="20"/>
+                <figure type="line" id="2" length="20"/>
+                <figure type="line" id="3" length="20"/>
+                <figure type="line" id="4" length="20"/>
+                <figure type="line" id="5" length="20" plus="true"/>
+                <figure type="line" id="6" length="20"/>
+                <figure type="line" id="7" length="20"/>
+                <figure type="label" id="8" description="TEST"/>
+            </element>
+
+
         </area>
         <area code="Stage.A.B" esr="000002">
             <element type="up" code="У1Ч" version="1">

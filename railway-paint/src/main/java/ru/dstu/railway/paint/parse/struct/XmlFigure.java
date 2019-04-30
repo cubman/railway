@@ -21,6 +21,9 @@ public class XmlFigure {
     @JacksonXmlProperty(isAttribute=true, localName="description")
     private String description;
 
+    @JacksonXmlProperty(localName = "plus")
+    private Boolean plus;
+
     public String getType() {
         return type;
     }
@@ -67,5 +70,13 @@ public class XmlFigure {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getPlus() {
+        return plus;
+    }
+
+    public void setPlus(Boolean plus) {
+        this.plus = plus;
     }
 }

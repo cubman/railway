@@ -87,4 +87,9 @@ public class Circle implements IFigure {
     public String getColor() {
         return color;
     }
+
+    @Override
+    public boolean isPlus() {
+        return false;
+    }
 }

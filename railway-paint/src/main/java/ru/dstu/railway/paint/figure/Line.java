@@ -7,8 +7,9 @@ public class Line implements IFigure {
     private int width;
     private int id;
     private String color;
+    boolean isPlus;
 
-    public Line(int id, double x1, double y1, double x2, double y2, int width) {
+    public Line(int id, double x1, double y1, double x2, double y2, int width, boolean isPlus) {
         this.x1 = x1;
         this.x2 = x2;
         this.y1 = y1;
@@ -16,6 +17,7 @@ public class Line implements IFigure {
         this.width = width;
         this.id = id;
         this.color = "#d3d3d3";
+        this.isPlus = isPlus;
     }
 
     public double getX1() {
@@ -68,5 +70,10 @@ public class Line implements IFigure {
     @Override
     public String getColor() {
         return color;
+    }
+
+    @Override
+    public boolean isPlus() {
+        return isPlus;
     }
 }

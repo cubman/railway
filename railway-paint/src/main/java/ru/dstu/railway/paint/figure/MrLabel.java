@@ -64,6 +64,11 @@ public class MrLabel implements IFigure {
         return textColor;
     }
 
+    @Override
+    public boolean isPlus() {
+        return false;
+    }
+
     public String getTextColor() {
         return textColor;
     }

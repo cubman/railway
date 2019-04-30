@@ -15,6 +15,9 @@ public class XmlElementPaint {
     @JacksonXmlProperty(localName = "version")
     private Integer version;
 
+    @JacksonXmlProperty(localName = "back")
+    private Boolean back;
+
     @JacksonXmlProperty(localName = "figure")
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<XmlFigure> xmlFigures;
@@ -49,5 +52,13 @@ public class XmlElementPaint {
 
     public void setXmlFigures(List<XmlFigure> xmlFigures) {
         this.xmlFigures = xmlFigures;
+    }
+
+    public Boolean getBack() {
+        return back;
+    }
+
+    public void setBack(Boolean back) {
+        this.back = back;
     }
 }

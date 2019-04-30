@@ -18,7 +18,7 @@ public class Label implements IFigure {
     }
 
     private double moveY(String direction, double y) {
-        int delta = 20;
+        int delta = 30;
         if ("-y".equals(direction)) {
             return y - delta;
         } else if ("+y".equals(direction)) {
@@ -28,7 +28,7 @@ public class Label implements IFigure {
     }
 
     private double moveX(String direction, double x) {
-        int delta = 20;
+        int delta = 30;
         if ("-x".equals(direction)) {
             return x - delta;
         } else if ("+x".equals(direction)) {
@@ -82,6 +82,11 @@ public class Label implements IFigure {
     @Override
     public String getColor() {
         return "#fff";
+    }
+
+    @Override
+    public boolean isPlus() {
+        return false;
     }
 
 

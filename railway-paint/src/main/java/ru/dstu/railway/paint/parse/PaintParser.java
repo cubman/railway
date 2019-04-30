@@ -68,13 +68,14 @@ public class PaintParser implements IParser<IPaintPolygon> {
 
     private List<IFigure> createFigures(XmlElementPaint xmlElementPaint,
                                         XmlTemplateElementPaint templateFigure) {
-        List<IFigure> lines = new ArrayList<>();
+        List<IFigure> figures = new ArrayList<>();
 
         XmlFigure element = findInitialisedElement(xmlElementPaint.getXmlFigures());
 
-        initElementCoordinate(lines, element, templateFigure, xmlElementPaint.getXmlFigures());
+        initElementCoordinate(figures, element, templateFigure,
+                xmlElementPaint.getXmlFigures(), xmlElementPaint.getBack() == null ? Boolean.FALSE : xmlElementPaint.getBack());
 
-        return lines;
+        return figures;
     }
 
     private XmlFigure findInitialisedElement(List<XmlFigure> xmlFigures) {
@@ -99,7 +100,8 @@ public class PaintParser implements IParser<IPaintPolygon> {
 
     private void initElementCoordinate(List<IFigure> resLines, XmlFigure xmlFigure,
                                        XmlTemplateElementPaint templateElementPaint,
-                                       List<XmlFigure> xmlLines) {
+                                       List<XmlFigure> xmlLines,
+                                       boolean isBack) {
         List<XmlFigureObject> templateLines = templateElementPaint.getXmlTemplateLines();
         if (templateLines.size() == resLines.size()) {
             return;
@@ -112,8 +114,9 @@ public class PaintParser implements IParser<IPaintPolygon> {
             case "line":
                 figure = createLine(xmlFigure.getId(),
                         xmlFigure.getX(), xmlFigure.getY(),
-                        objectById.getRotate(), xmlFigure.getLength(),
-                        objectById.getWidth());
+                        objectById.getRotate(), isBack ? -xmlFigure.getLength() : xmlFigure.getLength(),
+                        objectById.getWidth(),
+                        xmlFigure.getPlus());
                 break;
             case "circle":
                 figure = createCircle(xmlFigure.getId(),
@@ -153,7 +156,7 @@ public class PaintParser implements IParser<IPaintPolygon> {
             figureObject.setX(figure.getNextX());
             figureObject.setY(figure.getNextY());
 
-            initElementCoordinate(resLines, figureObject, templateElementPaint, xmlLines);
+            initElementCoordinate(resLines, figureObject, templateElementPaint, xmlLines, isBack);
         }
     }
 
@@ -167,12 +170,13 @@ public class PaintParser implements IParser<IPaintPolygon> {
         return collect.get(0);
     }
 
-    private Line createLine(int id, double x, double y, Integer rotate, int length, int width) {
+    private Line createLine(int id, double x, double y, Integer rotate, int length, int width, Boolean isPlus) {
         rotate = rotate == null ? 0 : rotate;
         return new Line(id, x, y,
                 x + Math.cos(Math.toRadians(rotate)) * length,
                 y + Math.sin(Math.toRadians(rotate)) * length,
-                width);
+                width,
+                isPlus == null ? Boolean.FALSE : isPlus);
     }
 
     private Circle createCircle(int id, String direction, double x, double y, int r, int width) {

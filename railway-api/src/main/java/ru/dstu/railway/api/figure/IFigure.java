@@ -15,4 +15,6 @@ public interface IFigure {
     void setColor(String color);
 
     String getColor();
+
+    boolean isPlus();
 }
