@@ -7,6 +7,7 @@ import ru.dstu.railway.api.listener.IStateListener;
 import ru.dstu.railway.api.paint.IDrawElement;
 import ru.dstu.railway.api.paint.IPaintPolygon;
 import ru.dstu.railway.model.element.AbstractElement;
+import ru.dstu.railway.model.element.Ls;
 import ru.dstu.railway.paint.draw.DrawFactory;
 import ru.dstu.railway.api.figure.IFigure;
 
@@ -33,8 +34,13 @@ public class PaintPolygon implements IPaintPolygon, IStateListener {
         }
 
         ((AbstractElement)element).addStateListener(this);
-        if (listMap.putIfAbsent(element, new Pair<>(templateVersion, figures)) != null) {
-            throw new IndexOutOfBoundsException("Множественная запись в поле: " + area + " " + element);
+        Pair<Integer, List<IFigure>> listPair = listMap.putIfAbsent(element, new Pair<>(templateVersion, figures));
+        if (listPair != null) {
+            if (element instanceof Ls) {
+                listPair.getT2().addAll(figures);
+            } else {
+                throw new IndexOutOfBoundsException("Множественная запись в поле: " + area + " " + element);
+            }
         }
     }
 

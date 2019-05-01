@@ -5,10 +5,7 @@ import ru.dstu.railway.api.area.IArea;
 import ru.dstu.railway.api.element.IStationElement;
 import ru.dstu.railway.api.paint.IPaintPolygon;
 import ru.dstu.railway.api.figure.*;
-import ru.dstu.railway.paint.figure.Circle;
-import ru.dstu.railway.paint.figure.Label;
-import ru.dstu.railway.paint.figure.Line;
-import ru.dstu.railway.paint.figure.MrLabel;
+import ru.dstu.railway.paint.figure.*;
 import ru.dstu.railway.paint.parse.struct.*;
 import ru.dstu.railway.api.parse.IParser;
 import ru.dstu.railway.base.parse.exception.ParseException;
@@ -137,6 +134,10 @@ public class PaintParser implements IParser<IPaintPolygon> {
                         xmlFigure.getX(), xmlFigure.getY(),
                         xmlFigure.getDescription(),
                         objectById.getWidth());
+                break;
+            case "image":
+                figure = new Image(xmlFigure.getId(), xmlFigure.getDescription(),
+                        xmlFigure.getX(), xmlFigure.getY(), xmlFigure.getLength());
                 break;
             default:
                 throw new RuntimeException();

@@ -45,15 +45,6 @@
         <st code="СТ16" evenLinkP="Н2" evenLinkM="СТ18" oddLinkP="УП2Ч" oddLinkM="УП2Ч"/>
         <st code="СТ18" evenLinkP="Н4" evenLinkM="Н6" oddLinkP="СТ16" oddLinkM="СТ16"/>
 
-
-        <st code="TEST1" evenLinkP="СТ5" evenLinkM="СТ3" oddLinkP="УПН" oddLinkM="УПН"/>
-        <st code="TEST2" evenLinkP="СТ5" evenLinkM="СТ3" oddLinkP="УПН" oddLinkM="УПН"/>
-        <st code="TEST3" evenLinkP="СТ5" evenLinkM="СТ3" oddLinkP="УПН" oddLinkM="УПН"/>
-        <st code="TEST4" evenLinkP="СТ5" evenLinkM="СТ3" oddLinkP="УПН" oddLinkM="УПН"/>
-        <st code="TEST5" evenLinkP="СТ5" evenLinkM="СТ3" oddLinkP="УПН" oddLinkM="УПН"/>
-        <st code="TEST6" evenLinkP="СТ5" evenLinkM="СТ3" oddLinkP="УПН" oddLinkM="УПН"/>
-
-
         <pr code="ПР1" evenLink="" oddLink=""/>
 
         <mr code="ЧКЖ" evenLink="" oddLink=""/>

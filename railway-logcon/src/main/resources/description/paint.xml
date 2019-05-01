@@ -91,6 +91,9 @@
         <element type="ls" version="1">
             <object type="label" id="1" width="24"/>
         </element>
+        <element type="ls" version="2">
+            <object type="image" id="1"/>
+        </element>
         <element type="pr" version="1">
             <object type="line" id="1" rotate="135" width="2"/>
             <object type="line" id="2" link="1" rotate="90" width="4"/>
@@ -396,6 +399,10 @@
             <element type="ls" code="" version="1">
                 <figure type="label" id="1" x="900" y="300" description="SplitPoint.A (000001)"/>
             </element>
+            <element type="ls" code="" version="2">
+                <figure type="image" id="1" x="725" y="350"
+                        description="/resources/images/station.png" length="45"/>
+            </element>
             <element type="pr" code="ПР1" version="1">
                 <figure type="line" id="1" x="1440" y="500" length="10"/>
                 <figure type="line" id="2" length="160"/>
@@ -410,77 +417,6 @@
             <element type="mr" code="НКЖ" version="1">
                 <figure type="mrLabel" id="1" x="930" y="350" description="НКЖ"/>
             </element>
-
-
-
-
-
-
-
-
-
-            <element type="st" code="TEST1" version="1">
-                <figure type="line" id="1" x="400" y="350" length="20"/>
-                <figure type="line" id="2" length="20"/>
-                <figure type="line" id="3" length="20"/>
-                <figure type="line" id="4" length="20"/>
-                <figure type="line" id="5" length="20" plus="true"/>
-                <figure type="line" id="6" length="20"/>
-                <figure type="line" id="7" length="20"/>
-                <figure type="label" id="8" description="TEST"/>
-            </element>
-            <element type="st" code="TEST2" version="2">
-                <figure type="line" id="1" x="500" y="350" length="20"/>
-                <figure type="line" id="2" length="20"/>
-                <figure type="line" id="3" length="20"/>
-                <figure type="line" id="4" length="20"/>
-                <figure type="line" id="5" length="20" plus="true"/>
-                <figure type="line" id="6" length="20"/>
-                <figure type="line" id="7" length="20"/>
-                <figure type="label" id="8" description="TEST"/>
-            </element>
-            <element type="st" code="TEST3" version="3">
-                <figure type="line" id="1" x="400" y="450" length="20"/>
-                <figure type="line" id="2" length="20"/>
-                <figure type="line" id="3" length="20"/>
-                <figure type="line" id="4" length="20"/>
-                <figure type="line" id="5" length="20" plus="true"/>
-                <figure type="line" id="6" length="20"/>
-                <figure type="line" id="7" length="20"/>
-                <figure type="label" id="8" description="TEST"/>
-            </element>
-            <element type="st" code="TEST4" version="4">
-                <figure type="line" id="1" x="500" y="450" length="20"/>
-                <figure type="line" id="2" length="20"/>
-                <figure type="line" id="3" length="20"/>
-                <figure type="line" id="4" length="20"/>
-                <figure type="line" id="5" length="20" plus="true"/>
-                <figure type="line" id="6" length="20"/>
-                <figure type="line" id="7" length="20"/>
-                <figure type="label" id="8" description="TEST"/>
-            </element>
-            <element type="st" code="TEST5" version="5">
-                <figure type="line" id="1" x="400" y="750" length="20"/>
-                <figure type="line" id="2" length="20"/>
-                <figure type="line" id="3" length="20"/>
-                <figure type="line" id="4" length="20"/>
-                <figure type="line" id="5" length="20" plus="true"/>
-                <figure type="line" id="6" length="20"/>
-                <figure type="line" id="7" length="20"/>
-                <figure type="label" id="8" description="TEST"/>
-            </element>
-            <element type="st" code="TEST6" version="6">
-                <figure type="line" id="1" x="500" y="750" length="20"/>
-                <figure type="line" id="2" length="20"/>
-                <figure type="line" id="3" length="20"/>
-                <figure type="line" id="4" length="20"/>
-                <figure type="line" id="5" length="20" plus="true"/>
-                <figure type="line" id="6" length="20"/>
-                <figure type="line" id="7" length="20"/>
-                <figure type="label" id="8" description="TEST"/>
-            </element>
-
-
         </area>
         <area code="Stage.A.B" esr="000002">
             <element type="up" code="У1Ч" version="1">

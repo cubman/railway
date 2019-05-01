@@ -92,7 +92,9 @@
                                 drawLabel(figure.x + moveX, figure.y + moveY, figure.description, figure.color, figure.width, figure.id + " " + element.code, mainPaper);
                             } else if (figure.type == "mrLabel") {
                                 drawMrLabel(figure.x + moveX, figure.y + moveY, figure.description, figure.textColor, figure.borderColor, figure.width, figure.id + " " + element.code, mainPaper);
-                            }
+                            } else if (figure.type == "image") {
+                               drawImage(figure.x + moveX, figure.y + moveY, figure.path, figure.width, mainPaper);
+                           }
                         });
                         });
 
@@ -174,6 +176,16 @@
                     });
 
                     drawMrLabelText(x, y, description, textColor, width, text, paper);
+                }
+
+                var drawImage = function(x, y, path, scale, paper) {
+                    var width = $("#placeholder").width();
+                    var height = $("#placeholder").height();
+
+                    paper.image(path, x, y, x + width, y + height).
+                        attr({
+                            transform: scale(scale / 100);
+                        });
                 }
 
             </script>
