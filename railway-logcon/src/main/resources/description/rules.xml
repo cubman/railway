@@ -30,7 +30,7 @@
                     <and>
                         <condition>
                             <print out="console" level="info"
-                                   text="1. Стрелка СТ9 находится в состоянии 1и выставляем объекту СТ5 состояние."/>
+                                   text="1. Стрелка СТ9 находится в состоянии 1 и выставляем объекту СТ5 состояние."/>
                         </condition>
                         <condition>
                             <setstate area="SplitPoint.A" code="СТ5" state="2"/>
@@ -72,7 +72,7 @@
                                                    text="3. Стрелка СТ5 занята уже 2 секунды."/>
                                         </then>
                                         <else>
-                                            <print out="console" level="info" text="4. Стрелка СТ5 освбодилась."/>
+                                            <print out="console" level="info" text="4. Стрелка СТ5 освободилась."/>
                                         </else>
                                     </if>
                                 </condition>

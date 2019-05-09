@@ -299,9 +299,9 @@
             <element type="st" code="СТ1" version="4" back="true">
                 <figure type="line" id="1" x="1445" y="550" length="30"/>
                 <figure type="line" id="2" length="30"/>
-                <figure type="line" id="3" length="30" plus="true"/>
+                <figure type="line" id="3" length="30"/>
                 <figure type="line" id="4" length="20"/>
-                <figure type="line" id="5" length="15"/>
+                <figure type="line" id="5" length="15" plus="true"/>
                 <figure type="line" id="6" length="20"/>
                 <figure type="line" id="7" length="0"/>
                 <figure type="label" id="8" description="1"/>
@@ -309,9 +309,9 @@
             <element type="st" code="СТ3" version="1">
                 <figure type="line" id="1" x="1275 " y="620" length="10"/>
                 <figure type="line" id="2" length="30"/>
-                <figure type="line" id="3" length="30" plus="true"/>
+                <figure type="line" id="3" length="30"/>
                 <figure type="line" id="4" length="10"/>
-                <figure type="line" id="5" length="20"/>
+                <figure type="line" id="5" length="20" plus="true"/>
                 <figure type="line" id="6" length="10"/>
                 <figure type="line" id="7" length="0"/>
                 <figure type="label" id="8" description="3"/>
@@ -319,9 +319,9 @@
             <element type="st" code="СТ5" version="2">
                 <figure type="line" id="1" x="1250" y="550" length="30"/>
                 <figure type="line" id="2" length="30"/>
-                <figure type="line" id="3" length="30" plus="true"/>
+                <figure type="line" id="3" length="30"/>
                 <figure type="line" id="4" length="20"/>
-                <figure type="line" id="5" length="20"/>
+                <figure type="line" id="5" length="20" plus="true"/>
                 <figure type="line" id="6" length="10"/>
                 <figure type="line" id="7" length="0"/>
                 <figure type="label" id="8" description="5"/>
@@ -329,9 +329,9 @@
             <element type="st" code="СТ7" version="3" back="true">
                 <figure type="line" id="1" x="1440" y="620" length="30"/>
                 <figure type="line" id="2" length="30"/>
-                <figure type="line" id="3" length="30" plus="true"/>
+                <figure type="line" id="3" length="30"/>
                 <figure type="line" id="4" length="15"/>
-                <figure type="line" id="5" length="20"/>
+                <figure type="line" id="5" length="20" plus="true"/>
                 <figure type="line" id="6" length="10"/>
                 <figure type="line" id="7" length="0"/>
                 <figure type="label" id="8" description="7"/>
@@ -339,9 +339,9 @@
             <element type="st" code="СТ9" version="3" back="true">
                 <figure type="line" id="1" x="1245" y="550" length="20"/>
                 <figure type="line" id="2" length="20"/>
-                <figure type="line" id="3" length="40" plus="true"/>
+                <figure type="line" id="3" length="40"/>
                 <figure type="line" id="4" length="31"/>
-                <figure type="line" id="5" length="40"/>
+                <figure type="line" id="5" length="40" plus="true"/>
                 <figure type="line" id="6" length="20"/>
                 <figure type="line" id="7" length="50"/>
                 <figure type="label" id="8" description="9"/>

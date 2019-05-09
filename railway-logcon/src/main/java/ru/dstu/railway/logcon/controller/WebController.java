@@ -91,52 +91,59 @@ public class WebController {
                         }
                 );
 
+                IStationElement element = polygon.getElementByAreaAndCode("Stage.A.B", "У1Ч");
+
                 setState("SplitPoint.A", "ПР1", PR_BUSY, 0);
-                setState("Stage.A.B", "У1Ч", UP_BUSY, 1);
+                setState(element, UP_BUSY, 1); // "У1Ч"
 
-                setState("SplitPoint.A", "НД", SV_OPEN, 0);
-                setState("SplitPoint.A", "УПН", UP_BUSY, 1);
+                setState(element.getEven(), SV_OPEN, 0); // "НД"
+                setState(element.getEven().getEven(), UP_BUSY, 1); // "УПН"
 
-                setState("Stage.A.B", "У1Ч", UP_NOT_BUSY, 0);
-                setState("SplitPoint.A", "СТ1", ST_BUSY, 1);
+                setState(element, UP_NOT_BUSY, 0); // "У1Ч"
+                setState(element.getEven().getEven().getEven(), ST_BUSY, 1); // "СТ1"
 
-                setState("SplitPoint.A", "УПН", UP_NOT_BUSY, 0);
-                setState("SplitPoint.A", "НД", SV_CLOSED, 0);
-                setState("SplitPoint.A", "СТ9", ST_MINUS, 0);
-                setState("SplitPoint.A", "СТ5", ST_BUSY, 1);
+                element = element.getEven();
 
-                setState("SplitPoint.A", "УПН", UP_NOT_BUSY, 0);
-                setState("SplitPoint.A", "СТ1", ST_NOT_BUSY, 0);
-                setState("SplitPoint.A", "ПР1", PR_NOT_BUSY, 0);
-                setState("SplitPoint.A", "Ч3", SV_OPEN, 0);
-                setState("SplitPoint.A", "СТ9", ST_BUSY, 1);
+                setState(element, SV_CLOSED, 0); // "НД"
+                setState(element.getEven(), UP_NOT_BUSY, 0); // "УПН"
+                setState(element.getEven().getEven().getEven().getEven(), ST_MINUS, 0); // "СТ9"
+                setState(element.getEven().getEven().getEven(), ST_BUSY, 1); // "СТ5"
 
+                setState(element.getEven(), UP_NOT_BUSY, 0); // "УПН"
+                setState(element.getEven().getEven(), ST_NOT_BUSY, 0); // "СТ1"
+                setState("SplitPoint.A", "ПР1", PR_NOT_BUSY, 0); // "ПР1"
+                setState(element.getEven().getEven().getEven().getEven().getEven(), SV_OPEN, 0); // "Ч3"
+                setState(element.getEven().getEven().getEven().getEven(), ST_BUSY, 1); // "СТ9"
 
-                setState("SplitPoint.A", "СТ5", ST_NOT_BUSY, 0);
-                setState("SplitPoint.A", "СТ9", ST_PLUS, 0);
-                setState("SplitPoint.A", "3", PT_BUSY, 1);
+                element = element.getEven().getEven().getEven();
+                setState(element, ST_NOT_BUSY, 0); // "СТ5"
+                setState(element.getEven().getEven().getEven(), PT_BUSY, 1); // "3"
 
-                setState("SplitPoint.A", "СТ9", ST_NOT_BUSY, 0);
-                setState("SplitPoint.A", "Ч3", SV_CLOSED, 2);
+                element = element.getEven();
+                setState(element, ST_NOT_BUSY, 0); // "СТ9"
+                setState(element.getEven(), SV_CLOSED, 2); // "Ч3"
 
-                setState("SplitPoint.A", "СТ14", ST_MINUS, 0);
-                setState("SplitPoint.A", "Н3", SV_OPEN, 2);
+                element = element.getEven().getEven();
+                setState(element.getEven().getEven(), ST_MINUS, 0); // "СТ14"
+                setState(element.getEven(), SV_OPEN, 2); // "Н3"
 
-                setState("SplitPoint.A", "1Ч", SV_OPEN, 0);
-                setState("SplitPoint.A", "СТ14", ST_BUSY, 1);
+                setState(element.getEven().getEven().getEven().getEven(), SV_OPEN, 0); // "1Ч"
+                setState(element.getEven().getEven(), ST_BUSY, 1); // "СТ14"
 
-                setState("SplitPoint.A", "УУ1Ч", UP_BUSY, 0);
-                setState("SplitPoint.A", "3", PR_NOT_BUSY, 0);
-                setState("SplitPoint.A", "Н3", SV_CLOSED, 1);
+                setState(element.getEven().getEven().getEven(), UP_BUSY, 0); // "УУ1Ч"
+                setState(element, PR_NOT_BUSY, 0); // "3"
+                setState(element.getEven(), SV_CLOSED, 1); // "Н3"
 
-                setState("SplitPoint.A", "СТ14", ST_NOT_BUSY, 0);
-                setState("Stage.A.C", "У1Н", UP_BUSY, 1);
+                element = element.getEven().getEven();
+                setState(element, ST_NOT_BUSY, 0); // "СТ14"
+                setState(element.getEven().getEven().getEven(), UP_BUSY, 1); // "У1Н"
 
-                setState("SplitPoint.A", "1Ч", SV_CLOSED, 0);
-                setState("SplitPoint.A", "УУ1Ч", UP_NOT_BUSY, 0);
-                setState("Stage.A.C", "У1Н", UP_BUSY, 1);
+                element = element.getEven();
+                setState(element, UP_NOT_BUSY, 0); // "УУ1Ч"
+                setState(element.getEven(), SV_CLOSED, 0); // "1Ч"
+                setState(element.getEven().getEven(), UP_BUSY, 1); // "У1Н"
 
-                setState("Stage.A.C", "У1Н", UP_NOT_BUSY, 1);
+                setState(element.getEven().getEven(), UP_NOT_BUSY, 1); // "У1Н"
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -149,6 +156,10 @@ public class WebController {
         IArea areaByCode = polygon.getAreaByCode(area);
         IStationElement elementByCode = areaByCode.getElementByCode(element);
         elementByCode.setState(areaByCode, state);
+        TimeUnit.SECONDS.sleep(sleep);
+    }
+    private void setState(IStationElement elementByCode, int state, int sleep) throws InterruptedException {
+        elementByCode.setState(elementByCode.getAreas().get(0), state);
         TimeUnit.SECONDS.sleep(sleep);
     }
 }

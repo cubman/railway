@@ -23,15 +23,15 @@
         <sv code="1Ч" evenLink="У1Н" oddLink="УУ1Ч" evenArea="Stage.A.C"/>
         <sv code="2Ч" evenLink="УП2Ч" oddLink="П1Ч" oddArea="Stage.C.A"/>
 
-        <sv code="НД" evenLink="У1Ч" oddLink="УУНД" evenArea="Stage.A.B"/>
-        <sv code="Н" evenLink="УПН" oddLink="П1Н" oddArea="Stage.B.A"/>
+        <sv code="Н" evenLink="П1Н" oddLink="УУНД" evenArea="Stage.B.A"/>
+        <sv code="НД" evenLink="УПН" oddLink="У1Ч" oddArea="Stage.A.B"/>
 
         <!-- Участки приближения/ удаления -->
         <up code="УП2Ч" evenLink="СТ16" oddLink="2Ч"/>
         <up code="УУ1Ч" evenLink="1Ч" oddLink="СТ14"/>
 
-        <up code="УУНД" evenLink="НД" oddLink="СТ7"/>
-        <up code="УПН" evenLink="СТ1" oddLink="Н"/>
+        <up code="УУНД" evenLink="Н" oddLink="СТ7"/>
+        <up code="УПН" evenLink="СТ1" oddLink="НД"/>
 
         <!-- Стрелки -->
         <st code="СТ1" evenLinkP="СТ5" evenLinkM="СТ3" oddLinkP="УПН" oddLinkM="УПН"/>
@@ -54,10 +54,10 @@
         <party codeFirst="СТ5" codeSecond="СТ7"/>
     </area>
     <area code="Stage.A.B" esr="000002" type="STAGETRACK">
-        <up code="У1Ч" evenLink="" oddLink="НД" oddArea="SplitPoint.A"/>
+        <up code="У1Ч" evenLink="НД" oddLink="" evenArea="SplitPoint.A"/>
     </area>
     <area code="Stage.B.A" esr="000003" type="STAGETRACK">
-        <up code="П1Н" evenLink="Н" oddLink="" evenArea="SplitPoint.A"/>
+        <up code="П1Н" evenLink="" oddLink="Н" oddArea="SplitPoint.A"/>
     </area>
     <area code="Stage.A.C" esr="000004" type="STAGETRACK">
         <up code="У1Н" evenLink="" oddLink="1Ч" oddArea="SplitPoint.A"/>

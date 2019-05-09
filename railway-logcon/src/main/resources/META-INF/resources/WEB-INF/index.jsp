@@ -100,9 +100,7 @@
 
                     });
                 }
-            </script>
 
-            <script type="text/javascript">
                 function randColor() {
                     var r = Math.floor(Math.random() * (256)),
                         g = Math.floor(Math.random() * (256)),
@@ -179,13 +177,7 @@
                 }
 
                 var drawImage = function(x, y, path, scale, paper) {
-                    var width = $("#placeholder").width();
-                    var height = $("#placeholder").height();
-
-                    paper.image(path, x, y, x + width, y + height).
-                        attr({
-                            transform: scale(scale / 100);
-                        });
+                  paper.image(path, x, y, x + scale, y + scale);
                 }
 
             </script>
