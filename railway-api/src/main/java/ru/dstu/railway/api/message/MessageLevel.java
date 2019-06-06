@@ -1,5 +1,5 @@
 package ru.dstu.railway.api.message;
 
 public enum MessageLevel {
-    INFO, ERROR
+    INFO, ERROR, VOICE
 }

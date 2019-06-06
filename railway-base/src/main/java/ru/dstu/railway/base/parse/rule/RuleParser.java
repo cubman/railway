@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import static ru.dstu.railway.base.parse.rule.function.description.ErrorCodes.SIMPLE_CHECK;
+import static ru.dstu.railway.base.parse.rule.function.description.ErrorCodes.SOUND_CHECK;
 
 public class RuleParser implements IParser<List<IRule>> {
 
@@ -95,6 +96,10 @@ public class RuleParser implements IParser<List<IRule>> {
             return ifSimple((XmlCheck) xmlFunction, element);
         }
 
+        if (xmlFunction instanceof XmlSound) {
+            return ifSound((XmlSound) xmlFunction, element);
+        }
+
         if (xmlFunction instanceof XmlTimer) {
             return ifTimer((XmlTimer) xmlFunction, element);
         }
@@ -126,6 +131,14 @@ public class RuleParser implements IParser<List<IRule>> {
         throw new ParseException("Необработанный тип функции: " + xmlFunction.getClass().getName());
     }
 
+    private IFunction ifSound(XmlSound xmlFunction, IStationElement element) {
+
+
+        return new Simple(() -> {
+            messageHolder.addMessage(SOUND_CHECK, xmlFunction.getName(), MessageLevel.VOICE);
+            return new FunctionResult(Boolean.TRUE);
+        });
+    }
 
 
     private IFunction ifOr(XmlOr xmlFunction, IStationElement element) {
@@ -192,6 +205,10 @@ public class RuleParser implements IParser<List<IRule>> {
             return createFunction(xmlFunction.getXmlNot(), element);
         }
 
+        if (xmlFunction.getXmlSound() != null) {
+            return createFunction(xmlFunction.getXmlSound(), element);
+        }
+
         throw new ParseException("Необработанный тип условия функции");
     }
 
@@ -214,8 +231,7 @@ public class RuleParser implements IParser<List<IRule>> {
                         LOGGER.info(xmlPrint.getText());
                     } else if ("error".equals(xmlPrint.getLevel())) {
                         LOGGER.warning(xmlPrint.getText());
-                    }
-                    else {
+                    } else {
                         throw new UnsupportedOperationException(
                                 xmlPrint.getLevel() + " уровень логгирования не определен");
                     }
@@ -228,8 +244,7 @@ public class RuleParser implements IParser<List<IRule>> {
                         messageHolder.addMessage(SIMPLE_CHECK, xmlPrint.getText(), MessageLevel.INFO);
                     } else if ("error".equals(xmlPrint.getLevel())) {
                         messageHolder.addMessage(SIMPLE_CHECK, xmlPrint.getText(), MessageLevel.ERROR);
-                    }
-                    else {
+                    } else {
                         throw new UnsupportedOperationException(
                                 xmlPrint.getLevel() + " уровень логгирования не определен");
                     }

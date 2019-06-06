@@ -9,28 +9,40 @@
         <meta charset="UTF-8">
         <title>DSTU railway</title>
         <script type="text/javascript" src="/resources/js/raphael.min.js"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+        <script type="text/javascript" src="/resources/js/jquery.min.js"></script>
             <script type="text/javascript">
 
                 $(function() {
                     drawPolygon();
                     setInterval(function() {
-                        drawMessage();
+                        soundMessage();
+                        <!--drawMessage();
                         drawPolygon();
                     }, 1000);
                 });
 
+                var soundMessage = function() {
+                    $.getJSON("http://localhost:8080/api/message/", function(messages) {
+                        $.each(messages, function(i, message) {
+                            if (message.messageLevel == "VOICE") {
+                                $("<audio src='/resources/sound/" + message.description + "' autoplay></audio>").appendTo("#audio");
+                            }
+                        });
+                    });
+                }
+
                 var drawMessage = function() {
-                    var messageNotExists = document.getElementById('mes') == null;
+                    <!--var messageInfoNotExists = document.getElementById('messageInfo') == null;
+                    var messageErrorNotExists = document.getElementById('messageError') == null;
                     $("#info").html("");
                     $.getJSON("http://localhost:8080/api/message/", function(messages) {
                         var div_data = "<ul id=info>";
-                        if (messageNotExists) {
-                            div_data = "<div class=prokrutka id=mes>" + div_data;
-                        }
+
+                        var messageMap = [];
 
                         $.each(messages, function(i, message) {
-                            div_data = div_data +
+                            messageMap[message.messageLevel] =
+                            messageMap[message.messageLevel] +
                             "<li>" +
                                 "( " +
                                     message.messageLevel + " | " +
@@ -42,7 +54,6 @@
                         div_data = div_data + "</ul>";
 
                         if (messageNotExists) {
-                            div_data = div_data + "</div>"
 
                             $(div_data).appendTo("#message");
                         } else {
@@ -202,8 +213,12 @@
             <input  type = "submit" name = "submit" value = "Общая статистика" >
         </form>
 
+        <div id="audio"/>
+
         <div id="placeholder"></div>
-        <!--<div id="message">-->
+        <div>
+            <div id="messageInfo"/>
+            <div id="messageError"/>
         </div>
     </body>
 </html>

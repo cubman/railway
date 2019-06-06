@@ -2,6 +2,7 @@ package ru.dstu.railway.model.area;
 
 import ru.dstu.railway.api.area.IArea;
 import ru.dstu.railway.api.element.IStationElement;
+import ru.dstu.railway.model.element.Pt;
 import ru.dstu.railway.model.element.St;
 import ru.dstu.railway.model.element.Up;
 import ru.dstu.railway.model.exception.DuplicationException;
@@ -69,6 +70,9 @@ public abstract class AbstractArea implements IArea {
                 break;
             case "UP":
                 stationElementClass = Up.class;
+                break;
+            case "PT":
+                stationElementClass = Pt.class;
                 break;
             default:
                 throw new IllegalArgumentException(typeCode + " не распознан");

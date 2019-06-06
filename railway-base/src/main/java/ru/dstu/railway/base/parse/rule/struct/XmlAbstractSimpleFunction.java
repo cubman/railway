@@ -27,6 +27,9 @@ public abstract class XmlAbstractSimpleFunction implements XmlIFunction {
     @JacksonXmlProperty(localName = "not")
     private XmlNot xmlNot;
 
+    @JacksonXmlProperty(localName = "sound")
+    private XmlSound xmlSound;
+
     public XmlCheck getXmlCheck() {
         return xmlCheck;
     }
@@ -89,5 +92,13 @@ public abstract class XmlAbstractSimpleFunction implements XmlIFunction {
 
     public void setXmlNot(XmlNot xmlNot) {
         this.xmlNot = xmlNot;
+    }
+
+    public XmlSound getXmlSound() {
+        return xmlSound;
+    }
+
+    public void setXmlSound(XmlSound xmlSound) {
+        this.xmlSound = xmlSound;
     }
 }

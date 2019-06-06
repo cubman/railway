@@ -1,6 +1,6 @@
 package ru.dstu.railway.base.message;
 
-import ru.dstu.railway.api.constant.Pair;
+import ru.dstu.railway.api.message.Message;
 import ru.dstu.railway.api.message.IMessageHolder;
 import ru.dstu.railway.api.message.MessageLevel;
 
@@ -9,9 +9,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MessageHolder implements IMessageHolder {
-    private Map<MessageLevel, List<Pair<String, String>>> messages;
+
+    private Map<MessageLevel, List<Message>> messages;
 
     public MessageHolder() {
         messages = new ConcurrentHashMap<>();
@@ -20,13 +22,13 @@ public class MessageHolder implements IMessageHolder {
     @Override
     public void addMessage(String code, String text, MessageLevel messageLevel) {
         messages.putIfAbsent(messageLevel, new CopyOnWriteArrayList<>());
-        List<Pair<String, String>> stringList = messages.get(messageLevel);
-        stringList.add(new Pair<>(code, text));
+        List<Message> stringList = messages.get(messageLevel);
+        stringList.add(new Message(code, text, 2));
     }
 
     @Override
-    public List<Pair<String, String>> getMessages(MessageLevel messageLevel) {
-        List<Pair<String, String>> pairList = messages.get(messageLevel);
+    public List<Message> getMessages(MessageLevel messageLevel) {
+        List<Message> pairList = messages.get(messageLevel);
         return pairList == null ? new ArrayList<>() : pairList;
     }
 

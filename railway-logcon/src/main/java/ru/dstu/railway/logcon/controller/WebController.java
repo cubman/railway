@@ -131,7 +131,7 @@ public class WebController {
                 setState(element.getEven().getEven(), ST_BUSY, 1); // "СТ14"
 
                 setState(element.getEven().getEven().getEven(), UP_BUSY, 0); // "УУ1Ч"
-                setState(element, PR_NOT_BUSY, 0); // "3"
+                setState(element, PT_NOT_BUSY, 0); // "3"
                 setState(element.getEven(), SV_CLOSED, 1); // "Н3"
 
                 element = element.getEven().getEven();

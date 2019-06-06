@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.dstu.railway.api.area.IArea;
 import ru.dstu.railway.api.constant.Pair;
 import ru.dstu.railway.api.message.IMessageHolder;
+import ru.dstu.railway.api.message.Message;
 import ru.dstu.railway.api.message.MessageLevel;
 import ru.dstu.railway.api.element.IStationElement;
 import ru.dstu.railway.api.polygon.IPolygon;
@@ -35,8 +36,8 @@ public class StateTest extends BaseTest {
         st5.setState(area, 1);
         TimeUnit.SECONDS.sleep(1);
 
-        List<Pair<String, String>> messages = messageHolder.getMessages(MessageLevel.ERROR);
+        List<Message> messages = messageHolder.getMessages(MessageLevel.ERROR);
         Assert.assertEquals(1, messages.size());
-        Assert.assertEquals(ELSE_UNDEFINED, messages.get(0).getT1());
+        Assert.assertEquals(ELSE_UNDEFINED, messages.get(0).getCode());
     }
 }

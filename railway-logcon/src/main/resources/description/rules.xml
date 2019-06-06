@@ -29,7 +29,7 @@
                 <then>
                     <and>
                         <condition>
-                            <print out="console" level="info"
+                            <print out="user" level="info"
                                    text="1. Стрелка СТ9 находится в состоянии 1 и выставляем объекту СТ5 состояние."/>
                         </condition>
                         <condition>
@@ -52,11 +52,11 @@
                         <then>
                             <and>
                                 <condition>
-                                    <print out="console" level="info"
+                                    <print out="user" level="info"
                                            text="2. Стрелка СТ5 занята и ожидаем 2 секунды."/>
                                 </condition>
                                 <condition>
-                                    <timer sleep="2"/>
+                                    <timer sleep="10"/>
                                 </condition>
                                 <condition>
                                     <if>
@@ -68,11 +68,11 @@
                                             </not>
                                         </condition>
                                         <then>
-                                            <print out="console" level="info"
-                                                   text="3. Стрелка СТ5 занята уже 2 секунды."/>
+                                            <print out="user" level="info" text="4. Стрелка СТ5 освободилась."/>
                                         </then>
                                         <else>
-                                            <print out="console" level="info" text="4. Стрелка СТ5 освободилась."/>
+                                            <print out="user" level="error"
+                                                   text="3. Стрелка СТ5 занята уже 2 секунды."/>
                                         </else>
                                     </if>
                                 </condition>
@@ -81,6 +81,55 @@
                     </if>
                 </else>
             </if>
+        </postCondition>
+    </rule>
+    <rule name="Проверка функционирования звука" type="PT" area="SplitPoint.A">
+        <group>
+            <element code="3"/>
+            <element code="2"/>
+        </group>
+        <preCondition>
+            <check state="2"/>
+        </preCondition>
+        <postCondition>
+            <sound name="tutu.ac3"/>
+        </postCondition>
+    </rule>
+
+    <rule name="Проверка функционирования звука движения поезда" type="UP" area="SplitPoint.A">
+        <group>
+            <element code="УПН"/>
+            <element code="УУ1Ч"/>
+        </group>
+        <preCondition>
+            <check state="2"/>
+        </preCondition>
+        <postCondition>
+            <sound name="train.ac3"/>
+        </postCondition>
+    </rule>
+    <rule name="Проверка функционирования звука движения поезда" type="ST" area="SplitPoint.A">
+        <group>
+            <element code="СТ5"/>
+            <element code="СТ1"/>
+            <element code="СТ9"/>
+            <element code="СТ14"/>
+        </group>
+        <preCondition>
+            <or>
+                <condition>
+                    <check state="1"/>
+                </condition>
+                <condition>
+                    <check state="2"/>
+                </condition>
+                <condition>
+                    <check state="3"/>
+                </condition>
+            </or>
+        </preCondition>
+        <postCondition>
+            <sound name="train.ac3"/>
         </postCondition>
     </rule>
 </rules>

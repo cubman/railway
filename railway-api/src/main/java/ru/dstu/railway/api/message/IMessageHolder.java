@@ -8,7 +8,7 @@ public interface IMessageHolder {
 
     void addMessage(String code, String text, MessageLevel messageLevel);
 
-    List<Pair<String, String>> getMessages(MessageLevel messageLevel);
+    List<Message> getMessages(MessageLevel messageLevel);
 
     void clear(MessageLevel messageLevel);
 }

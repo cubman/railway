@@ -31,18 +31,23 @@ public class JPolygonCreator {
 
         messages.addAll(getJMessageByLevel(MessageLevel.ERROR));
         messages.addAll(getJMessageByLevel(MessageLevel.INFO));
+        messages.addAll(getJMessageByLevel(MessageLevel.VOICE));
 
         return messages;
     }
 
     private List<JMessage> getJMessageByLevel(MessageLevel messageLevel) {
-        return messageHolder.getMessages(messageLevel).stream().map(stringStringPair -> {
-            JMessage jMessage = new JMessage();
-            jMessage.setMessageLevel(messageLevel);
-            jMessage.setCode(stringStringPair.getT1());
-            jMessage.setDescription(stringStringPair.getT2());
-            return jMessage;
-        }).collect(Collectors.toList());
+        return messageHolder.getMessages(messageLevel)
+                .stream()
+                .filter(message -> message.getLife() > 1)
+                .map(stringStringPair -> {
+                    JMessage jMessage = new JMessage();
+                    jMessage.setMessageLevel(messageLevel);
+                    jMessage.setCode(stringStringPair.getCode());
+                    jMessage.setDescription(stringStringPair.getText());
+                    stringStringPair.downLife();
+                    return jMessage;
+                }).collect(Collectors.toList());
     }
 
     public List<JArea> getJsonPolygon() {
