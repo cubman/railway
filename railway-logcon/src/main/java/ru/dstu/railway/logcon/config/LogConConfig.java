@@ -8,12 +8,13 @@ import ru.dstu.railway.api.paint.IPaintPolygon;
 import ru.dstu.railway.api.polygon.IPolygon;
 import ru.dstu.railway.api.state.IStateSender;
 import ru.dstu.railway.base.config.RailwayPolygonConfig;
+import ru.dstu.railway.demo.config.DemoConfig;
 import ru.dstu.railway.logcon.state.StateSender;
 import ru.dstu.railway.logcon.struct.JPolygonCreator;
 import ru.dstu.railway.paint.config.PaintConfig;
 
 @Configuration
-@Import({RailwayPolygonConfig.class, PaintConfig.class})
+@Import({RailwayPolygonConfig.class, PaintConfig.class, DemoConfig.class})
 public class LogConConfig {
     @Bean
     public JPolygonCreator jPolygonCreator(IPolygon polygon, IPaintPolygon paintPolygon, IMessageHolder messageHolder) {

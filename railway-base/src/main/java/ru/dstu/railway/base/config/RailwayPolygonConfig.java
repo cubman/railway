@@ -1,6 +1,7 @@
 package ru.dstu.railway.base.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.dstu.railway.api.message.IMessageHolder;
@@ -31,9 +32,10 @@ public class RailwayPolygonConfig {
     @Bean
     public List<IRule> rules(IPolygon polygon,
                              IMessageHolder messageHolder,
-                             IStateSender stateSender) {
+                             IStateSender stateSender,
+                             ApplicationContext applicationContext) {
         IParser<List<IRule>> ruleParser =
-                new RuleParser(ruleDescriptionFileName, polygon, messageHolder, stateSender);
+                new RuleParser(ruleDescriptionFileName, polygon, messageHolder, stateSender, applicationContext);
         return ruleParser.parse();
     }
 

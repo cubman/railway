@@ -1,6 +1,7 @@
 package ru.dstu.railway.base.parse.rule;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import org.springframework.context.ApplicationContext;
 import ru.dstu.railway.api.area.IArea;
 import ru.dstu.railway.api.message.IMessageHolder;
 import ru.dstu.railway.api.message.MessageLevel;
@@ -19,6 +20,8 @@ import ru.dstu.railway.model.element.AbstractElement;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -38,16 +41,19 @@ public class RuleParser implements IParser<List<IRule>> {
     private IMessageHolder messageHolder;
     private IStateSender stateSender;
     private RuleExecutor ruleExecutor;
+    private ApplicationContext applicationContext;
 
     public RuleParser(String ruleDescriptionFileName,
                       IPolygon polygon,
                       IMessageHolder messageHolder,
-                      IStateSender stateSender) {
+                      IStateSender stateSender,
+                      ApplicationContext applicationContext) {
         this.ruleDescriptionFileName = ruleDescriptionFileName;
         this.polygon = polygon;
         this.messageHolder = messageHolder;
         this.stateSender = stateSender;
         this.ruleExecutor = new RuleExecutor();
+        this.applicationContext = applicationContext;
     }
 
     @Override
@@ -100,6 +106,10 @@ public class RuleParser implements IParser<List<IRule>> {
             return ifSound((XmlSound) xmlFunction, element);
         }
 
+        if (xmlFunction instanceof XmlProcedure) {
+            return ifProcedure((XmlProcedure) xmlFunction, element);
+        }
+
         if (xmlFunction instanceof XmlTimer) {
             return ifTimer((XmlTimer) xmlFunction, element);
         }
@@ -131,9 +141,39 @@ public class RuleParser implements IParser<List<IRule>> {
         throw new ParseException("Необработанный тип функции: " + xmlFunction.getClass().getName());
     }
 
+    private IFunction ifProcedure(XmlProcedure xmlFunction, IStationElement element) {
+        return new Simple(() -> {
+            String[] apiCall = xmlFunction.getName().split("::");
+            try {
+                Class<?> forName = Class.forName(apiCall[0]);
+                String[] namesForType = applicationContext.getBeanNamesForType(forName);
+                Object bean = applicationContext.getBean(namesForType[0]);
+
+                Method method = forName.getMethod(apiCall[1], IStationElement.class);
+
+                Object invoke = method.invoke(bean, new Object[] {element});
+
+                if (invoke instanceof Boolean) {
+                    Boolean b = (Boolean)invoke;
+                    return new FunctionResult(b ? Boolean.TRUE : Boolean.FALSE);
+                } else {
+                    throw new RuntimeException("Неопознанный метод");
+                }
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            messageHolder.addMessage(SOUND_CHECK, xmlFunction.getName(), MessageLevel.VOICE);
+            return new FunctionResult(Boolean.TRUE);
+        });
+    }
+
     private IFunction ifSound(XmlSound xmlFunction, IStationElement element) {
-
-
         return new Simple(() -> {
             messageHolder.addMessage(SOUND_CHECK, xmlFunction.getName(), MessageLevel.VOICE);
             return new FunctionResult(Boolean.TRUE);
@@ -207,6 +247,10 @@ public class RuleParser implements IParser<List<IRule>> {
 
         if (xmlFunction.getXmlSound() != null) {
             return createFunction(xmlFunction.getXmlSound(), element);
+        }
+
+        if (xmlFunction.getXmlProcedure() != null) {
+            return createFunction(xmlFunction.getXmlProcedure(), element);
         }
 
         throw new ParseException("Необработанный тип условия функции");

@@ -1,31 +1,23 @@
-package ru.dstu.railway.test;
+package test;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.dstu.railway.api.area.IArea;
-import ru.dstu.railway.api.constant.Pair;
-import ru.dstu.railway.api.message.IMessageHolder;
+import ru.dstu.railway.api.element.IStationElement;
 import ru.dstu.railway.api.message.Message;
 import ru.dstu.railway.api.message.MessageLevel;
-import ru.dstu.railway.api.element.IStationElement;
-import ru.dstu.railway.api.polygon.IPolygon;
-import ru.dstu.railway.base.config.RailwayPolygonConfig;
-import ru.dstu.railway.logcon.config.LogConConfig;
-import ru.dstu.railway.test.base.BaseTest;
+import ru.dstu.railway.demo.config.DemoConfig;
+import test.base.BaseTest;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static ru.dstu.railway.base.parse.rule.function.description.ErrorCodes.ELSE_UNDEFINED;
 
-@ContextConfiguration(classes = LogConConfig.class)
-@RunWith(SpringJUnit4ClassRunner.class)
-@TestPropertySource(locations="classpath:test.properties")
 public class StateTest extends BaseTest {
     @Test
     public void testState() throws InterruptedException {

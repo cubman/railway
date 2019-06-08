@@ -1,6 +1,7 @@
 package ru.dstu.railway.base.parse.rule.struct;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import ru.dstu.railway.base.parse.polygon.struct.XmlPr;
 
 public abstract class XmlAbstractSimpleFunction implements XmlIFunction {
     @JacksonXmlProperty(localName = "check")
@@ -29,6 +30,9 @@ public abstract class XmlAbstractSimpleFunction implements XmlIFunction {
 
     @JacksonXmlProperty(localName = "sound")
     private XmlSound xmlSound;
+
+    @JacksonXmlProperty(localName = "procedure")
+    private XmlProcedure xmlProcedure;
 
     public XmlCheck getXmlCheck() {
         return xmlCheck;
@@ -100,5 +104,13 @@ public abstract class XmlAbstractSimpleFunction implements XmlIFunction {
 
     public void setXmlSound(XmlSound xmlSound) {
         this.xmlSound = xmlSound;
+    }
+
+    public XmlProcedure getXmlProcedure() {
+        return xmlProcedure;
+    }
+
+    public void setXmlProcedure(XmlProcedure xmlProcedure) {
+        this.xmlProcedure = xmlProcedure;
     }
 }

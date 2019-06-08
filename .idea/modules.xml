@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/railway.iml" filepath="$PROJECT_DIR$/.idea/railway.iml" />
       <module fileurl="file://$PROJECT_DIR$/railway-api/railway-api.iml" filepath="$PROJECT_DIR$/railway-api/railway-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/railway-base/railway-base.iml" filepath="$PROJECT_DIR$/railway-base/railway-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/railway-demo/railway-demo.iml" filepath="$PROJECT_DIR$/railway-demo/railway-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/railway-logcon/railway-logcon.iml" filepath="$PROJECT_DIR$/railway-logcon/railway-logcon.iml" />
       <module fileurl="file://$PROJECT_DIR$/railway-model/railway-model.iml" filepath="$PROJECT_DIR$/railway-model/railway-model.iml" />
       <module fileurl="file://$PROJECT_DIR$/railway-paint/railway-paint.iml" filepath="$PROJECT_DIR$/railway-paint/railway-paint.iml" />

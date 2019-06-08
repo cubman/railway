@@ -83,7 +83,7 @@
             </if>
         </postCondition>
     </rule>
-    <rule name="Проверка функционирования звука" type="PT" area="SplitPoint.A">
+    <rule name="Проверка функционирования звука приближения к станции" type="PT" area="SplitPoint.A">
         <group>
             <element code="3"/>
             <element code="2"/>
@@ -108,7 +108,7 @@
             <sound name="train.ac3"/>
         </postCondition>
     </rule>
-    <rule name="Проверка функционирования звука движения поезда" type="ST" area="SplitPoint.A">
+    <rule name="Проверка функционирования звука движения поезда на стрелках" type="ST" area="SplitPoint.A">
         <group>
             <element code="СТ5"/>
             <element code="СТ1"/>
@@ -116,20 +116,21 @@
             <element code="СТ14"/>
         </group>
         <preCondition>
-            <or>
-                <condition>
-                    <check state="1"/>
-                </condition>
-                <condition>
-                    <check state="2"/>
-                </condition>
-                <condition>
-                    <check state="3"/>
-                </condition>
-            </or>
+            <check state="3"/>
         </preCondition>
         <postCondition>
             <sound name="train.ac3"/>
+        </postCondition>
+    </rule>
+    <rule name="Проверка функционирования процедуры" type="PT" area="SplitPoint.A">
+        <group>
+            <element code="3"/>
+        </group>
+        <preCondition>
+            <check state="2"/>
+        </preCondition>
+        <postCondition>
+            <procedure name="ru.dstu.railway.demo.Actions::getElementName"/>
         </postCondition>
     </rule>
 </rules>

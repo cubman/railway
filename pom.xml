@@ -14,12 +14,14 @@
         <module>railway-base</module>
         <module>railway-logcon</module>
         <module>railway-paint</module>
+        <module>railway-demo</module>
     </modules>
 
     <properties>
         <railway-api.version>${project.version}</railway-api.version>
         <railway-model.version>${project.version}</railway-model.version>
         <railway-base.version>${project.version}</railway-base.version>
+        <railway-demo.version>${project.version}</railway-demo.version>
 
         <spring.version>5.0.9.RELEASE</spring.version>
         <cglib.version>2.2.2</cglib.version>
@@ -44,6 +46,12 @@
                 <groupId>railway</groupId>
                 <artifactId>railway-base</artifactId>
                 <version>${railway-base.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>railway</groupId>
+                <artifactId>railway-demo</artifactId>
+                <version>${railway-demo.version}</version>
+                <!--<scope>provided</scope>-->
             </dependency>
             <dependency>
                 <groupId>railway</groupId>

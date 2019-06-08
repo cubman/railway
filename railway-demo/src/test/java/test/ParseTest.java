@@ -1,21 +1,12 @@
-package ru.dstu.railway.test;
+package test;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.dstu.railway.api.area.IArea;
 import ru.dstu.railway.api.element.IStationElement;
-import ru.dstu.railway.logcon.config.LogConConfig;
 import ru.dstu.railway.model.element.Ls;
 import ru.dstu.railway.model.element.St;
-import ru.dstu.railway.base.config.RailwayPolygonConfig;
-import ru.dstu.railway.api.polygon.IPolygon;
-import ru.dstu.railway.api.rule.IRule;
-import ru.dstu.railway.test.base.BaseTest;
+import test.base.BaseTest;
 
 import java.util.List;
 
