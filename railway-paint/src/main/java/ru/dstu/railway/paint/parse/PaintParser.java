@@ -37,6 +37,8 @@ public class PaintParser implements IParser<IPaintPolygon> {
         File ruleDescription = new File(paintFileName);
         try {
             xmlPaint = xmlMapper.readValue(ruleDescription, XmlPaint.class);
+            XmlPaint xmlPaintTemplate = xmlMapper.readValue(PaintParser.class.getResource("/template-paint.xml"), XmlPaint.class);
+            xmlPaint.setXmlBase(xmlPaintTemplate.getXmlBase());
         } catch (IOException e) {
             throw new ParseException("Поток " + ruleDescription + " не распарсился", e);
         }

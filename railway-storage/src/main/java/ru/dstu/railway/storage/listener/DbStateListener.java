@@ -9,16 +9,15 @@ import ru.dstu.railway.model.polygon.RailwayPolygon;
 import ru.dstu.railway.storage.dao.StatesDao;
 import ru.dstu.railway.storage.entity.StatesEntity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
-public class StateChangeListener implements IStateListener {
+public class DbStateListener implements IStateListener {
 
     private RailwayPolygon railwayPolygon;
     private StatesDao statesDao;
 
-    public StateChangeListener(RailwayPolygon railwayPolygon, StatesDao statesDao) {
+    public DbStateListener(RailwayPolygon railwayPolygon, StatesDao statesDao) {
         this.railwayPolygon = railwayPolygon;
         this.statesDao = statesDao;
     }

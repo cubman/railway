@@ -12,7 +12,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.stereotype.Component;
 import ru.dstu.railway.model.polygon.RailwayPolygon;
 import ru.dstu.railway.storage.dao.StatesDao;
-import ru.dstu.railway.storage.listener.StateChangeListener;
+import ru.dstu.railway.storage.listener.DbStateListener;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -28,15 +28,15 @@ public class StorageConfig {
     StatesDao statesDao;
 
     @Bean
-    StateChangeListener stateChangeListener(RailwayPolygon railwayPolygon) {
-        StateChangeListener stateChangeListener = new StateChangeListener(railwayPolygon, statesDao);
+    DbStateListener stateChangeListener(RailwayPolygon railwayPolygon) {
+        DbStateListener dbStateListener = new DbStateListener(railwayPolygon, statesDao);
 
-        stateChangeListener.subscribeToStationElements();
+        dbStateListener.subscribeToStationElements();
 
-        return stateChangeListener;
+        return dbStateListener;
     }
 
-    @Bean("entityManagerFactory")
+    @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
@@ -62,7 +62,7 @@ public class StorageConfig {
     DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:./railway;DB_CLOSE_ON_EXIT=TRUE;FILE_LOCK=NO");
+        dataSource.setUrl("jdbc:h2:./railway_for_demo;DB_CLOSE_ON_EXIT=TRUE;FILE_LOCK=NO");
         dataSource.setUsername("sa");
         dataSource.setPassword("");
         return dataSource;
