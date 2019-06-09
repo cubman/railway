@@ -24,6 +24,9 @@ public class StatesEntity {
     @Column(name = "state", nullable = false)
     private Integer state;
 
+    @Column(name = "area", nullable = false)
+    private String area;
+
     @Column(name = "last_changed", nullable = false)
     private LocalDateTime lastChanged;
 
@@ -65,5 +68,13 @@ public class StatesEntity {
 
     public void setLastChanged(LocalDateTime lastChanged) {
         this.lastChanged = lastChanged;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 }

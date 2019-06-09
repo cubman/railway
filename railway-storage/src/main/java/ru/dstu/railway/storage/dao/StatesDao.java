@@ -8,4 +8,5 @@ import ru.dstu.railway.storage.entity.StatesEntity;
 
 @Repository
 public interface StatesDao extends CrudRepository<StatesEntity, Long> {
+    Iterable<StatesEntity> findByCodeAndType(String code, String type);
 }

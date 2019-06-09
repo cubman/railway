@@ -23,7 +23,6 @@ import java.util.Properties;
 @EnableJpaRepositories("ru.dstu.railway.storage.dao")
 public class StorageConfig {
 
-
     @Autowired
     @Lazy
     StatesDao statesDao;
@@ -68,19 +67,6 @@ public class StorageConfig {
         dataSource.setPassword("");
         return dataSource;
     }
-//
-//    @Bean
-//    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
-//        JpaTransactionManager transactionManager = new JpaTransactionManager();
-//        transactionManager.setEntityManagerFactory(emf);
-//
-//        return transactionManager;
-//    }
-
-//    @Bean
-//    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-//        return new PersistenceExceptionTranslationPostProcessor();
-//    }
 
     private Properties additionalProperties() {
         Properties properties = new Properties();

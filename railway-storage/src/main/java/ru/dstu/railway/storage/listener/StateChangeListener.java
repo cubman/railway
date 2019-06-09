@@ -11,6 +11,7 @@ import ru.dstu.railway.storage.entity.StatesEntity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class StateChangeListener implements IStateListener {
 
@@ -30,16 +31,20 @@ public class StateChangeListener implements IStateListener {
 
     @Override
     public void notify(IArea area, IStationElement element) {
-        if (statesDao.count() == 0) {
-            StatesEntity statesEntity = new StatesEntity();
-            statesEntity.setCode("СТ11");
-            statesEntity.setType("st");
-            statesEntity.setState(1);
-            statesEntity.setLastChanged(LocalDateTime.now());
-            statesDao.save(statesEntity);
-        }
-        Iterable<StatesEntity> all = statesDao.findAll();
+        Iterable<StatesEntity> codeAndType = statesDao.findByCodeAndType(element.getElementCode(), element.getClass().getName());
+        StatesEntity statesEntity;
 
-        System.out.println("УРА!!!!!!!!!!" + all.iterator().next().getCode());
+        if (codeAndType.iterator().hasNext()) {
+            statesEntity = codeAndType.iterator().next();
+        } else {
+            statesEntity = new StatesEntity();
+            statesEntity.setCode(element.getElementCode());
+            statesEntity.setType(element.getClass().getName());
+        }
+        statesEntity.setArea(area.getAreaCode());
+        statesEntity.setState(element.getState().getState());
+        statesEntity.setLastChanged(LocalDateTime.ofInstant( element.getState().getLastChange().toInstant(), ZoneId.systemDefault()));
+
+        statesDao.save(statesEntity);
     }
 }
