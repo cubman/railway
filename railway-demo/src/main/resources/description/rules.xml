@@ -130,7 +130,7 @@
             <check state="2"/>
         </preCondition>
         <postCondition>
-            <procedure name="ru.dstu.railway.demo.Actions::getElementName"/>
+            <procedure class="ru.dstu.railway.demo.Actions" method="notifyStation"/>
         </postCondition>
     </rule>
 </rules>

@@ -143,33 +143,25 @@ public class RuleParser implements IParser<List<IRule>> {
 
     private IFunction ifProcedure(XmlProcedure xmlFunction, IStationElement element) {
         return new Simple(() -> {
-            String[] apiCall = xmlFunction.getName().split("::");
             try {
-                Class<?> forName = Class.forName(apiCall[0]);
+                Class<?> forName = Class.forName(xmlFunction.getPackageClass());
                 String[] namesForType = applicationContext.getBeanNamesForType(forName);
                 Object bean = applicationContext.getBean(namesForType[0]);
 
-                Method method = forName.getMethod(apiCall[1], IStationElement.class);
+                Method method = forName.getMethod(xmlFunction.getMethod(), IStationElement.class);
 
-                Object invoke = method.invoke(bean, new Object[] {element});
+                Object invoke = method.invoke(bean, new Object[]{element});
 
                 if (invoke instanceof Boolean) {
-                    Boolean b = (Boolean)invoke;
+                    Boolean b = (Boolean) invoke;
                     return new FunctionResult(b ? Boolean.TRUE : Boolean.FALSE);
-                } else {
-                    throw new RuntimeException("Неопознанный метод");
                 }
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
+            } catch (ClassNotFoundException | NoSuchMethodException
+                    | IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
             }
-            messageHolder.addMessage(SOUND_CHECK, xmlFunction.getName(), MessageLevel.VOICE);
-            return new FunctionResult(Boolean.TRUE);
+
+            return new FunctionResult(Boolean.FALSE);
         });
     }
 

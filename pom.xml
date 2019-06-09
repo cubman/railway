@@ -15,6 +15,7 @@
         <module>railway-logcon</module>
         <module>railway-paint</module>
         <module>railway-demo</module>
+        <module>railway-storage</module>
     </modules>
 
     <properties>
@@ -22,6 +23,7 @@
         <railway-model.version>${project.version}</railway-model.version>
         <railway-base.version>${project.version}</railway-base.version>
         <railway-demo.version>${project.version}</railway-demo.version>
+        <railway-storage.version>${project.version}</railway-storage.version>
 
         <spring.version>5.0.9.RELEASE</spring.version>
         <cglib.version>2.2.2</cglib.version>
@@ -59,6 +61,11 @@
                 <version>${railway-paint.version}</version>
             </dependency>
             <dependency>
+                <groupId>railway</groupId>
+                <artifactId>railway-storage</artifactId>
+                <version>${railway-storage.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
                 <version>${spring.version}</version>
@@ -87,6 +94,11 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>2.0.5.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-thymeleaf</artifactId>
                 <version>2.0.5.RELEASE</version>
             </dependency>
@@ -98,14 +110,28 @@
         </dependencies>
     </dependencyManagement>
 
+
     <build>
         <plugins>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-compiler-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<source>8</source>-->
+                    <!--<target>8</target>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>
+                    <compilerVersion>8</compilerVersion>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
         </plugins>

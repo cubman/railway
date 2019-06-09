@@ -12,7 +12,7 @@ public class Actions {
     @Autowired
     IMessageHolder messageHolder;
 
-    public boolean getElementName(IStationElement element) {
+    public boolean notifyStation(IStationElement element) {
         messageHolder.addMessage(SOUND_CHECK, "station.ac3", MessageLevel.VOICE);
 
         return true;

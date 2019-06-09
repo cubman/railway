@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/railway-logcon/railway-logcon.iml" filepath="$PROJECT_DIR$/railway-logcon/railway-logcon.iml" />
       <module fileurl="file://$PROJECT_DIR$/railway-model/railway-model.iml" filepath="$PROJECT_DIR$/railway-model/railway-model.iml" />
       <module fileurl="file://$PROJECT_DIR$/railway-paint/railway-paint.iml" filepath="$PROJECT_DIR$/railway-paint/railway-paint.iml" />
+      <module fileurl="file://$PROJECT_DIR$/railway-storage/railway-storage.iml" filepath="$PROJECT_DIR$/railway-storage/railway-storage.iml" />
     </modules>
   </component>
 </project>

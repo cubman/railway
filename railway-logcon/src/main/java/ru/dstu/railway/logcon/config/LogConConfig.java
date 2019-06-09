@@ -12,6 +12,9 @@ import ru.dstu.railway.demo.config.DemoConfig;
 import ru.dstu.railway.logcon.state.StateSender;
 import ru.dstu.railway.logcon.struct.JPolygonCreator;
 import ru.dstu.railway.paint.config.PaintConfig;
+import ru.dstu.railway.storage.config.StorageConfig;
+
+import javax.sql.DataSource;
 
 @Configuration
 @Import({RailwayPolygonConfig.class, PaintConfig.class, DemoConfig.class})
