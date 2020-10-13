@@ -27,7 +27,7 @@
 
         <spring.version>5.0.9.RELEASE</spring.version>
         <cglib.version>2.2.2</cglib.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <jackson-dataformat-xml.version>2.9.8</jackson-dataformat-xml.version>
         <railway-paint.version>1.0-SNAPSHOT</railway-paint.version>
     </properties>
